@@ -2627,6 +2627,82 @@ article.smaller q::after {
 </article>
 
 <article>
+<h3><a href="http://www.springio.net/wp-content/uploads/2014/11/springio2015-spring-4-web-apps-rossen-stoyanchev.pdf">Spring 4 Web Apps</a>(Rossen Stoyanchev)</h3>
+
+<ul>
+<li>Spring MVC 4系の新たな機能を淡々と紹介
+
+<ul>
+<li>@RestController</li>
+<li>@ControllerAdvice</li>
+<li>Static Resources
+
+<ul>
+<li>ブラウザキャッシュのため、静的リソースにバージョンハッシュを付けてくれる </li>
+<li>Example: “/css/font-awesome.min <strong>-7fbe76cdac</strong>.css”</li>
+</ul></li>
+</ul></li>
+</ul>
+
+
+</article>
+
+<article>
+<h3><a href="http://www.springio.net/wp-content/uploads/2014/11/springio2015-spring-4-web-apps-rossen-stoyanchev.pdf">Spring 4 Web Apps</a>(Rossen Stoyanchev)</h3>
+
+<ul>
+<li><p>Spring MVC 4系の新たな機能を淡々と紹介</p>
+
+<ul>
+<li>WebSocketでは、アプリレベルのSTOMPを使うのが良い</li>
+<li>WebSocketのブロードキャスト実装例</li>
+</ul>
+
+<pre><code class="java">@Controller
+public class PortfolioController {
+ @RequestMapping(&quot;/greetings&quot;, method=POST)
+ public String send() {
+ this.messagingTemplate.convertAndSend(
+ “/topic/greetings”, payload);
+ }
+}
+</code></pre></li>
+</ul>
+
+
+</article>
+
+<article>
+<h3><a href="http://www.springio.net/wp-content/uploads/2014/11/springio2015-spring-4-web-apps-rossen-stoyanchev.pdf">Spring 4 Web Apps</a>(Rossen Stoyanchev)</h3>
+
+<ul>
+<li>Spring MVC 4.2の新機能
+
+<ul>
+<li>HTTP Streaming
+
+<ul>
+<li>連続したオブジェクトを返却するインタフェース。ResponseBodyEmitterが戻り値。</li>
+<li>ResponseBodyEmitterを拡張してServer sent event対応している。</li>
+</ul></li>
+<li>HTTP Caching Updates (Cache-Control/E-Tag)</li>
+<li>CORS Support (@CrossOrigin)</li>
+<li>@RequestMapping as Meta Annotation</li>
+<li>JavaScript View Templating
+
+<ul>
+<li>サーバ側でjavascriptで画面をレンダリング</li>
+<li>一部をサーバ、一部をクライアント見たいな異も可能</li>
+<li>JDK1.8のNashornを利用</li>
+</ul></li>
+<li>STOMP Client</li>
+</ul></li>
+</ul>
+
+
+</article>
+
+<article>
 <h3>Spring Batch for Large Enterprises Operations (Ignasi Gonzalez)</h3>
 
 <ul>
@@ -2660,8 +2736,6 @@ article.smaller q::after {
 <li>プロフィール
 
 <ul>
-<li>4 providers向け</li>
-<li>規模は秘密</li>
 <li>300 developers</li>
 </ul></li>
 <li>ポイント
@@ -2674,7 +2748,8 @@ article.smaller q::after {
 
 <ul>
 <li>CheckstyleやSonar等を用いコードの品質確保を確認した。</li>
-<li>reportingとschedulingが弱いので拡張が必要だった。例えば、既存データの件数から実効時間を予測したり、プログレスをレポートするようにした。</li>
+<li>reportingとschedulingが弱いので拡張が必要だった。</li>
+<li>例えば、既存データの件数から実効時間を予測したり、プログレスをレポートするようにした。</li>
 </ul></li>
 </ul></li>
 </ul>
