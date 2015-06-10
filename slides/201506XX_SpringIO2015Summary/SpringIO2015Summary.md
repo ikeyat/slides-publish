@@ -63,6 +63,7 @@ Spring 4.2
 ### Spring 4.2
 
 * 2015/5末に4.2.0.RC1が公開
+* 2015/7/15にリリース予定
 * Spring IO Platform 2.0.0に載る予定
     * Spring 4.2.0
     * Spring Security 4.0.1
@@ -82,6 +83,11 @@ Spring 4.2
 |   |EL関数 ```s:mvcUrl```追加|
 |   |```ResponseEntity```ビルダーサポート|
 |   |```GroovyMarkupTemplate```サポート|
+
+### Spring 4.1の新機能（おさらい）
+
+|カテゴリ    |新機能      |
+|:-----------|:-----------|
 |JMS|```@JmsListener```サポート|
 |   |```spring-messaging```サポート|
 |Cache|JCache(JSR-107)サポート|
@@ -99,8 +105,32 @@ http://www.slideshare.net/makingx/springone-2gx-2014-spring-41-jsug
 
 |4.1新機能    |4.2新機能      |
 |:------------|:--------------|
-|Web<br>JMS<br>WebSocket<br>Test<br>Cache|Web<br>JMS<br>WebSocket<br>Test<br>**Container**<br>**Data**|
+|Web<br>JMS<br>WebSocket<br>Test<br>Cache|Web<br>JMS<br>WebSocket<br>Test<br>**Container**<br>**Data Access**|
 
+### Spring 4.2の新機能
+
+|カテゴリ    |新機能      |詳細紹介|
+|:-----------|:-----------|:-------|
+|Container   |```@Bean```のJava8 defaultメソッド対応|○|
+|            |```@Import```の改善|○|
+|            |```@Order```のConfigurationクラス対応|○|
+|            |```@Resource```の```@Lazy対応|-|
+|            |```@EventListener```による任意メソッドでのイベント検知|○|
+|            |```@AliasFor```によるアノテーション属性のエイリアス対応|○|
+|            |```DefaultConversionService```の改善|-|
+|            |```DefaultFormattingConversionService```のJSR-354 Money & Currency対応|-|
+|            |```@NumberFormat```のmeta-annotation対応|-|
+|            |```JavaMailSenderImpl```への```testConnection()```メソッド追加|-|
+|            |```ScheduledTaskRegistrar```の改善|-|
+|            |Apache ```commons-pool2```のサポート|-|
+|Data Access |```javax.transaction.Transactional```のAspectJによる対応 |-|
+|            |```SimpleJdbcCallOperations```の名前バインディング対応|?|
+|            |Hibernate ORM 5.0のフルサポート|?|
+|            |```<jdbc:embedded-database>```への```database-name```属性追加|?|
+|JMS         |省略|-|
+|Web         |||
+|WebSocket   |||
+|Test        |||
 
 http://docs.spring.io/spring/docs/4.2.0.RC1/spring-framework-reference/htmlsingle/
 
