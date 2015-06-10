@@ -28,7 +28,7 @@ Spring I/O 2015報告会
 * 基調講演＋39セッション＋6ワークショップ
 * 41プレゼンター（日本からは槙さん）
 * Spring/Groovy/Grails
-    * G2Xな皆様ごめんなさい
+    * 2GXな皆様ごめんなさい
 * 聴講者含めアジア系は我々4名のみの模様
 
 ### バルセロナ
@@ -94,7 +94,7 @@ Spring 4.2
 |WebSocket|SockJSのクライアントサイドサポート|
 |   |STOMPのSubscribeイベントサポート|
 |   |websocketスコープの追加|
-|Test|GroovyスクリプトによるTestContext設定サポート|
+|Test|Groovy ScriptでのTestContext設定サポート|
 |   |```@Sql```/```@SqlConfig```のサポート|
 |   |```@TestPropertySource```のサポート|
 
@@ -124,13 +124,32 @@ http://www.slideshare.net/makingx/springone-2gx-2014-spring-41-jsug
 |            |```ScheduledTaskRegistrar```の改善|-|
 |            |Apache ```commons-pool2```のサポート|-|
 |Data Access |AspectJによる```javax.transaction.Transactional```の対応 |-|
-|            |```SimpleJdbcCallOperations```の名前バインディング対応|?|
-|            |Hibernate ORM 5.0のフルサポート|?|
-|            |```<jdbc:embedded-database>```への```database-name```属性追加|?|
+|            |```SimpleJdbcCallOperations```の名前バインディング対応|-|
+|            |Hibernate ORM 5.0のフルサポート|-|
+|            |```<jdbc:embedded-database>```への```database-name```属性追加|-|
 |JMS         |省略|-|
-|Web         |||
+|Web         |HTTP StreamingとServer-Sent Eventsのサポート|○|
+|            |CORSのグローバル設定・個別設定(```@CrossOrigin```)のサポート|○|
+|            |HTTPキャッシュの改善(```CacheControl```ビルダ追加・ETagサポート改善)|○|
+|            |NashornベースのJavaScript view templatingの追加|○|
+|            |カスタム```@RequestMapping```アノテーション|○|
+|            |request mappingを実行時に編集可能なAPI追加|-|
+|            |```RequestBodyAdvice```による拡張ポイント追加|○|
+|            |```@ExceptionHandler```への```HandlerMethod```引数追加||
+|            |@Controllerメソッド戻り値への```java.util.concurrent.CompletableFuture```の追加|-|
+|            |静的リソースのためのByte-rangeリクエストのサポート|○|
+|            |```UriTemplateHandler```によるRestTemplateの拡張ポイント追加|○|
+|            |```MvcUriComponentsBuilder```の改善|-|
 |WebSocket   |||
 |Test        |||
+
+```
+分担
+Container:池谷
+Web:岩塚
+WebSocket:池谷
+Test:岩塚
+```
 
 http://docs.spring.io/spring/docs/4.2.0.RC1/spring-framework-reference/htmlsingle/
 

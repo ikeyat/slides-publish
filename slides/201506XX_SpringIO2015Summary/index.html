@@ -2623,7 +2623,7 @@ article.smaller q::after {
 <li>Spring/Groovy/Grails
 
 <ul>
-<li>G2Xな皆様ごめんなさい</li>
+<li>2GXな皆様ごめんなさい</li>
 </ul></li>
 <li>聴講者含めアジア系は我々4名のみの模様</li>
 </ul>
@@ -2796,7 +2796,7 @@ article.smaller q::after {
 </tr>
 <tr>
 <td style="text-align: left">Test</td>
-<td style="text-align: left">GroovyスクリプトによるTestContext設定サポート</td>
+<td style="text-align: left">Groovy ScriptでのTestContext設定サポート</td>
 </tr>
 <tr>
 <td style="text-align: left"></td>
@@ -2910,17 +2910,17 @@ article.smaller q::after {
 <tr>
 <td style="text-align: left"></td>
 <td style="text-align: left"><code>SimpleJdbcCallOperations</code>の名前バインディング対応</td>
-<td style="text-align: left">?</td>
+<td style="text-align: left">-</td>
 </tr>
 <tr>
 <td style="text-align: left"></td>
 <td style="text-align: left">Hibernate ORM 5.0のフルサポート</td>
-<td style="text-align: left">?</td>
+<td style="text-align: left">-</td>
 </tr>
 <tr>
 <td style="text-align: left"></td>
 <td style="text-align: left"><code>&lt;jdbc:embedded-database&gt;</code>への<code>database-name</code>属性追加</td>
-<td style="text-align: left">?</td>
+<td style="text-align: left">-</td>
 </tr>
 <tr>
 <td style="text-align: left">JMS</td>
@@ -2929,8 +2929,63 @@ article.smaller q::after {
 </tr>
 <tr>
 <td style="text-align: left">Web</td>
+<td style="text-align: left">HTTP StreamingとServer-Sent Eventsのサポート</td>
+<td style="text-align: left">○</td>
+</tr>
+<tr>
 <td style="text-align: left"></td>
+<td style="text-align: left">CORSのグローバル設定・個別設定(<code>@CrossOrigin</code>)のサポート</td>
+<td style="text-align: left">○</td>
+</tr>
+<tr>
 <td style="text-align: left"></td>
+<td style="text-align: left">HTTPキャッシュの改善(<code>CacheControl</code>ビルダ追加・ETagサポート改善)</td>
+<td style="text-align: left">○</td>
+</tr>
+<tr>
+<td style="text-align: left"></td>
+<td style="text-align: left">NashornベースのJavaScript view templatingの追加</td>
+<td style="text-align: left">○</td>
+</tr>
+<tr>
+<td style="text-align: left"></td>
+<td style="text-align: left">カスタム<code>@RequestMapping</code>アノテーション</td>
+<td style="text-align: left">○</td>
+</tr>
+<tr>
+<td style="text-align: left"></td>
+<td style="text-align: left">request mappingを実行時に編集可能なAPI追加</td>
+<td style="text-align: left">-</td>
+</tr>
+<tr>
+<td style="text-align: left"></td>
+<td style="text-align: left"><code>RequestBodyAdvice</code>による拡張ポイント追加</td>
+<td style="text-align: left">○</td>
+</tr>
+<tr>
+<td style="text-align: left"></td>
+<td style="text-align: left"><code>@ExceptionHandler</code>への<code>HandlerMethod</code>引数追加</td>
+<td style="text-align: left"></td>
+</tr>
+<tr>
+<td style="text-align: left"></td>
+<td style="text-align: left">@Controllerメソッド戻り値への<code>java.util.concurrent.CompletableFuture</code>の追加</td>
+<td style="text-align: left">-</td>
+</tr>
+<tr>
+<td style="text-align: left"></td>
+<td style="text-align: left">静的リソースのためのByte-rangeリクエストのサポート</td>
+<td style="text-align: left">○</td>
+</tr>
+<tr>
+<td style="text-align: left"></td>
+<td style="text-align: left"><code>UriTemplateHandler</code>によるRestTemplateの拡張ポイント追加</td>
+<td style="text-align: left">○</td>
+</tr>
+<tr>
+<td style="text-align: left"></td>
+<td style="text-align: left"><code>MvcUriComponentsBuilder</code>の改善</td>
+<td style="text-align: left">-</td>
 </tr>
 <tr>
 <td style="text-align: left">WebSocket</td>
@@ -2943,6 +2998,13 @@ article.smaller q::after {
 <td style="text-align: left"></td>
 </tr>
 </tbody></table>
+
+<pre><code>分担
+Container:池谷
+Web:岩塚
+WebSocket:池谷
+Test:岩塚
+</code></pre>
 
 <p><a href="http://docs.spring.io/spring/docs/4.2.0.RC1/spring-framework-reference/htmlsingle/">http://docs.spring.io/spring/docs/4.2.0.RC1/spring-framework-reference/htmlsingle/</a></p>
 
