@@ -5,24 +5,22 @@ Spring I/O 2015報告会
 
 ### agenda
 
-* 自己紹介
-* 概要
-* Key Note 「Springの歴史」
-* Spring 4.2
-* Boot
-* Web
-* Batch
-* Others
-* 総評
+|内容        |時間|発表者      |
+|:-----------|:---|:-----------|
+|概要        |5min|池谷        |
+|Key Note 「Springの歴史」|10min|本橋  |
+|Spring 4.2  |45min|岩塚、池谷  |
+|セッションサマリ|30min|岩塚、池谷|
 
 ### 自己紹介
 
+* 池谷 智行（いけや ともゆき）
 * BASIC→VB→VC++→Java
 * フレームワークに興味を持ち、なぜかSIerに入社@2010
 * 初めてのSpringへの印象はXML地獄。
     * Annotation-drivenを知らなかった。
     * Java Based Configurationはまだ無かった。
-* Spring Core/MVC/Batch/Data
+* Spring Core/MVC/Boot/Batch/Dataに関心あり
 
 ### 概要
 
@@ -31,12 +29,12 @@ Spring I/O 2015報告会
 * 41プレゼンター（日本からは槙さん）
 * Spring/Groovy/Grails
     * G2Xな皆様ごめんなさい
+* 聴講者含めアジア系は我々4名のみの模様
 
 ### バルセロナ
 
 * 偉大なるアーキテクト、ガウディーの街
     * ガウディーは女性恐怖症で生涯独身!?
-* 何といってもサグラダファミリアは必見
 * **来年のI/Oもバルセロナで開催するらしい**
 
 ![サグラダファミリア](./img/familia1.JPG)
