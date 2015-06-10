@@ -80,7 +80,7 @@ Spring 4.2
 |   |JSONPサポート|
 |   |```ResponseBodyAdvice```追加|
 |   |新しい```HttpMessageConverter```追加|
-|   |EL関数 ```s:mvcUrl```追加|
+|   |EL関数```s:mvcUrl```追加|
 |   |```ResponseEntity```ビルダーサポート|
 |   |```GroovyMarkupTemplate```サポート|
 
@@ -109,12 +109,12 @@ http://www.slideshare.net/makingx/springone-2gx-2014-spring-41-jsug
 
 ### Spring 4.2の新機能
 
-|カテゴリ    |新機能      |詳細紹介|
+|カテゴリ    |新機能      |詳細|
 |:-----------|:-----------|:-------|
 |Container   |```@Bean```のJava8 defaultメソッド対応|○|
 |            |```@Import```の改善|○|
 |            |```@Order```のConfigurationクラス対応|○|
-|            |```@Resource```の```@Lazy対応|-|
+|            |```@Resource```の```@Lazy```対応|-|
 |            |```@EventListener```による任意メソッドでのイベント検知|○|
 |            |```@AliasFor```によるアノテーション属性のエイリアス対応|○|
 |            |```DefaultConversionService```の改善|-|
@@ -123,7 +123,7 @@ http://www.slideshare.net/makingx/springone-2gx-2014-spring-41-jsug
 |            |```JavaMailSenderImpl```への```testConnection()```メソッド追加|-|
 |            |```ScheduledTaskRegistrar```の改善|-|
 |            |Apache ```commons-pool2```のサポート|-|
-|Data Access |```javax.transaction.Transactional```のAspectJによる対応 |-|
+|Data Access |AspectJによる```javax.transaction.Transactional```の対応 |-|
 |            |```SimpleJdbcCallOperations```の名前バインディング対応|?|
 |            |Hibernate ORM 5.0のフルサポート|?|
 |            |```<jdbc:embedded-database>```への```database-name```属性追加|?|
