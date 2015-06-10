@@ -33,8 +33,8 @@ Spring I/O 2015報告会
 
 ### バルセロナ
 
-* 偉大なるアーキテクト、ガウディーの街
-    * ガウディーは女性恐怖症で生涯独身!?
+* 偉大なるアーキテクト、ガウディの街
+    * ガウディは女性恐怖症で生涯独身!?
 * **来年のI/Oもバルセロナで開催するらしい**
 
 ![サグラダファミリア](./img/familia1.JPG)
@@ -59,6 +59,50 @@ Key Note 「Springの歴史」
 
 Spring 4.2
 ---
+
+### Spring 4.2
+
+* 2015/5末に4.2.0.RC1が公開
+* Spring IO Platform 2.0.0に載る予定
+    * Spring 4.2.0
+    * Spring Security 4.0.1
+    * Spring Boot 1.3.0
+
+### Spring 4.1の新機能（おさらい）
+
+|カテゴリ    |新機能      |
+|:-----------|:-----------|
+|Web|静的リソース制御の改善|
+|   |Controller引数のOptionalサポート|
+|   |Controllerの返値の```ListenableFuture```サポート|
+|   |Jacksonの```@JsonView```サポート|
+|   |JSONPサポート|
+|   |```ResponseBodyAdvice```追加|
+|   |新しい```HttpMessageConverter```追加|
+|   |EL関数 ```s:mvcUrl```追加|
+|   |```ResponseEntity```ビルダーサポート|
+|   |```GroovyMarkupTemplate```サポート|
+|JMS|```@JmsListener```サポート|
+|   |```spring-messaging```サポート|
+|Cache|JCache(JSR-107)サポート|
+|WebSocket|SockJSのクライアントサイドサポート|
+|   |STOMPのSubscribeイベントサポート|
+|   |websocketスコープの追加|
+|Test|GroovyスクリプトによるTestContext設定サポート|
+|   |```@Sql```/```@SqlConfig```のサポート|
+|   |```@TestPropertySource```のサポート|
+
+詳細は、
+http://www.slideshare.net/makingx/springone-2gx-2014-spring-41-jsug
+
+### Spring 4.2の新機能（カテゴリ）
+
+|4.1新機能    |4.2新機能      |
+|:------------|:--------------|
+|Web<br>JMS<br>WebSocket<br>Test<br>Cache|Web<br>JMS<br>WebSocket<br>Test<br>**Container**<br>**Data**|
+
+
+http://docs.spring.io/spring/docs/4.2.0.RC1/spring-framework-reference/htmlsingle/
 
 Boot
 ---
