@@ -1,7 +1,7 @@
-Spring I/O 2015報告
+Spring I/O 2015報告会
 =====
 
-2015/6/XX JSUG定例
+2015/6/22 JSUG
 
 ### agenda
 
@@ -39,20 +39,20 @@ Spring I/O 2015報告
 * 何といってもサグラダファミリアは必見
 * **来年のI/Oもバルセロナで開催するらしい**
 
-![サグラダファミリア](https://github.com/ikeyat/slides/blob/master/201506XX_SpringIO2015Summary/img/familia1.JPG)
-![サグラダファミリア](https://github.com/ikeyat/slides/blob/master/201506XX_SpringIO2015Summary/img/familia2.JPG)
+![サグラダファミリア](./img/familia1.JPG)
+![サグラダファミリア](./img/familia2.JPG)
 
 ### 会場
 
 * AXA Auditorium
 * 中心街から少し外れた場所なので、食事や観光に若干不便。
 
-![会場](https://github.com/ikeyat/slides/blob/master/201506XX_SpringIO2015Summary/img/theater.jpg)
-![会場](https://github.com/ikeyat/slides/blob/master/201506XX_SpringIO2015Summary/img/theater2.jpg)
+![会場](./img/theater.jpg)
+![会場](./img/theater2.jpg)
 
 ### 戦利品
 
-![ノベルティ](https://github.com/ikeyat/slides/blob/master/201506XX_SpringIO2015Summary/img/novelty.jpg)
+![ノベルティ](./img/novelty.jpg)
 
 Key Note 「Springの歴史」
 ---
