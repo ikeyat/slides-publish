@@ -123,11 +123,64 @@ http://www.slideshare.net/makingx/springone-2gx-2014-spring-41-jsug
 |            |```JavaMailSenderImpl```への```testConnection()```メソッド追加|-|
 |            |```ScheduledTaskRegistrar```の改善|-|
 |            |Apache ```commons-pool2```のサポート|-|
+
+### ```@Bean```のJava8 defaultメソッド対応
+
+```java
+@Configuration
+public class MyApplicationConfig implements MyBookAdminConfig {
+ ...
+}
+
+public interface MyBookAdminConfig {
+ @Bean
+ default BookAdminService myBookAdminService() {
+   MyBookAdminService service = new MyBookAdminService();
+   service.setDataSource(bookAdminDataSource());
+   return service;
+ }
+}
+```
+
+### ```@Import```の改善
+
+Componentクラスをインポートできるようになった。
+
+```java
+@Configuration
+@Import(MyBookAdminService.class)
+public class MyApplicationConfig {
+ ...
+}
+
+public class MyBookAdminService implements BookAdminService {
+ @Autowired
+ public MyBookAdminService(AccountRepository repo) {
+ ...
+ }
+}
+```
+
+### ```@Order```のConfigurationクラス対応
+
+### ```@EventListener```による任意メソッドでのイベント検知
+
+### ```@AliasFor```によるアノテーション属性のエイリアス対応
+
+### Spring 4.2の新機能
+
+|カテゴリ    |新機能      |詳細|
+|:-----------|:-----------|:-------|
 |Data Access |AspectJによる```javax.transaction.Transactional```の対応 |-|
 |            |```SimpleJdbcCallOperations```の名前バインディング対応|-|
 |            |Hibernate ORM 5.0のフルサポート|-|
 |            |```<jdbc:embedded-database>```への```database-name```属性追加|-|
 |JMS         |省略|-|
+
+### Spring 4.2の新機能
+
+|カテゴリ    |新機能      |詳細|
+|:-----------|:-----------|:-------|
 |Web         |HTTP StreamingとServer-Sent Eventsのサポート|○|
 |            |CORSのグローバル設定・個別設定(```@CrossOrigin```)のサポート|○|
 |            |HTTPキャッシュの改善(```CacheControl```ビルダ追加・ETagサポート改善)|○|
@@ -153,8 +206,8 @@ Test:岩塚
 
 http://docs.spring.io/spring/docs/4.2.0.RC1/spring-framework-reference/htmlsingle/
 
-セッションサマリ
----
+### セッションサマリ
+
 |タイトル    |カテゴリ|スピーカー      |報告者|
 |:-----------|:-------|:---------------|:-----|
 |Building “Bootiful” Applications with Spring Boot|Boot|Josh Long|岩塚|
