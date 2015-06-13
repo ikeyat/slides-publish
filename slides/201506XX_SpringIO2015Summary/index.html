@@ -2931,9 +2931,15 @@ public interface MyBookAdminConfig {
 <article>
 <h3><code>@Import</code>の改善</h3>
 
-<p>Componentクラスをインポートできるようになった。</p>
+<p>@ImportでComponentクラスをインポートできるようになった。</p>
 
-<pre><code class="java">public class MyBookAdminService implements BookAdminService {
+<pre><code class="java">@Configuration
+@Import(MyBookAdminService.class)
+public class MyApplicationConfig {
+ ...
+}
+
+public class MyBookAdminService implements BookAdminService {
  @Autowired
  public MyBookAdminService(AccountRepository repo) {
  ...
@@ -2941,37 +2947,54 @@ public interface MyBookAdminConfig {
 }
 </code></pre>
 
-<p>Before
-<code>java
-@Configuration
-public class MyApplicationConfig {
-  @Bean BookAdminService myBookAdminService(AccountRepository accountRepository) {
-    return new MyBookAdminService(accountRepository);
-  }
-  ...
-}
-</code></p>
-
-<p>After
-<code>java
-@Configuration
-@Import(MyBookAdminService.class)
-public class MyApplicationConfig {
- ...
-}
-</code></p>
-
 
 </article>
 
 <article>
 <h3><code>@Order</code>のConfigurationクラス対応</h3>
 
+<p>Bean名が一致した場合、Orderの若い方でoverrideされる。</p>
+
+<pre><code>@Configuration
+@Order(2)
+public class MyApplicationConfig {
+ @Bean
+ public SpecialBookAdminService myBookAdminService() { ... }
+}
+
+@Configuration
+@Order(1)
+public class MyBookAdminConfig {
+ @Bean
+ public BookAdminService myBookAdminService() { ... }
+}
+</code></pre>
+
+<p>Spring Bootのauto-configurationが本影響を受けたので注意。
+<code>@Order</code> → <code>@AutoConfigureOrder</code>
+<a href="https://github.com/spring-projects/spring-boot/commit/7a73c5883f857f7dfb56d73410af96eae04a0e63">https://github.com/spring-projects/spring-boot/commit/7a73c5883f857f7dfb56d73410af96eae04a0e63</a></p>
+
 
 </article>
 
 <article>
 <h3><code>@EventListener</code>による任意メソッドでのイベント検知</h3>
+
+<p>メソッド引数や<code>condition</code>属性でSpELによりイベントのフィルタが可能。</p>
+
+<pre><code class="java">@EventListener
+public void processEvent(MyApplicationEvent event) {
+ ...
+}
+@EventListener
+public void processEvent(String payload) {
+ ...
+}
+@EventListener(condition=&quot;#payload.startsWith(&#39;OK&#39;)&quot;)
+public void processEvent(String payload) {
+ ...
+}
+</code></pre>
 
 
 </article>

@@ -144,9 +144,15 @@ public interface MyBookAdminConfig {
 
 ### ```@Import```の改善
 
-Componentクラスをインポートできるようになった。
+@ImportでComponentクラスをインポートできるようになった。
 
 ```java
+@Configuration
+@Import(MyBookAdminService.class)
+public class MyApplicationConfig {
+ ...
+}
+
 public class MyBookAdminService implements BookAdminService {
  @Autowired
  public MyBookAdminService(AccountRepository repo) {
@@ -155,30 +161,48 @@ public class MyBookAdminService implements BookAdminService {
 }
 ```
 
-Before
-```java
+### ```@Order```のConfigurationクラス対応
+
+Bean名が一致した場合、Orderの若い方でoverrideされる。
+
+```
 @Configuration
+@Order(2)
 public class MyApplicationConfig {
-  @Bean BookAdminService myBookAdminService(AccountRepository accountRepository) {
-    return new MyBookAdminService(accountRepository);
-  }
-  ...
+ @Bean
+ public SpecialBookAdminService myBookAdminService() { ... }
+}
+
+@Configuration
+@Order(1)
+public class MyBookAdminConfig {
+ @Bean
+ public BookAdminService myBookAdminService() { ... }
 }
 ```
 
-After
+Spring Bootのauto-configurationが本影響を受けたので注意。
+```@Order``` → ```@AutoConfigureOrder```
+https://github.com/spring-projects/spring-boot/commit/7a73c5883f857f7dfb56d73410af96eae04a0e63
+
+### ```@EventListener```による任意メソッドでのイベント検知
+
+メソッド引数や```condition```属性でSpELによりイベントのフィルタが可能。
+
 ```java
-@Configuration
-@Import(MyBookAdminService.class)
-public class MyApplicationConfig {
+@EventListener
+public void processEvent(MyApplicationEvent event) {
+ ...
+}
+@EventListener
+public void processEvent(String payload) {
+ ...
+}
+@EventListener(condition="#payload.startsWith('OK')")
+public void processEvent(String payload) {
  ...
 }
 ```
-
-
-### ```@Order```のConfigurationクラス対応
-
-### ```@EventListener```による任意メソッドでのイベント検知
 
 ### ```@AliasFor```によるアノテーション属性のエイリアス対応
 
