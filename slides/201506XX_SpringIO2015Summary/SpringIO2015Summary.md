@@ -147,12 +147,6 @@ public interface MyBookAdminConfig {
 Componentクラスをインポートできるようになった。
 
 ```java
-@Configuration
-@Import(MyBookAdminService.class)
-public class MyApplicationConfig {
- ...
-}
-
 public class MyBookAdminService implements BookAdminService {
  @Autowired
  public MyBookAdminService(AccountRepository repo) {
@@ -160,6 +154,27 @@ public class MyBookAdminService implements BookAdminService {
  }
 }
 ```
+
+Before
+```java
+@Configuration
+public class MyApplicationConfig {
+  @Bean BookAdminService myBookAdminService(AccountRepository accountRepository) {
+    return new MyBookAdminService(accountRepository);
+  }
+  ...
+}
+```
+
+After
+```java
+@Configuration
+@Import(MyBookAdminService.class)
+public class MyApplicationConfig {
+ ...
+}
+```
+
 
 ### ```@Order```のConfigurationクラス対応
 

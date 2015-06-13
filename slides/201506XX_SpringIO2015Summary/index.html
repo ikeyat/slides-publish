@@ -2933,19 +2933,33 @@ public interface MyBookAdminConfig {
 
 <p>Componentクラスをインポートできるようになった。</p>
 
-<pre><code class="java">@Configuration
-@Import(MyBookAdminService.class)
-public class MyApplicationConfig {
- ...
-}
-
-public class MyBookAdminService implements BookAdminService {
+<pre><code class="java">public class MyBookAdminService implements BookAdminService {
  @Autowired
  public MyBookAdminService(AccountRepository repo) {
  ...
  }
 }
 </code></pre>
+
+<p>Before
+<code>java
+@Configuration
+public class MyApplicationConfig {
+  @Bean BookAdminService myBookAdminService(AccountRepository accountRepository) {
+    return new MyBookAdminService(accountRepository);
+  }
+  ...
+}
+</code></p>
+
+<p>After
+<code>java
+@Configuration
+@Import(MyBookAdminService.class)
+public class MyApplicationConfig {
+ ...
+}
+</code></p>
 
 
 </article>
