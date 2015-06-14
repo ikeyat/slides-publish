@@ -60,6 +60,16 @@ Key Note 「Springの歴史」
 Spring 4.2
 ---
 
+### セッションサマリ(Spring 4.2)
+
+|タイトル    |カテゴリ|スピーカー      |報告者|
+|:-----------|:-------|:---------------|:-----|
+|Modern Java Component Design with Spring 4.2|Core|Juergen Hoeller|池谷|
+|Spring 4 Web Apps|Web|Rossen Stoyanchev|岩塚|
+|Real-time with Spring: SSE and WebSockets|Web|Sergi Almar|岩塚|
+|Testing with Spring 4.x|Test|Sam Brannen|岩塚|
+
+
 ### Spring 4.2
 
 * 2015/5末に4.2.0.RC1が公開
@@ -118,6 +128,11 @@ http://www.slideshare.net/makingx/springone-2gx-2014-spring-41-jsug
 |            |```@EventListener```による任意メソッドでのイベント検知|○|
 |            |```ApplicationEvent```を継承しない任意オブジェクトイベント
 |            |```@AliasFor```によるアノテーション属性のエイリアス対応|○|
+
+### Spring 4.2の新機能
+
+|カテゴリ    |新機能      |詳細|
+|:-----------|:-----------|:-------|
 |            |```DefaultConversionService```の改善|-|
 |            |```DefaultFormattingConversionService```のJSR-354 Money & Currency対応|-|
 |            |```@NumberFormat```のmeta-annotation対応|-|
@@ -363,34 +378,35 @@ Test:岩塚
 
 http://docs.spring.io/spring/docs/4.2.0.RC1/spring-framework-reference/htmlsingle/
 
-### セッションサマリ
+### セッションサマリ(その他)
 
 |タイトル    |カテゴリ|スピーカー      |報告者|
 |:-----------|:-------|:---------------|:-----|
 |Building “Bootiful” Applications with Spring Boot|Boot|Josh Long|岩塚|
-|Spring Batch for Large Enterprises Operations|Batch|Ignasi González|池谷|
-|Spring 4 Web Apps|Rossen Stoyanchev|Rossen Stoyanchev|紹介済|
 |Isomorphic templating with Spring Boot, Nashorn and React|Boot|Sébastien Deleuze|岩塚さん聞きました？|
-|Building Microservices with Spring Cloud and Netflix OSS|Cloud|Dave Syer|池谷|
-|TERASOLUNA Framework on the Spring IO Platform|Other|槙さん|池谷|
 |Stateless Authentication for Microservices|Web|Álvaro Sanchez-Mariscal|岩塚|
-|Spring Boot is made for tooling|Boot|Yann Cébron & Stéphane Nicoll|池谷|
-|Modern Java Component Design with Spring 4.2|Core|Juergen Hoeller|紹介済|
 |Static Resources Management with Spring and Single Page Applications (Workshop)|Web|Brian Clozel|岩塚|
 |Inside http://spring.io – a production spring reference application|?|Brian Clozel|岩塚|
-|Manage your user’s session with Spring Session|Session|David Gomez|池谷|
-|Real-time with Spring: SSE and WebSockets|Web|Sergi Almar|紹介済|
-|High Performance Spring Integration|Other|John Davies|池谷|
-|Spring Data REST – Repositories meet hypermedia|Data|Oliver Gierke|池谷|
-|Testing with Spring 4.x |Test|Sam Brannen|岩塚|
-|Building High Performance Applications with Spring Data Neo4j 4.0|Data|Michael Hunger & Vince Bickers|池谷|
 |Performance Testing Crash Course|Other|Dustin Whittle|岩塚|
-|JHipster, the leading application generator for Spring Boot + AngularJS|Web|Julien Dubois|Michael!|
 |Everything you need to know about Java Classloaders|Other|Oleg Šelajev|岩塚|
-|Document like the Spring team using Asciidoctor|Other|Alex Soto|池谷|
 |Scaling real time search and analytics with Elasticsearch|Other|Clinton Gormley|岩塚|
 |Improving your (legacy) Application with Spring|?|Marten Deinum|岩塚|
+
+### セッションサマリ(その他)
+
+|タイトル    |カテゴリ|スピーカー      |報告者|
+|:-----------|:-------|:---------------|:-----|
+|Spring Batch for Large Enterprises Operations|Batch|Ignasi González|池谷|
+|Spring Boot is made for tooling|Boot|Yann Cébron & Stéphane Nicoll|池谷|
+|Building Microservices with Spring Cloud and Netflix OSS|Cloud|Dave Syer|池谷|
+|TERASOLUNA Framework on the Spring IO Platform|Other|槙さん|池谷|
+|Manage your user’s session with Spring Session|Session|David Gomez|池谷|
+|High Performance Spring Integration|Other|John Davies|池谷|
+|Spring Data REST – Repositories meet hypermedia|Data|Oliver Gierke|池谷|
+|Building High Performance Applications with Spring Data Neo4j 4.0|Data|Michael Hunger & Vince Bickers|池谷|
+|Document like the Spring team using Asciidoctor|Other|Alex Soto|池谷|
 |A Brief History of Thymeleaf|Web|Jose Samper|池谷|
+|JHipster, the leading application generator for Spring Boot + AngularJS|Web|Julien Dubois|Michael!|
 
 Boot
 ---
