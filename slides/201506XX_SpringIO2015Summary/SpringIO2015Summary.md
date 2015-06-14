@@ -555,6 +555,13 @@ Jose Samper
 
 ### A Brief History of Thymeleaf
 
+* Thymeleafの概要紹介と歴史（2011～）
+* ユーザの76%はSpring4と、20%はSpring3とセットで利用（Maven Central統計）
+* JSR 371 Model View Controllerのビューの拡張として利用可能
+* Thymeleaf 3(開発中)
+    * 性能、使用メモリ量の改善
+    * ルーズなHTMLへの対応（AngularJSなどのjsフレームワークを考慮）
+    * テキストモード
 
 ### Reference
 
