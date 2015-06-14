@@ -184,13 +184,12 @@ public class MyBookAdminConfig {
 ```
 
 Spring Bootのauto-configurationの内部実装が```@Order```を使っていたので[影響を受けた](https://github.com/spring-projects/spring-boot/commit/7a73c5883f857f7dfb56d73410af96eae04a0e63)。
-
 ```@Order``` → ```@AutoConfigureOrder```
 
 
 ### ```@EventListener```による任意メソッドでのイベント検知
 
-* メソッド引数や```condition```属性でSpELによりイベントのフィルタが可能。
+* メソッド引数や```condition```属性のSpELでフィルタが可能。
 * 任意オブジェクトイベントの検知も可能。
 * @Orderにも対応
 
@@ -212,8 +211,8 @@ public void processEvent(String payload) {
 
 ### ```ApplicationEvent```を継承しない任意オブジェクトイベント
 
-```@EventListener``` を**使用する場合のみ**、```ApplicationEvent```
-を継承しない任意オブジェクトのイベントを発行、検知できる。
+* ```@EventListener``` を使用すると、```ApplicationEvent``` を継承しない任意オブジェクトのイベントをスマートに発行、検知できる。
+* ```PayloadApplicationEvent```にラップされるので、従来のListenerインタフェースでも検知可能。
 
 ```java
 public class MyApplicationEventPublisher implements ApplicationEventPublisherAware {
@@ -226,8 +225,6 @@ public class MyApplicationEventPublisher implements ApplicationEventPublisherAwa
   }
 }
 ```
-
-https://spring.io/blog/2015/02/11/better-application-events-in-spring-framework-4-2
 
 ### （参考）従来までのEventPublisherとEventListener
 
@@ -270,6 +267,8 @@ public void afterCommitFallbackExecution(MyApplicationEvent event) {
  ...
 }
 ```
+
+https://spring.io/blog/2015/02/11/better-application-events-in-spring-framework-4-2
 
 ### ```@AliasFor```によるアノテーション属性のエイリアス対応
 

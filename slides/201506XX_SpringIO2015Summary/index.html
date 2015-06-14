@@ -2976,9 +2976,8 @@ public class MyBookAdminConfig {
 }
 </code></pre>
 
-<p>Spring Bootのauto-configurationの内部実装が<code>@Order</code>を使っていたので<a href="https://github.com/spring-projects/spring-boot/commit/7a73c5883f857f7dfb56d73410af96eae04a0e63">影響を受けた</a>。</p>
-
-<p><code>@Order</code> → <code>@AutoConfigureOrder</code></p>
+<p>Spring Bootのauto-configurationの内部実装が<code>@Order</code>を使っていたので<a href="https://github.com/spring-projects/spring-boot/commit/7a73c5883f857f7dfb56d73410af96eae04a0e63">影響を受けた</a>。
+<code>@Order</code> → <code>@AutoConfigureOrder</code></p>
 
 
 </article>
@@ -2987,7 +2986,7 @@ public class MyBookAdminConfig {
 <h3><code>@EventListener</code>による任意メソッドでのイベント検知</h3>
 
 <ul>
-<li>メソッド引数や<code>condition</code>属性でSpELによりイベントのフィルタが可能。</li>
+<li>メソッド引数や<code>condition</code>属性のSpELでフィルタが可能。</li>
 <li>任意オブジェクトイベントの検知も可能。</li>
 <li>@Orderにも対応</li>
 </ul>
@@ -3013,8 +3012,10 @@ public void processEvent(String payload) {
 <article>
 <h3><code>ApplicationEvent</code>を継承しない任意オブジェクトイベント</h3>
 
-<p><code>@EventListener</code> を<strong>使用する場合のみ</strong>、<code>ApplicationEvent</code>
-を継承しない任意オブジェクトのイベントを発行、検知できる。</p>
+<ul>
+<li><code>@EventListener</code> を使用すると、<code>ApplicationEvent</code> を継承しない任意オブジェクトのイベントをスマートに発行、検知できる。</li>
+<li><code>PayloadApplicationEvent</code>にラップされるので、従来のListenerインタフェースでも検知可能。</li>
+</ul>
 
 <pre><code class="java">public class MyApplicationEventPublisher implements ApplicationEventPublisherAware {
   private ApplicationEventPublisher publisher;
@@ -3026,8 +3027,6 @@ public void processEvent(String payload) {
   }
 }
 </code></pre>
-
-<p><a href="https://spring.io/blog/2015/02/11/better-application-events-in-spring-framework-4-2">https://spring.io/blog/2015/02/11/better-application-events-in-spring-framework-4-2</a></p>
 
 
 </article>
@@ -3076,6 +3075,8 @@ public void afterCommitFallbackExecution(MyApplicationEvent event) {
  ...
 }
 </code></pre>
+
+<p><a href="https://spring.io/blog/2015/02/11/better-application-events-in-spring-framework-4-2">https://spring.io/blog/2015/02/11/better-application-events-in-spring-framework-4-2</a></p>
 
 
 </article>
