@@ -216,10 +216,10 @@ public void processEvent(String payload) {
 
 ```java
 public class MyApplicationEventPublisher
-      implements ApplicationEventPublisherAware {
+               implements ApplicationEventPublisherAware {
   private ApplicationEventPublisher publisher;
   public void setApplicationEventPublisher(
-         ApplicationEventPublisher publisher) {
+                  ApplicationEventPublisher publisher) {
     this.publisher = publisher;
   }
   public void publishMyApplicationEvent() {
@@ -234,19 +234,18 @@ public class MyApplicationEventPublisher
 public class MyApplicationEvent extends ApplicationEvent {...}
 
 public class MyApplicationEventPublisher
-      implements ApplicationEventPublisherAware {
+               implements ApplicationEventPublisherAware {
   private ApplicationEventPublisher publisher;
   public void setApplicationEventPublisher(
-         ApplicationEventPublisher publisher) {
+                  ApplicationEventPublisher publisher) {
     this.publisher = publisher;
   }
   public void publishMyApplicationEvent() {
     publisher.publishEvent(new MyApplicationEvent());
   }
 }
-
 public class MyApplicationEventListener
-      implements ApplicationListener<MyApplicationEvent> {
+               implements ApplicationListener<MyApplicationEvent> {
   public void onApplicationEvent(MyApplicationEvent event) {
     ...
   }
@@ -272,17 +271,65 @@ public void afterCommitFallbackExecution(MyApplicationEvent event) {
  ...
 }
 ```
-
 https://spring.io/blog/2015/02/11/better-application-events-in-spring-framework-4-2
 
 ### ```@AliasFor```によるアノテーション属性のエイリアス対応
+
+#### 単一アノテーション内での利用
+
+2つの属性を、一つの属性とみなさせることができる。
+
+* 同じ型である必要がある。
+* defaultが必須で、defaultの内容も同一
+
+```java
+public @interface ContextConfiguration {
+
+    @AliasFor(attribute = "locations")
+    String[] value() default {};
+
+    @AliasFor(attribute = "value")
+    String[] locations() default {};
+
+    // ...
+}
+```
+
+### ```@AliasFor```によるアノテーション属性のエイリアス対応
+
+#### メタアノテーション内のエイリアスの利用
+
+```annotation``` で指定したメタアノテーションが持つ```attribute```で指定した属性を上書く。
+今まで不可能だった、メタアノテーションの```value```属性の上書きが可能になった。
+
+```java
+ @ContextConfiguration
+ public @interface MyTestConfig {
+
+    @AliasFor(annotation = ContextConfiguration.class, attribute = "locations")
+    String[] xmlFiles();
+ }
+```
+
+### （参考）```@AliasFor```によるアノテーション属性のエイリアス対応
+
+メタアノテーションの```value``` 属性意外の上書きであれば、```@AliasFor```を使用せず実現可能。
+同名の属性を定義することで、メタアノテーションの属性が上書かれる。
+
+```java
+ @ContextConfiguration
+ public @interface MyTestConfig {
+
+    String[] locations();
+ }
+```
 
 ### Spring 4.2の新機能
 
 |カテゴリ    |新機能      |詳細|
 |:-----------|:-----------|:-------|
 |Data Access |AspectJによる```javax.transaction.Transactional```の対応 |-|
-|            |```SimpleJdbcCallOperations```の名前バインディング対応|-|
+|            |```SimpleJdbcCallOperations```の名前バインディング対応|○|
 |            |Hibernate ORM 5.0のフルサポート|-|
 |            |```<jdbc:embedded-database>```への```database-name```属性追加|-|
 |JMS         |省略|-|
