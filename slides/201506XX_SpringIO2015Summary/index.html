@@ -3010,16 +3010,18 @@ public void processEvent(String payload) {
 </article>
 
 <article>
-<h3><code>ApplicationEvent</code>を継承しない任意オブジェクトイベント</h3>
+<h3><code>ApplicationEvent</code>を継承しないイベント</h3>
 
 <ul>
-<li><code>@EventListener</code> を使用すると、<code>ApplicationEvent</code> を継承しない任意オブジェクトのイベントをスマートに発行、検知できる。</li>
+<li><code>@EventListener</code> を使用すると、<code>ApplicationEvent</code> を継承しない任意オブジェクトのイベントをスマートに発行、検知。</li>
 <li><code>PayloadApplicationEvent</code>にラップされるので、従来のListenerインタフェースでも検知可能。</li>
 </ul>
 
-<pre><code class="java">public class MyApplicationEventPublisher implements ApplicationEventPublisherAware {
+<pre><code class="java">public class MyApplicationEventPublisher
+      implements ApplicationEventPublisherAware {
   private ApplicationEventPublisher publisher;
-  public void setApplicationEventPublisher(ApplicationEventPublisher publisher) {
+  public void setApplicationEventPublisher(
+         ApplicationEventPublisher publisher) {
     this.publisher = publisher;
   }
   public void publishMyApplicationEvent() {
@@ -3036,9 +3038,11 @@ public void processEvent(String payload) {
 
 <pre><code class="java">public class MyApplicationEvent extends ApplicationEvent {...}
 
-public class MyApplicationEventPublisher implements ApplicationEventPublisherAware {
+public class MyApplicationEventPublisher
+      implements ApplicationEventPublisherAware {
   private ApplicationEventPublisher publisher;
-  public void setApplicationEventPublisher(ApplicationEventPublisher publisher) {
+  public void setApplicationEventPublisher(
+         ApplicationEventPublisher publisher) {
     this.publisher = publisher;
   }
   public void publishMyApplicationEvent() {
@@ -3046,7 +3050,8 @@ public class MyApplicationEventPublisher implements ApplicationEventPublisherAwa
   }
 }
 
-public class MyApplicationEventListener implements ApplicationListener&lt;MyApplicationEvent&gt; {
+public class MyApplicationEventListener
+      implements ApplicationListener&lt;MyApplicationEvent&gt; {
   public void onApplicationEvent(MyApplicationEvent event) {
     ...
   }

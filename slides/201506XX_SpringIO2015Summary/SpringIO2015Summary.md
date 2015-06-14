@@ -209,15 +209,17 @@ public void processEvent(String payload) {
 }
 ```
 
-### ```ApplicationEvent```を継承しない任意オブジェクトイベント
+### ```ApplicationEvent```を継承しないイベント
 
-* ```@EventListener``` を使用すると、```ApplicationEvent``` を継承しない任意オブジェクトのイベントをスマートに発行、検知できる。
+* ```@EventListener``` を使用すると、```ApplicationEvent``` を継承しない任意オブジェクトのイベントをスマートに発行、検知。
 * ```PayloadApplicationEvent```にラップされるので、従来のListenerインタフェースでも検知可能。
 
 ```java
-public class MyApplicationEventPublisher implements ApplicationEventPublisherAware {
+public class MyApplicationEventPublisher
+      implements ApplicationEventPublisherAware {
   private ApplicationEventPublisher publisher;
-  public void setApplicationEventPublisher(ApplicationEventPublisher publisher) {
+  public void setApplicationEventPublisher(
+         ApplicationEventPublisher publisher) {
     this.publisher = publisher;
   }
   public void publishMyApplicationEvent() {
@@ -231,9 +233,11 @@ public class MyApplicationEventPublisher implements ApplicationEventPublisherAwa
 ```java
 public class MyApplicationEvent extends ApplicationEvent {...}
 
-public class MyApplicationEventPublisher implements ApplicationEventPublisherAware {
+public class MyApplicationEventPublisher
+      implements ApplicationEventPublisherAware {
   private ApplicationEventPublisher publisher;
-  public void setApplicationEventPublisher(ApplicationEventPublisher publisher) {
+  public void setApplicationEventPublisher(
+         ApplicationEventPublisher publisher) {
     this.publisher = publisher;
   }
   public void publishMyApplicationEvent() {
@@ -241,7 +245,8 @@ public class MyApplicationEventPublisher implements ApplicationEventPublisherAwa
   }
 }
 
-public class MyApplicationEventListener implements ApplicationListener<MyApplicationEvent> {
+public class MyApplicationEventListener
+      implements ApplicationListener<MyApplicationEvent> {
   public void onApplicationEvent(MyApplicationEvent event) {
     ...
   }
