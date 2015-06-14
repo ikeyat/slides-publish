@@ -3713,6 +3713,32 @@ public class PortfolioController {
 <article>
 <h3>Manage your user’s session with Spring Session</h3>
 
+<ul>
+<li><code>HttpSession</code>や<code>HttpRequest</code>をラップし、Spring Session管理のセッションに透過的に置き換える。</li>
+<li>アプリ側はSpring Sessionの存在を意識する必要がない。</li>
+<li>Spring Sessionが提供するセッションは、
+
+<ul>
+<li>格納領域を外部に出せる（例：redisなどのKVS）</li>
+<li>1クライアントに対して複数セッション可能(<code>MultiHttpSessionStrategy</code>)</li>
+<li>RESTをステートフルにできる（<code>x-auth-token</code>）
+
+<ul>
+<li>複数セッションには対応していない</li>
+</ul></li>
+</ul></li>
+</ul>
+
+
+</article>
+
+<article>
+<h3>Manage your user’s session with Spring Session</h3>
+
+<p><img src="./img/springsession.jpg" alt="Spring Session"></p>
+
+<p><a href="http://www.slideshare.net/dgomezg/managing-users-data-with-spring-session">http://www.slideshare.net/dgomezg/managing-users-data-with-spring-session</a></p>
+
 
 </article>
 

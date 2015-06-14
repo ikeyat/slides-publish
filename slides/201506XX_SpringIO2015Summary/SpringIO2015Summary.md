@@ -534,6 +534,19 @@ David Gomez
 
 ### Manage your user’s session with Spring Session
 
+* ```HttpSession```や```HttpRequest```をラップし、Spring Session管理のセッションに透過的に置き換える。
+* アプリ側はSpring Sessionの存在を意識する必要がない。
+* Spring Sessionが提供するセッションは、
+    * 格納領域を外部に出せる（例：redisなどのKVS）
+    * 1クライアントに対して複数セッション可能(```MultiHttpSessionStrategy```)
+    * RESTをステートフルにできる（```x-auth-token```）
+         * 複数セッションには対応していない
+
+### Manage your user’s session with Spring Session
+
+![Spring Session](./img/springsession.jpg)
+
+http://www.slideshare.net/dgomezg/managing-users-data-with-spring-session
 
 [A Brief History of Thymeleaf](http://www.springio.net/wp-content/uploads/2014/11/a-brief-history-of-thymeleaf-jose-samper.pdf)
 ---
