@@ -396,8 +396,8 @@ http://docs.spring.io/spring/docs/4.2.0.RC1/spring-framework-reference/htmlsingl
 
 |タイトル    |カテゴリ|スピーカー      |報告者|
 |:-----------|:-------|:---------------|:-----|
-|Spring Batch for Large Enterprises Operations|Batch|Ignasi González|池谷|
 |Spring Boot is made for tooling|Boot|Yann Cébron & Stéphane Nicoll|池谷|
+|Spring Batch for Large Enterprises Operations|Batch|Ignasi González|池谷|
 |Building Microservices with Spring Cloud and Netflix OSS|Cloud|Dave Syer|池谷|
 |TERASOLUNA Framework on the Spring IO Platform|Other|槙さん|池谷|
 |Manage your user’s session with Spring Session|Session|David Gomez|池谷|
@@ -408,10 +408,14 @@ http://docs.spring.io/spring/docs/4.2.0.RC1/spring-framework-reference/htmlsingl
 |A Brief History of Thymeleaf|Web|Jose Samper|池谷|
 |JHipster, the leading application generator for Spring Boot + AngularJS|Web|Julien Dubois|Michael!|
 
-Boot
+[Spring Boot is made for tooling](http://www.springio.net/spring-boot-is-made-for-tooling/)
 ---
 
-### [Spring Boot is made for tooling](http://www.springio.net/spring-boot-is-made-for-tooling/)(Yann Cébron/Stéphane Nicoll)
+Yann Cébron
+Stéphane Nicoll
+
+
+### Spring Boot is made for tooling
 
  - IntelliJ 14のSpring Boot連携機能を実演しながら紹介
      - オートコンプリート（propertiesも）
@@ -419,16 +423,13 @@ Boot
  - ついていけなかったがあっという間にアプリが作られていった。
  - STSを使っている講演者は全体通して少なかった。STSの今後が気になる。
 
-Web
+
+[Spring 4 Web Apps](http://www.springio.net/wp-content/uploads/2014/11/springio2015-spring-4-web-apps-rossen-stoyanchev.pdf)
 ---
 
-### [Modern Java Component Design with Spring 4.2](http://www.springio.net/wp-content/uploads/2014/11/spring-4.2-component-design-juergen-hoeller.pdf) (Juergen Hoeller)
-
- - Spring 4.2（ほぼMVC？）をコード例付きで一個ずつ紹介
+ Rossen Stoyanchev
  
- 
-
-### [Spring 4 Web Apps](http://www.springio.net/wp-content/uploads/2014/11/springio2015-spring-4-web-apps-rossen-stoyanchev.pdf) (Rossen Stoyanchev)
+### Spring 4 Web Apps
 
 - Spring MVC 4系の新たな機能を淡々と紹介
     - @RestController
@@ -437,7 +438,7 @@ Web
         - ブラウザキャッシュのため、静的リソースにバージョンハッシュを付けてくれる 
         - Example: “/css/font-awesome.min **-7fbe76cdac**.css”
 
-### [Spring 4 Web Apps](http://www.springio.net/wp-content/uploads/2014/11/springio2015-spring-4-web-apps-rossen-stoyanchev.pdf) (Rossen Stoyanchev)
+### Spring 4 Web Apps
 
 - Spring MVC 4系の新たな機能を淡々と紹介
     - WebSocketでは、アプリレベルのSTOMPを使うのが良い
@@ -454,7 +455,7 @@ Web
     }
     ```
 
-### [Spring 4 Web Apps](http://www.springio.net/wp-content/uploads/2014/11/springio2015-spring-4-web-apps-rossen-stoyanchev.pdf) (Rossen Stoyanchev)
+### Spring 4 Web Apps
 
 - Spring MVC 4.2の新機能
     - HTTP Streaming
@@ -469,10 +470,14 @@ Web
         - JDK1.8のNashornを利用
     - STOMP Client
 
-Batch
+
+[Spring Batch for Large Enterprises Operations](http://www.springio.net/spring-batch-for-large-enterprises-operations/)
 ---
 
-### [Spring Batch for Large Enterprises Operations](http://www.springio.net/spring-batch-for-large-enterprises-operations/) (Ignasi Gonzalez)
+Ignasi Gonzalez
+
+
+### Spring Batch for Large Enterprises Operations
 
 - 簡単なSpring Batchの紹介とエンタープライズ開発事例紹介
 - 公式サイトのPDFリンクは正しくない・・・
@@ -484,7 +489,7 @@ Batch
     - ホストとの統合のため、商用ツールと連携する必要があった。
     - 商用ツールに合わせスケジューラやランチャーをカスタマイズした。
     
-### [Spring Batch for Large Enterprises Operations](http://www.springio.net/spring-batch-for-large-enterprises-operations/) (Ignasi Gonzalez)
+### Spring Batch for Large Enterprises Operations
 
 - 事例２：電力系
     - プロフィール
@@ -497,18 +502,46 @@ Batch
         - reportingとschedulingが弱いので拡張が必要だった。
         - 例えば、既存データの件数から実効時間を予測したり、プログレスをレポートするようにした。
 
-Others
+
+[Building Microservices with Spring Cloud and Netflix OSS](http://www.springio.net/building-microservices-with-spring-cloud-and-netflix-oss/)
 ---
 
-### Code Highlight
+Dave Syer
 
-```java
-public class Hoge {
-  public static void main(String[] args) {
-    System.out.println("Hello World!");
-  }
-}
-```
+### Building Microservices with Spring Cloud and Netflix OSS
+
+
+
+[TERASOLUNA Framework on the Spring IO Platform](http://www.springio.net/wp-content/uploads/2014/11/terasoluna-springio-toshiaki-maki.pdf)
+---
+
+Toshiaki Maki
+
+### TERASOLUNA Framework on the Spring IO Platform
+
+* 1-2年の開発、6-8年の運用に耐えるための社内フレームワークの工夫
+    * OSSをなるべくそのまま使う
+    * OSSのラインナップはSpring IO Platformに合わせる
+    * ブランクプロジェクトによるプロジェクト構成の既定
+    * 開発ガイドラインによる実装の統制
+    * 例外ハンドリングの改善
+    * jenkins/selenium/vagrantによるCI
+
+[Manage your user’s session with Spring Session](http://www.slideshare.net/dgomezg/managing-users-data-with-spring-session)
+---
+
+David Gomez
+
+### Manage your user’s session with Spring Session
+
+
+[A Brief History of Thymeleaf](http://www.springio.net/wp-content/uploads/2014/11/a-brief-history-of-thymeleaf-jose-samper.pdf)
+---
+
+Jose Samper
+
+### A Brief History of Thymeleaf
+
 
 ### Reference
 
