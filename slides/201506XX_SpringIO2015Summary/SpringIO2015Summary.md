@@ -116,6 +116,7 @@ http://www.slideshare.net/makingx/springone-2gx-2014-spring-41-jsug
 |            |```@Order```のConfigurationクラス対応|○|
 |            |```@Resource```の```@Lazy```対応|-|
 |            |```@EventListener```による任意メソッドでのイベント検知|○|
+|            |```ApplicationEvent```を継承しない任意オブジェクトイベント
 |            |```@AliasFor```によるアノテーション属性のエイリアス対応|○|
 |            |```DefaultConversionService```の改善|-|
 |            |```DefaultFormattingConversionService```のJSR-354 Money & Currency対応|-|
@@ -189,7 +190,9 @@ Spring Bootのauto-configurationの内部実装が```@Order```を使っていた
 
 ### ```@EventListener```による任意メソッドでのイベント検知
 
-メソッド引数や```condition```属性でSpELによりイベントのフィルタが可能。
+* メソッド引数や```condition```属性でSpELによりイベントのフィルタが可能。
+* 任意オブジェクトイベントの検知も可能。
+* @Orderにも対応
 
 ```java
 @EventListener
@@ -198,6 +201,7 @@ public void processEvent(MyApplicationEvent event) {
 }
 @EventListener
 public void processEvent(String payload) {
+ // ApplicationEventを継承しない任意オブジェクトイベント
  ...
 }
 @EventListener(condition="#payload.startsWith('OK')")
@@ -206,8 +210,66 @@ public void processEvent(String payload) {
 }
 ```
 
-### 参考：```ApplicationEvent```の生成
+### ```ApplicationEvent```を継承しない任意オブジェクトイベント
 
+```@EventListener``` を**使用する場合のみ**、```ApplicationEvent```
+を継承しない任意オブジェクトのイベントを発行、検知できる。
+
+```java
+public class MyApplicationEventPublisher implements ApplicationEventPublisherAware {
+  private ApplicationEventPublisher publisher;
+  public void setApplicationEventPublisher(ApplicationEventPublisher publisher) {
+    this.publisher = publisher;
+  }
+  public void publishMyApplicationEvent() {
+    publisher.publishEvent("Hello World.");
+  }
+}
+```
+
+https://spring.io/blog/2015/02/11/better-application-events-in-spring-framework-4-2
+
+### （参考）従来までのEventPublisherとEventListener
+
+```java
+public class MyApplicationEvent extends ApplicationEvent {...}
+
+public class MyApplicationEventPublisher implements ApplicationEventPublisherAware {
+  private ApplicationEventPublisher publisher;
+  public void setApplicationEventPublisher(ApplicationEventPublisher publisher) {
+    this.publisher = publisher;
+  }
+  public void publishMyApplicationEvent() {
+    publisher.publishEvent(new MyApplicationEvent());
+  }
+}
+
+public class MyApplicationEventListener implements ApplicationListener<MyApplicationEvent> {
+  public void onApplicationEvent(MyApplicationEvent event) {
+    ...
+  }
+}
+```
+
+### ```@TransactionalEventListener```のサポート
+
+イベント発行側のトランザクション終了前後でイベントを検知できる。
+
+```java
+@TransactionalEventListener()
+public void afterCommit(MyApplicationEvent event) {
+ ...
+}
+@TransactionalEventListener(phase=TransactionPhase.BEFORE_COMMIT)
+public void beforeCommit(MyApplicationEvent event) {
+ ...
+}
+@TransactionalEventListener(fallbackExecution = true)
+public void afterCommitFallbackExecution(MyApplicationEvent event) {
+ // トランザクション外でイベントが発行された場合も呼び出される
+ ...
+}
+```
 
 ### ```@AliasFor```によるアノテーション属性のエイリアス対応
 
