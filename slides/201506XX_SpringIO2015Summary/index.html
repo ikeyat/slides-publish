@@ -2931,7 +2931,8 @@ public interface MyBookAdminConfig {
 <article>
 <h3><code>@Import</code>の改善</h3>
 
-<p>@ImportでComponentクラスをインポートできるようになった。</p>
+<p><code>@Import</code> でComponentクラスをインポートできるようになった。
+<code>@ComponentScan</code> や<code>@Bean</code>なしでBeanを生成できる。</p>
 
 <pre><code class="java">@Configuration
 @Import(MyBookAdminService.class)
@@ -2955,7 +2956,7 @@ public class MyBookAdminService implements BookAdminService {
 
 <p>Bean名が一致した場合、Orderの若い方でoverrideされる。</p>
 
-<pre><code>@Configuration
+<pre><code class="java">@Configuration
 @Order(2)
 public class MyApplicationConfig {
  @Bean
@@ -2970,9 +2971,9 @@ public class MyBookAdminConfig {
 }
 </code></pre>
 
-<p>Spring Bootのauto-configurationが本影響を受けたので注意。
-<code>@Order</code> → <code>@AutoConfigureOrder</code>
-<a href="https://github.com/spring-projects/spring-boot/commit/7a73c5883f857f7dfb56d73410af96eae04a0e63">https://github.com/spring-projects/spring-boot/commit/7a73c5883f857f7dfb56d73410af96eae04a0e63</a></p>
+<p>Spring Bootのauto-configurationの内部実装が<code>@Order</code>を使っていたので<a href="https://github.com/spring-projects/spring-boot/commit/7a73c5883f857f7dfb56d73410af96eae04a0e63">影響を受けた</a>。</p>
+
+<p><code>@Order</code> → <code>@AutoConfigureOrder</code></p>
 
 
 </article>
@@ -2995,6 +2996,12 @@ public void processEvent(String payload) {
  ...
 }
 </code></pre>
+
+
+</article>
+
+<article>
+<h3>参考：<code>ApplicationEvent</code>の生成</h3>
 
 
 </article>

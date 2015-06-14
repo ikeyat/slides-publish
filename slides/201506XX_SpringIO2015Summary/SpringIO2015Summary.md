@@ -144,7 +144,8 @@ public interface MyBookAdminConfig {
 
 ### ```@Import```の改善
 
-@ImportでComponentクラスをインポートできるようになった。
+```@Import``` でComponentクラスをインポートできるようになった。
+```@ComponentScan``` や```@Bean```なしでBeanを生成できる。
 
 ```java
 @Configuration
@@ -165,7 +166,7 @@ public class MyBookAdminService implements BookAdminService {
 
 Bean名が一致した場合、Orderの若い方でoverrideされる。
 
-```
+```java
 @Configuration
 @Order(2)
 public class MyApplicationConfig {
@@ -181,9 +182,10 @@ public class MyBookAdminConfig {
 }
 ```
 
-Spring Bootのauto-configurationが本影響を受けたので注意。
+Spring Bootのauto-configurationの内部実装が```@Order```を使っていたので[影響を受けた](https://github.com/spring-projects/spring-boot/commit/7a73c5883f857f7dfb56d73410af96eae04a0e63)。
+
 ```@Order``` → ```@AutoConfigureOrder```
-https://github.com/spring-projects/spring-boot/commit/7a73c5883f857f7dfb56d73410af96eae04a0e63
+
 
 ### ```@EventListener```による任意メソッドでのイベント検知
 
@@ -203,6 +205,9 @@ public void processEvent(String payload) {
  ...
 }
 ```
+
+### 参考：```ApplicationEvent```の生成
+
 
 ### ```@AliasFor```によるアノテーション属性のエイリアス対応
 
