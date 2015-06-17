@@ -356,18 +356,23 @@ public @interface ContextConfiguration {
 
 ### セッションサマリ(その他)
 
-|タイトル    |カテゴリ|スピーカー      |報告者|
-|:-----------|:-------|:---------------|:-----|
-|Spring Boot is made for tooling|Boot|Yann Cébron & Stéphane Nicoll|池谷|
-|Spring Batch for Large Enterprises Operations|Batch|Ignasi González|池谷|
-|TERASOLUNA Framework on the Spring IO Platform|Other|槙さん|池谷|
-|Manage your user’s session with Spring Session|Session|David Gomez|池谷|
-|High Performance Spring Integration|Other|John Davies|池谷|
-|Spring Data REST – Repositories meet hypermedia|Data|Oliver Gierke|池谷|
-|Building High Performance Applications with Spring Data Neo4j 4.0|Data|Michael Hunger & Vince Bickers|池谷|
-|Document like the Spring team using Asciidoctor|Other|Alex Soto|池谷|
-|A Brief History of Thymeleaf|Web|Jose Samper|池谷|
-|JHipster, the leading application generator for Spring Boot + AngularJS|Web|Julien Dubois|Michael!|
+|タイトル    |分類|スピーカー      |
+|:-----------|:-------|:---------------|
+|Spring Boot is made for tooling|Boot|Yann Cébron & Stéphane Nicoll|
+|Spring Batch for Large Enterprises Operations|Batch|Ignasi González|
+|TERASOLUNA Framework on the Spring IO Platform|Other|槙さん|
+|Manage your user’s session with Spring Session|Session|David Gomez|
+|High Performance Spring Integration|Other|John Davies|
+
+### セッションサマリ(その他)
+
+|タイトル    |分類|スピーカー      |
+|:-----------|:-------|:---------------|
+|Spring Data REST – Repositories meet hypermedia|Data|Oliver Gierke|
+|Building High Performance Applications with Spring Data Neo4j 4.0|Data|Michael Hunger & Vince Bickers|
+|Document like the Spring team using Asciidoctor|Other|Alex Soto|
+|A Brief History of Thymeleaf|Web|Jose Samper|
+|JHipster, the leading application generator for Spring Boot + AngularJS|Web|Julien Dubois|
 
 [Spring Boot is made for tooling](http://www.springio.net/spring-boot-is-made-for-tooling/)
 ---
