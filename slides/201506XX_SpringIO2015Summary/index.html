@@ -2586,7 +2586,7 @@ article.smaller q::after {
 </tr>
 <tr>
 <td style="text-align: left">セッションサマリ</td>
-<td style="text-align: left">30min</td>
+<td style="text-align: left">20min</td>
 <td style="text-align: left">岩塚、池谷</td>
 </tr>
 </tbody></table>
@@ -2672,13 +2672,13 @@ article.smaller q::after {
 </article>
 
 <article>
-<h2>Key Note 「Springの歴史」</h2>
+<h2>Spring I/O 2015 Key Note 「Springの歴史」</h2>
 
 
 </article>
 
 <article>
-<h3>Key Note</h3>
+<h3>Spring I/O 2015 Key Note 「Springの歴史」</h3>
 
 
 </article>
@@ -2910,7 +2910,7 @@ article.smaller q::after {
 <tr>
 <td style="text-align: left"></td>
 <td style="text-align: left"><code>ApplicationEvent</code>を継承しない任意オブジェクトイベント</td>
-<td style="text-align: left"></td>
+<td style="text-align: left">○</td>
 </tr>
 <tr>
 <td style="text-align: left"></td>
@@ -2992,7 +2992,7 @@ public interface MyBookAdminConfig {
 <h3><code>@Import</code>の改善</h3>
 
 <p><code>@Import</code> でComponentクラスをインポートできるようになった。
-<code>@ComponentScan</code> や<code>@Bean</code>なしでBeanを生成できる。</p>
+<code>@ComponentScan</code> や<code>@Component</code>なしでBeanを生成できる。</p>
 
 <pre><code class="java">@Configuration
 @Import(MyBookAdminService.class)
@@ -3178,7 +3178,8 @@ public void afterCommitFallbackExecution(MyApplicationEvent event) {
 <pre><code class="java"> @ContextConfiguration
  public @interface MyTestConfig {
 
-    @AliasFor(annotation = ContextConfiguration.class, attribute = &quot;locations&quot;)
+    @AliasFor(annotation = ContextConfiguration.class,
+            attribute = &quot;locations&quot;)
     String[] xmlFiles();
  }
 </code></pre>
@@ -3220,7 +3221,7 @@ public void afterCommitFallbackExecution(MyApplicationEvent event) {
 <tr>
 <td style="text-align: left"></td>
 <td style="text-align: left"><code>SimpleJdbcCallOperations</code>の名前バインディング対応</td>
-<td style="text-align: left">○</td>
+<td style="text-align: left">-</td>
 </tr>
 <tr>
 <td style="text-align: left"></td>
@@ -3245,163 +3246,7 @@ public void afterCommitFallbackExecution(MyApplicationEvent event) {
 <article>
 <h3>Spring 4.2の新機能</h3>
 
-<table><thead>
-<tr>
-<th style="text-align: left">カテゴリ</th>
-<th style="text-align: left">新機能</th>
-<th style="text-align: left">詳細</th>
-</tr>
-</thead><tbody>
-<tr>
-<td style="text-align: left">Web</td>
-<td style="text-align: left">HTTP StreamingとServer-Sent Eventsのサポート</td>
-<td style="text-align: left">○</td>
-</tr>
-<tr>
-<td style="text-align: left"></td>
-<td style="text-align: left">CORSのグローバル設定・個別設定(<code>@CrossOrigin</code>)のサポート</td>
-<td style="text-align: left">○</td>
-</tr>
-<tr>
-<td style="text-align: left"></td>
-<td style="text-align: left">HTTPキャッシュの改善(<code>CacheControl</code>ビルダ追加・ETagサポート改善)</td>
-<td style="text-align: left">○</td>
-</tr>
-<tr>
-<td style="text-align: left"></td>
-<td style="text-align: left">NashornベースのJavaScript view templatingの追加</td>
-<td style="text-align: left">○</td>
-</tr>
-<tr>
-<td style="text-align: left"></td>
-<td style="text-align: left">カスタム<code>@RequestMapping</code>アノテーション</td>
-<td style="text-align: left">○</td>
-</tr>
-<tr>
-<td style="text-align: left"></td>
-<td style="text-align: left">request mappingを実行時に編集可能なAPI追加</td>
-<td style="text-align: left">-</td>
-</tr>
-<tr>
-<td style="text-align: left"></td>
-<td style="text-align: left"><code>RequestBodyAdvice</code>による拡張ポイント追加</td>
-<td style="text-align: left">○</td>
-</tr>
-<tr>
-<td style="text-align: left"></td>
-<td style="text-align: left"><code>@ExceptionHandler</code>への<code>HandlerMethod</code>引数追加</td>
-<td style="text-align: left"></td>
-</tr>
-<tr>
-<td style="text-align: left"></td>
-<td style="text-align: left">@Controllerメソッド戻り値への<code>java.util.concurrent.CompletableFuture</code>の追加</td>
-<td style="text-align: left">-</td>
-</tr>
-<tr>
-<td style="text-align: left"></td>
-<td style="text-align: left">静的リソースのためのByte-rangeリクエストのサポート</td>
-<td style="text-align: left">○</td>
-</tr>
-<tr>
-<td style="text-align: left"></td>
-<td style="text-align: left"><code>UriTemplateHandler</code>によるRestTemplateの拡張ポイント追加</td>
-<td style="text-align: left">○</td>
-</tr>
-<tr>
-<td style="text-align: left"></td>
-<td style="text-align: left"><code>MvcUriComponentsBuilder</code>の改善</td>
-<td style="text-align: left">-</td>
-</tr>
-<tr>
-<td style="text-align: left">WebSocket</td>
-<td style="text-align: left"></td>
-<td style="text-align: left"></td>
-</tr>
-<tr>
-<td style="text-align: left">Test</td>
-<td style="text-align: left"></td>
-<td style="text-align: left"></td>
-</tr>
-</tbody></table>
-
-<pre><code>分担
-Container:池谷
-Web:岩塚
-WebSocket:岩塚
-Test:岩塚
-</code></pre>
-
-<p><a href="http://docs.spring.io/spring/docs/4.2.0.RC1/spring-framework-reference/htmlsingle/">http://docs.spring.io/spring/docs/4.2.0.RC1/spring-framework-reference/htmlsingle/</a></p>
-
-
-</article>
-
-<article>
-<h3>セッションサマリ(その他)</h3>
-
-<table><thead>
-<tr>
-<th style="text-align: left">タイトル</th>
-<th style="text-align: left">カテゴリ</th>
-<th style="text-align: left">スピーカー</th>
-<th style="text-align: left">報告者</th>
-</tr>
-</thead><tbody>
-<tr>
-<td style="text-align: left">Building “Bootiful” Applications with Spring Boot</td>
-<td style="text-align: left">Boot</td>
-<td style="text-align: left">Josh Long</td>
-<td style="text-align: left">岩塚</td>
-</tr>
-<tr>
-<td style="text-align: left">Isomorphic templating with Spring Boot, Nashorn and React</td>
-<td style="text-align: left">Boot</td>
-<td style="text-align: left">Sébastien Deleuze</td>
-<td style="text-align: left">岩塚さん聞きました？</td>
-</tr>
-<tr>
-<td style="text-align: left">Stateless Authentication for Microservices</td>
-<td style="text-align: left">Web</td>
-<td style="text-align: left">Álvaro Sanchez-Mariscal</td>
-<td style="text-align: left">岩塚</td>
-</tr>
-<tr>
-<td style="text-align: left">Static Resources Management with Spring and Single Page Applications (Workshop)</td>
-<td style="text-align: left">Web</td>
-<td style="text-align: left">Brian Clozel</td>
-<td style="text-align: left">岩塚</td>
-</tr>
-<tr>
-<td style="text-align: left">Inside <a href="http://spring.io">http://spring.io</a> – a production spring reference application</td>
-<td style="text-align: left">?</td>
-<td style="text-align: left">Brian Clozel</td>
-<td style="text-align: left">岩塚</td>
-</tr>
-<tr>
-<td style="text-align: left">Performance Testing Crash Course</td>
-<td style="text-align: left">Other</td>
-<td style="text-align: left">Dustin Whittle</td>
-<td style="text-align: left">岩塚</td>
-</tr>
-<tr>
-<td style="text-align: left">Everything you need to know about Java Classloaders</td>
-<td style="text-align: left">Other</td>
-<td style="text-align: left">Oleg Šelajev</td>
-<td style="text-align: left">岩塚</td>
-</tr>
-<tr>
-<td style="text-align: left">Scaling real time search and analytics with Elasticsearch</td>
-<td style="text-align: left">Other</td>
-<td style="text-align: left">Clinton Gormley</td>
-<td style="text-align: left">岩塚</td>
-</tr>
-<tr>
-<td style="text-align: left">Improving your (legacy) Application with Spring</td>
-<td style="text-align: left">?</td>
-<td style="text-align: left">Marten Deinum</td>
-<td style="text-align: left">岩塚</td>
-</tr>
-</tbody></table>
+<p>別資料へ</p>
 
 
 </article>
@@ -3427,12 +3272,6 @@ Test:岩塚
 <td style="text-align: left">Spring Batch for Large Enterprises Operations</td>
 <td style="text-align: left">Batch</td>
 <td style="text-align: left">Ignasi González</td>
-<td style="text-align: left">池谷</td>
-</tr>
-<tr>
-<td style="text-align: left">Building Microservices with Spring Cloud and Netflix OSS</td>
-<td style="text-align: left">Cloud</td>
-<td style="text-align: left">Dave Syer</td>
 <td style="text-align: left">池谷</td>
 </tr>
 <tr>
@@ -3653,24 +3492,10 @@ public class PortfolioController {
 <ul>
 <li>CheckstyleやSonar等を用いコードの品質確保を確認した。</li>
 <li>reportingとschedulingが弱いので拡張が必要だった。</li>
-<li>例えば、既存データの件数から実効時間を予測したり、プログレスをレポートするようにした。</li>
+<li>例えば、既存データの件数から実効時間を予測したり、プログレスをレポートするようにした</li>
 </ul></li>
 </ul></li>
 </ul>
-
-
-</article>
-
-<article>
-<h2><a href="http://www.springio.net/building-microservices-with-spring-cloud-and-netflix-oss/">Building Microservices with Spring Cloud and Netflix OSS</a></h2>
-
-<p>Dave Syer</p>
-
-
-</article>
-
-<article>
-<h3>Building Microservices with Spring Cloud and Netflix OSS</h3>
 
 
 </article>
@@ -3770,9 +3595,54 @@ public class PortfolioController {
 </article>
 
 <article>
+<h3>その他</h3>
+
+<ul>
+<li><a href="http://www.springio.net/wp-content/uploads/2014/11/SpringIO-Barcelona-2015-High-Performance-Spring-Integration.pdf">High Performance Spring Integration</a>
+
+<ul>
+<li>Java高トランシステム開発時に実装した時のベストプラクティス</li>
+<li>例:日付はlong型に変換して格納。CSVやXMLでなくバイナリファイルを使用。</li>
+</ul></li>
+<li><a href="http://www.springio.net/spring-data-rest-repositories-meet-hypermedia/">Spring Data REST</a>
+
+<ul>
+<li>Spring DataのJPA等の操作をREST APIで実行できる仕組み。</li>
+<li>ALPSと呼ばれるメタデータによりAPIの内容を共有する。</li>
+</ul></li>
+</ul>
+
+
+</article>
+
+<article>
+<h3>その他</h3>
+
+<ul>
+<li><a href="http://www.springio.net/wp-content/uploads/2014/11/building-high-performance-applications-with-spring-data-neo4j-4-springio.pdf">Building High Performance Applications with Spring Data Neo4j 4.0</a>
+
+<ul>
+<li>世の中の物はグラフ構造の関係を持つ。</li>
+<li>Spring Data経由でNeo4jへアクセスするデモアプリの紹介</li>
+</ul></li>
+<li><a href="http://www.springio.net/document-like-the-spring-team-using-asciidoctor/">Document like the Spring team using Asciidoctor</a>
+
+<ul>
+<li>SpringのリファレンスはAsciidoctorというマークアップ言語で記述されている。</li>
+<li>Markdownに似た文法だがMarkdownのように仕様が複数に分裂していない。</li>
+</ul></li>
+</ul>
+
+
+</article>
+
+<article>
 <h3>Reference</h3>
 
-<p><a href="http://www.springio.net">http://www.springio.net</a></p>
+<ul>
+<li><a href="http://www.springio.net">http://www.springio.net</a></li>
+<li><a href="http://docs.spring.io/spring/docs/4.2.0.RC1/spring-framework-reference/htmlsingle/">http://docs.spring.io/spring/docs/4.2.0.RC1/spring-framework-reference/htmlsingle/</a></li>
+</ul>
 
 </article>
 

@@ -10,7 +10,7 @@ Spring I/O 2015報告会
 |概要        |5min|池谷        |
 |Key Note 「Springの歴史」|10min|本橋  |
 |Spring 4.2  |45min|岩塚、池谷  |
-|セッションサマリ|30min|岩塚、池谷|
+|セッションサマリ|20min|岩塚、池谷|
 
 ### 自己紹介
 
@@ -52,10 +52,10 @@ Spring I/O 2015報告会
 
 ![ノベルティ](./img/novelty.jpg)
 
-Key Note 「Springの歴史」
+Spring I/O 2015 Key Note 「Springの歴史」
 ---
 
-### Key Note
+### Spring I/O 2015 Key Note 「Springの歴史」
 
 Spring 4.2
 ---
@@ -126,7 +126,7 @@ http://www.slideshare.net/makingx/springone-2gx-2014-spring-41-jsug
 |            |```@Order```のConfigurationクラス対応|○|
 |            |```@Resource```の```@Lazy```対応|-|
 |            |```@EventListener```による任意メソッドでのイベント検知|○|
-|            |```ApplicationEvent```を継承しない任意オブジェクトイベント
+|            |```ApplicationEvent```を継承しない任意オブジェクトイベント|○|
 |            |```@AliasFor```によるアノテーション属性のエイリアス対応|○|
 
 ### Spring 4.2の新機能
@@ -161,7 +161,7 @@ public interface MyBookAdminConfig {
 ### ```@Import```の改善
 
 ```@Import``` でComponentクラスをインポートできるようになった。
-```@ComponentScan``` や```@Bean```なしでBeanを生成できる。
+```@ComponentScan``` や```@Component```なしでBeanを生成できる。
 
 ```java
 @Configuration
@@ -321,7 +321,8 @@ public @interface ContextConfiguration {
  @ContextConfiguration
  public @interface MyTestConfig {
 
-    @AliasFor(annotation = ContextConfiguration.class, attribute = "locations")
+    @AliasFor(annotation = ContextConfiguration.class,
+            attribute = "locations")
     String[] xmlFiles();
  }
 ```
@@ -344,53 +345,14 @@ public @interface ContextConfiguration {
 |カテゴリ    |新機能      |詳細|
 |:-----------|:-----------|:-------|
 |Data Access |AspectJによる```javax.transaction.Transactional```の対応 |-|
-|            |```SimpleJdbcCallOperations```の名前バインディング対応|○|
+|            |```SimpleJdbcCallOperations```の名前バインディング対応|-|
 |            |Hibernate ORM 5.0のフルサポート|-|
 |            |```<jdbc:embedded-database>```への```database-name```属性追加|-|
 |JMS         |省略|-|
 
 ### Spring 4.2の新機能
 
-|カテゴリ    |新機能      |詳細|
-|:-----------|:-----------|:-------|
-|Web         |HTTP StreamingとServer-Sent Eventsのサポート|○|
-|            |CORSのグローバル設定・個別設定(```@CrossOrigin```)のサポート|○|
-|            |HTTPキャッシュの改善(```CacheControl```ビルダ追加・ETagサポート改善)|○|
-|            |NashornベースのJavaScript view templatingの追加|○|
-|            |カスタム```@RequestMapping```アノテーション|○|
-|            |request mappingを実行時に編集可能なAPI追加|-|
-|            |```RequestBodyAdvice```による拡張ポイント追加|○|
-|            |```@ExceptionHandler```への```HandlerMethod```引数追加||
-|            |@Controllerメソッド戻り値への```java.util.concurrent.CompletableFuture```の追加|-|
-|            |静的リソースのためのByte-rangeリクエストのサポート|○|
-|            |```UriTemplateHandler```によるRestTemplateの拡張ポイント追加|○|
-|            |```MvcUriComponentsBuilder```の改善|-|
-|WebSocket   |||
-|Test        |||
-
-```
-分担
-Container:池谷
-Web:岩塚
-WebSocket:岩塚
-Test:岩塚
-```
-
-http://docs.spring.io/spring/docs/4.2.0.RC1/spring-framework-reference/htmlsingle/
-
-### セッションサマリ(その他)
-
-|タイトル    |カテゴリ|スピーカー      |報告者|
-|:-----------|:-------|:---------------|:-----|
-|Building “Bootiful” Applications with Spring Boot|Boot|Josh Long|岩塚|
-|Isomorphic templating with Spring Boot, Nashorn and React|Boot|Sébastien Deleuze|岩塚さん聞きました？|
-|Stateless Authentication for Microservices|Web|Álvaro Sanchez-Mariscal|岩塚|
-|Static Resources Management with Spring and Single Page Applications (Workshop)|Web|Brian Clozel|岩塚|
-|Inside http://spring.io – a production spring reference application|?|Brian Clozel|岩塚|
-|Performance Testing Crash Course|Other|Dustin Whittle|岩塚|
-|Everything you need to know about Java Classloaders|Other|Oleg Šelajev|岩塚|
-|Scaling real time search and analytics with Elasticsearch|Other|Clinton Gormley|岩塚|
-|Improving your (legacy) Application with Spring|?|Marten Deinum|岩塚|
+別資料へ
 
 ### セッションサマリ(その他)
 
@@ -398,7 +360,6 @@ http://docs.spring.io/spring/docs/4.2.0.RC1/spring-framework-reference/htmlsingl
 |:-----------|:-------|:---------------|:-----|
 |Spring Boot is made for tooling|Boot|Yann Cébron & Stéphane Nicoll|池谷|
 |Spring Batch for Large Enterprises Operations|Batch|Ignasi González|池谷|
-|Building Microservices with Spring Cloud and Netflix OSS|Cloud|Dave Syer|池谷|
 |TERASOLUNA Framework on the Spring IO Platform|Other|槙さん|池谷|
 |Manage your user’s session with Spring Session|Session|David Gomez|池谷|
 |High Performance Spring Integration|Other|John Davies|池谷|
@@ -500,16 +461,7 @@ Ignasi Gonzalez
     - ポイントに対しPoCを実施した。
         - CheckstyleやSonar等を用いコードの品質確保を確認した。
         - reportingとschedulingが弱いので拡張が必要だった。
-        - 例えば、既存データの件数から実効時間を予測したり、プログレスをレポートするようにした。
-
-
-[Building Microservices with Spring Cloud and Netflix OSS](http://www.springio.net/building-microservices-with-spring-cloud-and-netflix-oss/)
----
-
-Dave Syer
-
-### Building Microservices with Spring Cloud and Netflix OSS
-
+        - 例えば、既存データの件数から実効時間を予測したり、プログレスをレポートするようにした
 
 
 [TERASOLUNA Framework on the Spring IO Platform](http://www.springio.net/wp-content/uploads/2014/11/terasoluna-springio-toshiaki-maki.pdf)
@@ -563,6 +515,26 @@ Jose Samper
     * ルーズなHTMLへの対応（AngularJSなどのjsフレームワークを考慮）
     * テキストモード
 
+### その他
+
+* [High Performance Spring Integration](http://www.springio.net/wp-content/uploads/2014/11/SpringIO-Barcelona-2015-High-Performance-Spring-Integration.pdf)
+    * Java高トランシステム開発時に実装した時のベストプラクティス
+    * 例:日付はlong型に変換して格納。CSVやXMLでなくバイナリファイルを使用。
+* [Spring Data REST](http://www.springio.net/spring-data-rest-repositories-meet-hypermedia/)
+    * Spring DataのJPA等の操作をREST APIで実行できる仕組み。
+    * ALPSと呼ばれるメタデータによりAPIの内容を共有する。
+
+### その他
+
+* [Building High Performance Applications with Spring Data Neo4j 4.0](http://www.springio.net/wp-content/uploads/2014/11/building-high-performance-applications-with-spring-data-neo4j-4-springio.pdf)
+    * 世の中の物はグラフ構造の関係を持つ。
+    * Spring Data経由でNeo4jへアクセスするデモアプリの紹介
+* [Document like the Spring team using Asciidoctor](http://www.springio.net/document-like-the-spring-team-using-asciidoctor/)
+    * SpringのリファレンスはAsciidoctorというマークアップ言語で記述されている。
+    * Markdownに似た文法だがMarkdownのように仕様が複数に分裂していない。
+    
+
 ### Reference
 
-http://www.springio.net
+* http://www.springio.net
+* http://docs.spring.io/spring/docs/4.2.0.RC1/spring-framework-reference/htmlsingle/
