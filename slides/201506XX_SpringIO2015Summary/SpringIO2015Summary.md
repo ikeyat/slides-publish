@@ -159,13 +159,34 @@ http://www.slideshare.net/makingx/springone-2gx-2014-spring-41-jsug
 |            |```ScheduledTaskRegistrar```の改善|-|
 |            |Apache ```commons-pool2```のサポート|-|
 
-### ```@Bean```のJava8 defaultメソッド対応
+### ```@Bean```のJava8 defaultメソッド対応(Before)
+
+Java-Based ConfigurationのBean定義
 
 ```java
 @Configuration
-public class MyApplicationConfig implements MyBookAdminConfig {
- ...
+@Import({MyBookAdminConfig.class, MyBookConfig.class})
+public class MyApplicationConfig { ... }
+
+@Configuration
+public class MyBookAdminConfig {
+ @Bean
+ public BookAdminService myBookAdminService() {
+   MyBookAdminService service = new MyBookAdminService();
+   service.setDataSource(bookAdminDataSource());
+   return service;
+ }
 }
+```
+
+### ```@Bean```のJava8 defaultメソッド対応(After)
+
+継承するので、生成Beanを```@Override```できる。
+
+```java
+@Configuration
+public class MyApplicationConfig
+      implements MyBookAdminConfig, MyBookConfig { ... }
 
 public interface MyBookAdminConfig {
  @Bean
@@ -197,31 +218,34 @@ public class MyBookAdminService implements BookAdminService {
 }
 ```
 
-### ```@Order```のConfigurationクラス対応
+### ```@EventListener```による任意メソッドでのイベント検知(Before)
 
-Bean名が一致した場合、Orderの若い方でoverrideされる。
+* イベントリスナーは```ApplicationListener```を実装する必要があった。
+* イベントオブジェクトは、```ApplicationEvent```を継承する必要があった。
 
 ```java
-@Configuration
-@Order(2)
-public class MyApplicationConfig {
- @Bean
- public SpecialBookAdminService myBookAdminService() { ... }
-}
+public class MyApplicationEvent extends ApplicationEvent {...}
 
-@Configuration
-@Order(1)
-public class MyBookAdminConfig {
- @Bean
- public BookAdminService myBookAdminService() { ... }
+public class MyApplicationEventPublisher
+               implements ApplicationEventPublisherAware {
+  private ApplicationEventPublisher publisher;
+  public void setApplicationEventPublisher(
+                  ApplicationEventPublisher publisher) {
+    this.publisher = publisher;
+  }
+  public void publishMyApplicationEvent() {
+    publisher.publishEvent(new MyApplicationEvent());
+  }
+}
+public class MyApplicationEventListener
+               implements ApplicationListener<MyApplicationEvent> {
+  public void onApplicationEvent(MyApplicationEvent event) {
+    ...
+  }
 }
 ```
 
-Spring Bootのauto-configurationの内部実装が```@Order```を使っていたので[影響を受けた](https://github.com/spring-projects/spring-boot/commit/7a73c5883f857f7dfb56d73410af96eae04a0e63)。
-```@Order``` → ```@AutoConfigureOrder```
-
-
-### ```@EventListener```による任意メソッドでのイベント検知
+### ```@EventListener```による任意メソッドでのイベント検知(After)
 
 * メソッド引数や```condition```属性のSpELでフィルタが可能。
 * 任意オブジェクトイベントの検知も可能。
@@ -262,33 +286,9 @@ public class MyApplicationEventPublisher
 }
 ```
 
-### （参考）従来までのEventPublisherとEventListener
-
-```java
-public class MyApplicationEvent extends ApplicationEvent {...}
-
-public class MyApplicationEventPublisher
-               implements ApplicationEventPublisherAware {
-  private ApplicationEventPublisher publisher;
-  public void setApplicationEventPublisher(
-                  ApplicationEventPublisher publisher) {
-    this.publisher = publisher;
-  }
-  public void publishMyApplicationEvent() {
-    publisher.publishEvent(new MyApplicationEvent());
-  }
-}
-public class MyApplicationEventListener
-               implements ApplicationListener<MyApplicationEvent> {
-  public void onApplicationEvent(MyApplicationEvent event) {
-    ...
-  }
-}
-```
-
 ### ```@TransactionalEventListener```のサポート
 
-イベント発行側のトランザクション終了前後でイベントを検知できる。
+イベント発行即時でなく、イベント発行側のトランザクション終了前後でイベントを検知できる。
 
 ```java
 @TransactionalEventListener()
@@ -306,6 +306,31 @@ public void afterCommitFallbackExecution(MyApplicationEvent event) {
 }
 ```
 https://spring.io/blog/2015/02/11/better-application-events-in-spring-framework-4-2
+
+
+### ```@Order```のConfigurationクラス対応
+
+Bean名が一致した場合、Orderの若い方でoverrideされる。
+
+```java
+@Configuration
+@Order(2)
+public class MyApplicationConfig {
+ @Bean
+ public SpecialBookAdminService myBookAdminService() { ... }
+}
+
+@Configuration
+@Order(1)
+public class MyBookAdminConfig {
+ @Bean
+ public BookAdminService myBookAdminService() { ... }
+}
+```
+
+Spring Bootのauto-configurationの内部実装が```@Order```を使っていたので[影響を受けた](https://github.com/spring-projects/spring-boot/commit/7a73c5883f857f7dfb56d73410af96eae04a0e63)。
+```@Order``` → ```@AutoConfigureOrder```
+
 
 ### ```@AliasFor```によるアノテーション属性のエイリアス対応
 
