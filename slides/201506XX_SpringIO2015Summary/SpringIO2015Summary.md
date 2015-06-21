@@ -24,7 +24,7 @@ Spring I/O 2015報告会
 
 ### Spring I/O 2015
 
-![Spring I/O 2015](./img/springio.JPG)
+![Spring I/O 2015](./img/springio.jpg)
 
 
 ### Spring I/O 2015 概要
@@ -38,7 +38,7 @@ Spring I/O 2015報告会
 
 ### Spring I/O 2015 概要
 
-![Spring I/O 2015](./img/springioagenda.JPG)
+![Spring I/O 2015](./img/springioagenda.jpg)
 
 ### バルセロナ
 
