@@ -22,7 +22,12 @@ Spring I/O 2015報告会
     * Java Based Configurationはまだ無かった。
 * Spring Core/MVC/Boot/Batch/Dataに関心あり
 
-### 概要
+### Spring I/O 2015
+
+![Spring I/O 2015](./img/springio.JPG)
+
+
+### Spring I/O 2015 概要
 
 * 2015/4/29-30@バルセロナ
 * 基調講演＋39セッション＋6ワークショップ
@@ -30,6 +35,10 @@ Spring I/O 2015報告会
 * Spring/Groovy/Grails
     * 2GXな皆様ごめんなさい
 * 聴講者含めアジア系は我々4名のみの模様
+
+### Spring I/O 2015 概要
+
+![Spring I/O 2015](./img/springioagenda.JPG)
 
 ### バルセロナ
 
@@ -55,7 +64,15 @@ Spring I/O 2015報告会
 Spring I/O 2015 Key Note 「Springの歴史」
 ---
 
-### Spring I/O 2015 Key Note 「Springの歴史」
+### agenda
+
+|内容        |時間|発表者      |
+|:-----------|:---|:-----------|
+|概要        |5min|池谷        |
+|Key Note 「Springの歴史」|10min|本橋  |
+|Spring 4.2  |45min|岩塚、池谷  |
+|セッションサマリ|20min|岩塚、池谷|
+
 
 Spring 4.2
 ---
