@@ -35,6 +35,8 @@ Spring I/O 2015報告会
 * Spring/Groovy/Grails
     * 2GXな皆様ごめんなさい
 * 聴講者含めアジア系は我々4名のみの模様
+* スライド等は以下から参照可能 
+    * http://www.springio.net/agenda/
 
 ### Spring I/O 2015 概要
 
