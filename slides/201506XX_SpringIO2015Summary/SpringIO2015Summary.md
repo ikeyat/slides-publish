@@ -431,7 +431,6 @@ Ignasi Gonzalez
 ### Spring Batch for Large Enterprises Operations
 
 - 簡単なSpring Batchの紹介とエンタープライズ開発事例紹介
-- 公式サイトのPDFリンクは正しくない・・・
 - 事例１：銀行系
     - プロフィール
         - 7,000 tps
@@ -449,9 +448,10 @@ Ignasi Gonzalez
         - 現行のスクラッチ実装のバッチをどのようにSpring Batchに移行するか。
         - 300人の開発でいかに品質を確保するか。
     - ポイントに対しPoCを実施した。
-        - CheckstyleやSonar等を用いコードの品質確保を確認した。
-        - reportingとschedulingが弱いので拡張が必要だった。
-        - 例えば、既存データの件数から実効時間を予測したり、プログレスをレポートするようにした
+        - CheckstyleやSonar等でコードの品質確保できた。
+        - reportingとschedulingに拡張が必要。
+            - 既存データの件数から実効時間を予測
+            - プログレスをレポート
 
 
 [TERASOLUNA Framework on the Spring IO Platform](http://www.springio.net/wp-content/uploads/2014/11/terasoluna-springio-toshiaki-maki.pdf)
