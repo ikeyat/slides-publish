@@ -3,7 +3,7 @@ Spring I/O 2015報告会
 
 2015/6/22 JSUG
 
-# agenda
+### agenda
 
 |内容        |時間|発表者      |
 |:-----------|:---|:-----------|
@@ -12,7 +12,7 @@ Spring I/O 2015報告会
 |Spring 4.2  |45min|岩塚、池谷  |
 |セッションサマリ|20min|岩塚、池谷|
 
-# 自己紹介
+### 自己紹介
 
 * 池谷 智行（いけや ともゆき）
 * BASIC→VB→VC++→Java
@@ -22,7 +22,7 @@ Spring I/O 2015報告会
     * Java Based Configurationはまだ無かった。
 * Spring Core/MVC/Boot/Batch/Dataに関心あり
 
-## 概要
+### 概要
 
 * 2015/4/29-30@バルセロナ
 * 基調講演＋39セッション＋6ワークショップ
@@ -31,7 +31,7 @@ Spring I/O 2015報告会
     * 2GXな皆様ごめんなさい
 * 聴講者含めアジア系は我々4名のみの模様
 
-## バルセロナ
+### バルセロナ
 
 * 偉大なるアーキテクト、ガウディの街
     * ガウディは女性恐怖症で生涯独身!?
@@ -40,7 +40,7 @@ Spring I/O 2015報告会
 ![サグラダファミリア](./img/familia1.JPG)
 ![サグラダファミリア](./img/familia2.JPG)
 
-## 会場
+### 会場
 
 * AXA Auditorium
 * 中心街から少し外れた場所なので、食事や観光に若干不便。
@@ -48,19 +48,19 @@ Spring I/O 2015報告会
 ![会場](./img/theater.jpg)
 ![会場](./img/theater2.jpg)
 
-## 戦利品
+### 戦利品
 
 ![ノベルティ](./img/novelty.jpg)
 
 Spring I/O 2015 Key Note 「Springの歴史」
 ---
 
-## Spring I/O 2015 Key Note 「Springの歴史」
+### Spring I/O 2015 Key Note 「Springの歴史」
 
 Spring 4.2
 ---
 
-## セッションサマリ(Spring 4.2)
+### セッションサマリ(Spring 4.2)
 
 |タイトル    |カテゴリ|スピーカー      |報告者|
 |:-----------|:-------|:---------------|:-----|
@@ -70,7 +70,7 @@ Spring 4.2
 |Testing with Spring 4.x|Test|Sam Brannen|岩塚|
 
 
-## Spring 4.2
+### Spring 4.2
 
 * 2015/5末に4.2.0.RC1が公開
 * 2015/7/15にリリース予定
@@ -79,7 +79,7 @@ Spring 4.2
     * Spring Security 4.0.1
     * Spring Boot 1.3.0
 
-## Spring 4.1の新機能（おさらい）
+### Spring 4.1の新機能（おさらい）
 
 |カテゴリ    |新機能      |
 |:-----------|:-----------|
@@ -94,7 +94,7 @@ Spring 4.2
 |   |```ResponseEntity```ビルダーサポート|
 |   |```GroovyMarkupTemplate```サポート|
 
-## Spring 4.1の新機能（おさらい）
+### Spring 4.1の新機能（おさらい）
 
 |カテゴリ    |新機能      |
 |:-----------|:-----------|
@@ -111,7 +111,7 @@ Spring 4.2
 詳細は、
 http://www.slideshare.net/makingx/springone-2gx-2014-spring-41-jsug
 
-## Spring 4.2の新機能（カテゴリ）
+### Spring 4.2の新機能（カテゴリ）
 
 |4.1新機能    |4.2新機能      |
 |:------------|:--------------|
