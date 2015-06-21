@@ -3049,7 +3049,7 @@ public class MyBookAdminConfig {
 <article>
 <h3><code>@Bean</code>のJava8 defaultメソッド対応(After)</h3>
 
-<p>継承するので、生成Beanを<code>@Override</code>できる。</p>
+<p>継承するので、必要に応じて生成Beanを<code>@Override</code>できる。</p>
 
 <pre><code class="java">@Configuration
 public class MyApplicationConfig
@@ -3227,10 +3227,16 @@ public @interface MyService {
 <article>
 <h3><code>@AliasFor</code>による@属性のエイリアス対応(After)</h3>
 
-<p>単一アノテーション内での利用
-* 2つの属性を、一つの属性とみなさせることができる。
-    * 同じ型である必要がある。
-    * defaultが必須で、defaultの内容も同一</p>
+<p>単一アノテーション内での利用</p>
+
+<ul>
+<li>2つの属性を、一つの属性とみなさせることができる。
+
+<ul>
+<li>同じ型である必要がある。</li>
+<li>defaultが必須で、defaultの内容も同一</li>
+</ul></li>
+</ul>
 
 <pre><code class="java">public @interface ContextConfiguration {
 
@@ -3250,9 +3256,12 @@ public @interface MyService {
 <article>
 <h3><code>@AliasFor</code>による@属性のエイリアス対応(After)</h3>
 
-<p>メタアノテーション内のエイリアスの利用
-* 別名属性でメタアノテーションの属性を上書き
-* メタアノテーションの<code>value</code>属性の上書</p>
+<p>メタアノテーション内のエイリアスの利用</p>
+
+<ul>
+<li>別名属性でメタアノテーションの属性を上書き</li>
+<li>メタアノテーションの<code>value</code>属性の上書</li>
+</ul>
 
 <pre><code class="java">@Service
 @Scope(&quot;session&quot;)

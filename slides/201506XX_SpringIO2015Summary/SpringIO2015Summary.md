@@ -185,7 +185,7 @@ public class MyBookAdminConfig {
 
 ### ```@Bean```のJava8 defaultメソッド対応(After)
 
-継承するので、生成Beanを```@Override```できる。
+継承するので、必要に応じて生成Beanを```@Override```できる。
 
 ```java
 @Configuration
@@ -328,6 +328,7 @@ public @interface MyService {
 ### ```@AliasFor```による@属性のエイリアス対応(After)
 
 単一アノテーション内での利用
+
 * 2つの属性を、一つの属性とみなさせることができる。
     * 同じ型である必要がある。
     * defaultが必須で、defaultの内容も同一
@@ -348,6 +349,7 @@ public @interface ContextConfiguration {
 ### ```@AliasFor```による@属性のエイリアス対応(After)
 
 メタアノテーション内のエイリアスの利用
+
 * 別名属性でメタアノテーションの属性を上書き
 * メタアノテーションの```value```属性の上書
 
