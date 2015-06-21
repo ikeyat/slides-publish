@@ -100,7 +100,7 @@ Spring 4.2
 
 ### Spring 4.1の新機能（おさらい）
 
-|カテゴリ    |新機能      |
+|分類 |新機能      |
 |:-----------|:-----------|
 |Web|静的リソース制御の改善|
 |   |Controller引数のOptionalサポート|
@@ -115,7 +115,7 @@ Spring 4.2
 
 ### Spring 4.1の新機能（おさらい）
 
-|カテゴリ    |新機能      |
+|分類    |新機能      |
 |:-----------|:-----------|
 |JMS|```@JmsListener```サポート|
 |   |```spring-messaging```サポート|
@@ -138,7 +138,7 @@ http://www.slideshare.net/makingx/springone-2gx-2014-spring-41-jsug
 
 ### Spring 4.2の新機能
 
-|カテゴリ    |新機能      |詳細|
+|分類    |新機能      |詳細|
 |:-----------|:-----------|:-------|
 |Container   |```@Bean```のJava8 defaultメソッド対応|○|
 |            |```@Import```の改善|○|
@@ -150,7 +150,7 @@ http://www.slideshare.net/makingx/springone-2gx-2014-spring-41-jsug
 
 ### Spring 4.2の新機能
 
-|カテゴリ    |新機能      |詳細|
+|分類    |新機能      |詳細|
 |:-----------|:-----------|:-------|
 |            |```DefaultConversionService```の改善|-|
 |            |```DefaultFormattingConversionService```のJSR-354 Money & Currency対応|-|
@@ -205,10 +205,10 @@ public interface MyBookAdminConfig {
 ```@EventListener``` 周りの改善
 ---
 
-### ```@EventListener```によるイベント検知(Before)
+### ```@EventListener```(Before)
 
 * イベントリスナーは```ApplicationListener```を実装
-* イベントオブジェクトは、```ApplicationEvent```を継承
+* イベントは```ApplicationEvent```を継承
 
 ```java
 public class MyApplicationEvent extends ApplicationEvent {...}
@@ -226,10 +226,9 @@ public class MyApplicationEventListener
 }
 ```
 
-### ```@EventListener```によるイベント検知(After)
+### ```@EventListener```(After)
 
-* メソッド引数や```condition```属性のSpELでフィルタが可能。
-* 任意オブジェクトイベントの検知も可能。
+* メソッド引数や```condition```属性のSpELでフィルタ
 * @Orderにも対応
 
 ```java
@@ -308,7 +307,7 @@ public class MyBookAdminService { ... }
 ```
 
 
-### ```@AliasFor```による@属性のエイリアス対応(Before)
+### ```@AliasFor```エイリアス対応(Before)
 
 * メタアノテーションへの属性上書き制約
     * ```value``` 属性は上書けない
@@ -325,7 +324,7 @@ public @interface MyService {
 }
 ```
 
-### ```@AliasFor```による@属性のエイリアス対応(After)
+### ```@AliasFor```エイリアス対応(After)
 
 単一アノテーション内での利用
 
@@ -335,14 +334,11 @@ public @interface MyService {
 
 ```java
 public @interface ContextConfiguration {
-
     @AliasFor(attribute = "locations")
     String[] value() default {};
 
     @AliasFor(attribute = "value")
     String[] locations() default {};
-
-    // ...
 }
 ```
 
@@ -407,38 +403,23 @@ public class MyBookAdminService implements BookAdminService {
 
 ### セッションサマリ(その他)
 
-|タイトル    |分類|スピーカー      |
-|:-----------|:-------|:---------------|
-|Spring Boot is made for tooling|Boot|Yann Cébron & Stéphane Nicoll|
-|Spring Batch for Large Enterprises Operations|Batch|Ignasi González|
-|TERASOLUNA Framework on the Spring IO Platform|Other|槙さん|
-|Manage your user’s session with Spring Session|Session|David Gomez|
-|High Performance Spring Integration|Other|John Davies|
+|タイトル    |スピーカー      |
+|:-----------|:---------------|
+|Spring Boot is made for tooling|Yann Cébron & Stéphane Nicoll|
+|Spring Batch for Large Enterprises Operations|Ignasi González|
+|TERASOLUNA Framework on the Spring IO Platform|槙さん|
+|Manage your user’s session with Spring Session|David Gomez|
+|High Performance Spring Integration|John Davies|
 
 ### セッションサマリ(その他)
 
-|タイトル    |分類|スピーカー      |
-|:-----------|:-------|:---------------|
-|Spring Data REST – Repositories meet hypermedia|Data|Oliver Gierke|
-|Building High Performance Applications with Spring Data Neo4j 4.0|Data|Michael Hunger & Vince Bickers|
-|Document like the Spring team using Asciidoctor|Other|Alex Soto|
-|A Brief History of Thymeleaf|Web|Jose Samper|
-|JHipster, the leading application generator for Spring Boot + AngularJS|Web|Julien Dubois|
-
-[Spring Boot is made for tooling](http://www.springio.net/spring-boot-is-made-for-tooling/)
----
-
-Yann Cébron
-Stéphane Nicoll
-
-
-### Spring Boot is made for tooling
-
- - IntelliJ 14のSpring Boot連携機能を実演しながら紹介
-     - オートコンプリート（propertiesも）
-     - JSON生成支援
- - ついていけなかったがあっという間にアプリが作られていった。
- - STSを使っている講演者は全体通して少なかった。STSの今後が気になる。
+|タイトル    |スピーカー      |
+|:-----------|:---------------|
+|Spring Data REST – Repositories meet hypermedia|Oliver Gierke|
+|Building High Performance Applications with Spring Data Neo4j 4.0|Michael Hunger & Vince Bickers|
+|Document like the Spring team using Asciidoctor|Alex Soto|
+|A Brief History of Thymeleaf|Jose Samper|
+|JHipster, the leading application generator for Spring Boot + AngularJS|Julien Dubois|
 
 
 [Spring Batch for Large Enterprises Operations](http://www.springio.net/spring-batch-for-large-enterprises-operations/)
@@ -523,6 +504,35 @@ Jose Samper
     * 性能、使用メモリ量の改善
     * ルーズなHTMLへの対応（AngularJSなどのjsフレームワークを考慮）
     * テキストモード
+
+### A Brief History of Thymeleaf
+
+繰り返し処理の記述例
+
+```html
+<ul>
+  <li th:each="product : ${products}"
+      th:text="${product.name}">
+    Red carpet
+  </li>
+</ul>
+```
+
+[Spring Boot is made for tooling](http://www.springio.net/spring-boot-is-made-for-tooling/)
+---
+
+Yann Cébron
+Stéphane Nicoll
+
+
+### Spring Boot is made for tooling
+
+ - IntelliJ 14のSpring Boot連携機能を実演しながら紹介
+     - オートコンプリート（propertiesも）
+     - JSON生成支援
+ - ついていけなかったがあっという間にアプリが作られていった。
+ - STSを使っている講演者は全体通して少なかった。STSの今後が気になる。
+
 
 ### その他
 

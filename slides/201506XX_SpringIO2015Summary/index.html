@@ -2802,7 +2802,7 @@ article.smaller q::after {
 
 <table><thead>
 <tr>
-<th style="text-align: left">カテゴリ</th>
+<th style="text-align: left">分類</th>
 <th style="text-align: left">新機能</th>
 </tr>
 </thead><tbody>
@@ -2856,7 +2856,7 @@ article.smaller q::after {
 
 <table><thead>
 <tr>
-<th style="text-align: left">カテゴリ</th>
+<th style="text-align: left">分類</th>
 <th style="text-align: left">新機能</th>
 </tr>
 </thead><tbody>
@@ -2927,7 +2927,7 @@ article.smaller q::after {
 
 <table><thead>
 <tr>
-<th style="text-align: left">カテゴリ</th>
+<th style="text-align: left">分類</th>
 <th style="text-align: left">新機能</th>
 <th style="text-align: left">詳細</th>
 </tr>
@@ -2977,7 +2977,7 @@ article.smaller q::after {
 
 <table><thead>
 <tr>
-<th style="text-align: left">カテゴリ</th>
+<th style="text-align: left">分類</th>
 <th style="text-align: left">新機能</th>
 <th style="text-align: left">詳細</th>
 </tr>
@@ -3075,11 +3075,11 @@ public interface MyBookAdminConfig {
 </article>
 
 <article>
-<h3><code>@EventListener</code>によるイベント検知(Before)</h3>
+<h3><code>@EventListener</code>(Before)</h3>
 
 <ul>
 <li>イベントリスナーは<code>ApplicationListener</code>を実装</li>
-<li>イベントオブジェクトは、<code>ApplicationEvent</code>を継承</li>
+<li>イベントは<code>ApplicationEvent</code>を継承</li>
 </ul>
 
 <pre><code class="java">public class MyApplicationEvent extends ApplicationEvent {...}
@@ -3101,11 +3101,10 @@ public class MyApplicationEventListener
 </article>
 
 <article>
-<h3><code>@EventListener</code>によるイベント検知(After)</h3>
+<h3><code>@EventListener</code>(After)</h3>
 
 <ul>
-<li>メソッド引数や<code>condition</code>属性のSpELでフィルタが可能。</li>
-<li>任意オブジェクトイベントの検知も可能。</li>
+<li>メソッド引数や<code>condition</code>属性のSpELでフィルタ</li>
 <li>@Orderにも対応</li>
 </ul>
 
@@ -3203,7 +3202,7 @@ public class MyBookAdminService { ... }
 </article>
 
 <article>
-<h3><code>@AliasFor</code>による@属性のエイリアス対応(Before)</h3>
+<h3><code>@AliasFor</code>エイリアス対応(Before)</h3>
 
 <ul>
 <li>メタアノテーションへの属性上書き制約
@@ -3228,7 +3227,7 @@ public @interface MyService {
 </article>
 
 <article>
-<h3><code>@AliasFor</code>による@属性のエイリアス対応(After)</h3>
+<h3><code>@AliasFor</code>エイリアス対応(After)</h3>
 
 <p>単一アノテーション内での利用</p>
 
@@ -3242,14 +3241,11 @@ public @interface MyService {
 </ul>
 
 <pre><code class="java">public @interface ContextConfiguration {
-
     @AliasFor(attribute = &quot;locations&quot;)
     String[] value() default {};
 
     @AliasFor(attribute = &quot;value&quot;)
     String[] locations() default {};
-
-    // ...
 }
 </code></pre>
 
@@ -3366,33 +3362,27 @@ public class MyBookAdminService implements BookAdminService {
 <table><thead>
 <tr>
 <th style="text-align: left">タイトル</th>
-<th style="text-align: left">分類</th>
 <th style="text-align: left">スピーカー</th>
 </tr>
 </thead><tbody>
 <tr>
 <td style="text-align: left">Spring Boot is made for tooling</td>
-<td style="text-align: left">Boot</td>
 <td style="text-align: left">Yann Cébron &amp; Stéphane Nicoll</td>
 </tr>
 <tr>
 <td style="text-align: left">Spring Batch for Large Enterprises Operations</td>
-<td style="text-align: left">Batch</td>
 <td style="text-align: left">Ignasi González</td>
 </tr>
 <tr>
 <td style="text-align: left">TERASOLUNA Framework on the Spring IO Platform</td>
-<td style="text-align: left">Other</td>
 <td style="text-align: left">槙さん</td>
 </tr>
 <tr>
 <td style="text-align: left">Manage your user’s session with Spring Session</td>
-<td style="text-align: left">Session</td>
 <td style="text-align: left">David Gomez</td>
 </tr>
 <tr>
 <td style="text-align: left">High Performance Spring Integration</td>
-<td style="text-align: left">Other</td>
 <td style="text-align: left">John Davies</td>
 </tr>
 </tbody></table>
@@ -3406,62 +3396,30 @@ public class MyBookAdminService implements BookAdminService {
 <table><thead>
 <tr>
 <th style="text-align: left">タイトル</th>
-<th style="text-align: left">分類</th>
 <th style="text-align: left">スピーカー</th>
 </tr>
 </thead><tbody>
 <tr>
 <td style="text-align: left">Spring Data REST – Repositories meet hypermedia</td>
-<td style="text-align: left">Data</td>
 <td style="text-align: left">Oliver Gierke</td>
 </tr>
 <tr>
 <td style="text-align: left">Building High Performance Applications with Spring Data Neo4j 4.0</td>
-<td style="text-align: left">Data</td>
 <td style="text-align: left">Michael Hunger &amp; Vince Bickers</td>
 </tr>
 <tr>
 <td style="text-align: left">Document like the Spring team using Asciidoctor</td>
-<td style="text-align: left">Other</td>
 <td style="text-align: left">Alex Soto</td>
 </tr>
 <tr>
 <td style="text-align: left">A Brief History of Thymeleaf</td>
-<td style="text-align: left">Web</td>
 <td style="text-align: left">Jose Samper</td>
 </tr>
 <tr>
 <td style="text-align: left">JHipster, the leading application generator for Spring Boot + AngularJS</td>
-<td style="text-align: left">Web</td>
 <td style="text-align: left">Julien Dubois</td>
 </tr>
 </tbody></table>
-
-
-</article>
-
-<article>
-<h2><a href="http://www.springio.net/spring-boot-is-made-for-tooling/">Spring Boot is made for tooling</a></h2>
-
-<p>Yann Cébron
-Stéphane Nicoll</p>
-
-
-</article>
-
-<article>
-<h3>Spring Boot is made for tooling</h3>
-
-<ul>
-<li>IntelliJ 14のSpring Boot連携機能を実演しながら紹介
-
-<ul>
-<li>オートコンプリート（propertiesも）</li>
-<li>JSON生成支援</li>
-</ul></li>
-<li>ついていけなかったがあっという間にアプリが作られていった。</li>
-<li>STSを使っている講演者は全体通して少なかった。STSの今後が気になる。</li>
-</ul>
 
 
 </article>
@@ -3618,6 +3576,48 @@ Stéphane Nicoll</p>
 <li>ルーズなHTMLへの対応（AngularJSなどのjsフレームワークを考慮）</li>
 <li>テキストモード</li>
 </ul></li>
+</ul>
+
+
+</article>
+
+<article>
+<h3>A Brief History of Thymeleaf</h3>
+
+<p>繰り返し処理の記述例</p>
+
+<pre><code class="html">&lt;ul&gt;
+  &lt;li th:each=&quot;product : ${products}&quot;
+      th:text=&quot;${product.name}&quot;&gt;
+    Red carpet
+  &lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+
+
+</article>
+
+<article>
+<h2><a href="http://www.springio.net/spring-boot-is-made-for-tooling/">Spring Boot is made for tooling</a></h2>
+
+<p>Yann Cébron
+Stéphane Nicoll</p>
+
+
+</article>
+
+<article>
+<h3>Spring Boot is made for tooling</h3>
+
+<ul>
+<li>IntelliJ 14のSpring Boot連携機能を実演しながら紹介
+
+<ul>
+<li>オートコンプリート（propertiesも）</li>
+<li>JSON生成支援</li>
+</ul></li>
+<li>ついていけなかったがあっという間にアプリが作られていった。</li>
+<li>STSを使っている講演者は全体通して少なかった。STSの今後が気になる。</li>
 </ul>
 
 
