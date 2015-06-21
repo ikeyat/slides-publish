@@ -2954,12 +2954,12 @@ article.smaller q::after {
 </tr>
 <tr>
 <td style="text-align: left"></td>
-<td style="text-align: left"><code>@EventListener</code>による任意メソッドでのイベント検知</td>
+<td style="text-align: left"><code>@EventListener</code>によるイベント検知</td>
 <td style="text-align: left">○</td>
 </tr>
 <tr>
 <td style="text-align: left"></td>
-<td style="text-align: left"><code>ApplicationEvent</code>を継承しない任意オブジェクトイベント</td>
+<td style="text-align: left"><code>ApplicationEvent</code>を継承しないイベント</td>
 <td style="text-align: left">○</td>
 </tr>
 <tr>
@@ -3063,54 +3063,25 @@ public interface MyBookAdminConfig {
 </article>
 
 <article>
-<h3><code>@Import</code>の改善</h3>
-
-<p><code>@Import</code> でComponentクラスをインポートできるようになった。
-<code>@ComponentScan</code> や<code>@Component</code>なしでBeanを生成できる。</p>
-
-<pre><code class="java">@Configuration
-@Import(MyBookAdminService.class)
-public class MyApplicationConfig {
- ...
-}
-
-public class MyBookAdminService implements BookAdminService {
- @Autowired
- public MyBookAdminService(AccountRepository repo) {
- ...
- }
-}
-</code></pre>
-
-
-</article>
-
-<article>
-<h3><code>@EventListener</code>による任意メソッドでのイベント検知(Before)</h3>
+<h3><code>@EventListener</code>によるイベント検知(Before)</h3>
 
 <ul>
-<li>イベントリスナーは<code>ApplicationListener</code>を実装する必要があった。</li>
-<li>イベントオブジェクトは、<code>ApplicationEvent</code>を継承する必要があった。</li>
+<li>イベントリスナーは<code>ApplicationListener</code>を実装</li>
+<li>イベントオブジェクトは、<code>ApplicationEvent</code>を継承</li>
 </ul>
 
 <pre><code class="java">public class MyApplicationEvent extends ApplicationEvent {...}
 
 public class MyApplicationEventPublisher
                implements ApplicationEventPublisherAware {
-  private ApplicationEventPublisher publisher;
-  public void setApplicationEventPublisher(
-                  ApplicationEventPublisher publisher) {
-    this.publisher = publisher;
-  }
+  ...
   public void publishMyApplicationEvent() {
     publisher.publishEvent(new MyApplicationEvent());
   }
 }
 public class MyApplicationEventListener
                implements ApplicationListener&lt;MyApplicationEvent&gt; {
-  public void onApplicationEvent(MyApplicationEvent event) {
-    ...
-  }
+  public void onApplicationEvent(MyApplicationEvent event) { ... }
 }
 </code></pre>
 
@@ -3118,7 +3089,7 @@ public class MyApplicationEventListener
 </article>
 
 <article>
-<h3><code>@EventListener</code>による任意メソッドでのイベント検知(After)</h3>
+<h3><code>@EventListener</code>によるイベント検知(After)</h3>
 
 <ul>
 <li>メソッド引数や<code>condition</code>属性のSpELでフィルタが可能。</li>
@@ -3154,11 +3125,8 @@ public void processEvent(String payload) {
 
 <pre><code class="java">public class MyApplicationEventPublisher
                implements ApplicationEventPublisherAware {
-  private ApplicationEventPublisher publisher;
-  public void setApplicationEventPublisher(
-                  ApplicationEventPublisher publisher) {
-    this.publisher = publisher;
-  }
+  ...
+
   public void publishMyApplicationEvent() {
     publisher.publishEvent(&quot;Hello World.&quot;);
   }
@@ -3277,6 +3245,29 @@ public class MyBookAdminConfig {
 
     String[] locations();
  }
+</code></pre>
+
+
+</article>
+
+<article>
+<h3><code>@Import</code>の改善</h3>
+
+<p><code>@Import</code> でComponentクラスをインポートできるようになった。
+<code>@ComponentScan</code> や<code>@Component</code>なしでBeanを生成できる。</p>
+
+<pre><code class="java">@Configuration
+@Import(MyBookAdminService.class)
+public class MyApplicationConfig {
+ ...
+}
+
+public class MyBookAdminService implements BookAdminService {
+ @Autowired
+ public MyBookAdminService(AccountRepository repo) {
+ ...
+ }
+}
 </code></pre>
 
 

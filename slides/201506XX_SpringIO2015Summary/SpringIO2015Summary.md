@@ -144,8 +144,8 @@ http://www.slideshare.net/makingx/springone-2gx-2014-spring-41-jsug
 |            |```@Import```の改善|○|
 |            |```@Order```のConfigurationクラス対応|○|
 |            |```@Resource```の```@Lazy```対応|-|
-|            |```@EventListener```による任意メソッドでのイベント検知|○|
-|            |```ApplicationEvent```を継承しない任意オブジェクトイベント|○|
+|            |```@EventListener```によるイベント検知|○|
+|            |```ApplicationEvent```を継承しないイベント|○|
 |            |```@AliasFor```によるアノテーション属性のエイリアス対応|○|
 
 ### Spring 4.2の新機能
@@ -198,54 +198,28 @@ public interface MyBookAdminConfig {
 }
 ```
 
-### ```@Import```の改善
+### ```@EventListener```によるイベント検知(Before)
 
-```@Import``` でComponentクラスをインポートできるようになった。
-```@ComponentScan``` や```@Component```なしでBeanを生成できる。
-
-```java
-@Configuration
-@Import(MyBookAdminService.class)
-public class MyApplicationConfig {
- ...
-}
-
-public class MyBookAdminService implements BookAdminService {
- @Autowired
- public MyBookAdminService(AccountRepository repo) {
- ...
- }
-}
-```
-
-### ```@EventListener```による任意メソッドでのイベント検知(Before)
-
-* イベントリスナーは```ApplicationListener```を実装する必要があった。
-* イベントオブジェクトは、```ApplicationEvent```を継承する必要があった。
+* イベントリスナーは```ApplicationListener```を実装
+* イベントオブジェクトは、```ApplicationEvent```を継承
 
 ```java
 public class MyApplicationEvent extends ApplicationEvent {...}
 
 public class MyApplicationEventPublisher
                implements ApplicationEventPublisherAware {
-  private ApplicationEventPublisher publisher;
-  public void setApplicationEventPublisher(
-                  ApplicationEventPublisher publisher) {
-    this.publisher = publisher;
-  }
+  ...
   public void publishMyApplicationEvent() {
     publisher.publishEvent(new MyApplicationEvent());
   }
 }
 public class MyApplicationEventListener
                implements ApplicationListener<MyApplicationEvent> {
-  public void onApplicationEvent(MyApplicationEvent event) {
-    ...
-  }
+  public void onApplicationEvent(MyApplicationEvent event) { ... }
 }
 ```
 
-### ```@EventListener```による任意メソッドでのイベント検知(After)
+### ```@EventListener```によるイベント検知(After)
 
 * メソッド引数や```condition```属性のSpELでフィルタが可能。
 * 任意オブジェクトイベントの検知も可能。
@@ -275,11 +249,8 @@ public void processEvent(String payload) {
 ```java
 public class MyApplicationEventPublisher
                implements ApplicationEventPublisherAware {
-  private ApplicationEventPublisher publisher;
-  public void setApplicationEventPublisher(
-                  ApplicationEventPublisher publisher) {
-    this.publisher = publisher;
-  }
+  ...
+  
   public void publishMyApplicationEvent() {
     publisher.publishEvent("Hello World.");
   }
@@ -382,6 +353,26 @@ public @interface ContextConfiguration {
 
     String[] locations();
  }
+```
+
+### ```@Import```の改善
+
+```@Import``` でComponentクラスをインポートできるようになった。
+```@ComponentScan``` や```@Component```なしでBeanを生成できる。
+
+```java
+@Configuration
+@Import(MyBookAdminService.class)
+public class MyApplicationConfig {
+ ...
+}
+
+public class MyBookAdminService implements BookAdminService {
+ @Autowired
+ public MyBookAdminService(AccountRepository repo) {
+ ...
+ }
+}
 ```
 
 ### Spring 4.2の新機能
