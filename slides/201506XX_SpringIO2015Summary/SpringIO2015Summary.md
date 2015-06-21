@@ -146,7 +146,7 @@ http://www.slideshare.net/makingx/springone-2gx-2014-spring-41-jsug
 |            |```@Resource```の```@Lazy```対応|-|
 |            |```@EventListener```によるイベント検知|○|
 |            |```ApplicationEvent```を継承しないイベント|○|
-|            |```@AliasFor```によるアノテーション属性のエイリアス対応|○|
+|            |```@AliasFor```による@属性のエイリアス対応|○|
 
 ### Spring 4.2の新機能
 
@@ -158,6 +158,10 @@ http://www.slideshare.net/makingx/springone-2gx-2014-spring-41-jsug
 |            |```JavaMailSenderImpl```への```testConnection()```メソッド追加|-|
 |            |```ScheduledTaskRegistrar```の改善|-|
 |            |Apache ```commons-pool2```のサポート|-|
+
+
+```@Bean```のJava8 defaultメソッド対応
+---
 
 ### ```@Bean```のJava8 defaultメソッド対応(Before)
 
@@ -197,6 +201,9 @@ public interface MyBookAdminConfig {
  }
 }
 ```
+
+```@EventListener``` 周りの改善
+---
 
 ### ```@EventListener```によるイベント検知(Before)
 
@@ -279,6 +286,86 @@ public void afterCommitFallbackExecution(MyApplicationEvent event) {
 https://spring.io/blog/2015/02/11/better-application-events-in-spring-framework-4-2
 
 
+メタアノテーション属性上書きの改善
+---
+
+### メタアノテーションとは
+
+* アノテーションに付けるアノテーション
+* Springのアノテーションはメタアノテーションに対応している
+* コンポジットアノテーション
+
+```java
+@Service
+@Scope("session")
+@Primary
+@Transactional(rollbackFor=Exception.class)
+@Retention(RetentionPolicy.RUNTIME)
+public @interface MyService {}
+
+@MyService
+public class MyBookAdminService { ... }
+```
+
+
+### ```@AliasFor```による@属性のエイリアス対応(Before)
+
+* メタアノテーションへの属性上書き制約
+* ```value``` 属性は上書けない
+* 同名の属性で定義しないと上書けない。
+
+```java
+@Service
+@Scope("session")
+@Primary
+@Transactional(rollbackFor=Exception.class)
+@Retention(RetentionPolicy.RUNTIME)
+public @interface MyService {
+  boolean readOnly();
+}
+```
+
+### ```@AliasFor```による@属性のエイリアス対応(After)
+
+単一アノテーション内での利用
+* 2つの属性を、一つの属性とみなさせることができる。
+    * 同じ型である必要がある。
+    * defaultが必須で、defaultの内容も同一
+
+```java
+public @interface ContextConfiguration {
+
+    @AliasFor(attribute = "locations")
+    String[] value() default {};
+
+    @AliasFor(attribute = "value")
+    String[] locations() default {};
+
+    // ...
+}
+```
+
+### ```@AliasFor```による@属性のエイリアス対応(After)
+
+メタアノテーション内のエイリアスの利用
+* 別名属性でメタアノテーションの属性を上書き
+* メタアノテーションの```value```属性の上書
+
+```java
+@Service
+@Scope("session")
+@Primary
+@Transactional(rollbackFor=Exception.class)
+@Retention(RetentionPolicy.RUNTIME)
+public @interface MyService {
+  @AliasFor(annotation = Service.class, attribute = "value")
+  String[] myServiceName();
+}
+```
+
+その他の改善
+---
+
 ### ```@Order```のConfigurationクラス対応
 
 Bean名が一致した場合、Orderの若い方でoverrideされる。
@@ -302,58 +389,6 @@ public class MyBookAdminConfig {
 Spring Bootのauto-configurationの内部実装が```@Order```を使っていたので[影響を受けた](https://github.com/spring-projects/spring-boot/commit/7a73c5883f857f7dfb56d73410af96eae04a0e63)。
 ```@Order``` → ```@AutoConfigureOrder```
 
-
-### ```@AliasFor```によるアノテーション属性のエイリアス対応
-
-#### 単一アノテーション内での利用
-
-2つの属性を、一つの属性とみなさせることができる。
-
-* 同じ型である必要がある。
-* defaultが必須で、defaultの内容も同一
-
-```java
-public @interface ContextConfiguration {
-
-    @AliasFor(attribute = "locations")
-    String[] value() default {};
-
-    @AliasFor(attribute = "value")
-    String[] locations() default {};
-
-    // ...
-}
-```
-
-### ```@AliasFor```によるアノテーション属性のエイリアス対応
-
-#### メタアノテーション内のエイリアスの利用
-
-```annotation``` で指定したメタアノテーションが持つ```attribute```で指定した属性を上書く。
-今まで不可能だった、メタアノテーションの```value```属性の上書きが可能になった。
-
-```java
- @ContextConfiguration
- public @interface MyTestConfig {
-
-    @AliasFor(annotation = ContextConfiguration.class,
-            attribute = "locations")
-    String[] xmlFiles();
- }
-```
-
-### （参考）```@AliasFor```によるアノテーション属性のエイリアス対応
-
-メタアノテーションの```value``` 属性意外の上書きであれば、```@AliasFor```を使用せず実現可能。
-同名の属性を定義することで、メタアノテーションの属性が上書かれる。
-
-```java
- @ContextConfiguration
- public @interface MyTestConfig {
-
-    String[] locations();
- }
-```
 
 ### ```@Import```の改善
 

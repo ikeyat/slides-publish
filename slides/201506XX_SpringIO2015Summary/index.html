@@ -2964,7 +2964,7 @@ article.smaller q::after {
 </tr>
 <tr>
 <td style="text-align: left"></td>
-<td style="text-align: left"><code>@AliasFor</code>によるアノテーション属性のエイリアス対応</td>
+<td style="text-align: left"><code>@AliasFor</code>による@属性のエイリアス対応</td>
 <td style="text-align: left">○</td>
 </tr>
 </tbody></table>
@@ -3018,6 +3018,12 @@ article.smaller q::after {
 </article>
 
 <article>
+<h2><code>@Bean</code>のJava8 defaultメソッド対応</h2>
+
+
+</article>
+
+<article>
 <h3><code>@Bean</code>のJava8 defaultメソッド対応(Before)</h3>
 
 <p>Java-Based ConfigurationのBean定義</p>
@@ -3058,6 +3064,12 @@ public interface MyBookAdminConfig {
  }
 }
 </code></pre>
+
+
+</article>
+
+<article>
+<h2><code>@EventListener</code> 周りの改善</h2>
 
 
 </article>
@@ -3162,6 +3174,107 @@ public void afterCommitFallbackExecution(MyApplicationEvent event) {
 </article>
 
 <article>
+<h2>メタアノテーション属性上書きの改善</h2>
+
+
+</article>
+
+<article>
+<h3>メタアノテーションとは</h3>
+
+<ul>
+<li>アノテーションに付けるアノテーション</li>
+<li>Springのアノテーションはメタアノテーションに対応している</li>
+<li>コンポジットアノテーション</li>
+</ul>
+
+<pre><code class="java">@Service
+@Scope(&quot;session&quot;)
+@Primary
+@Transactional(rollbackFor=Exception.class)
+@Retention(RetentionPolicy.RUNTIME)
+public @interface MyService {}
+
+@MyService
+public class MyBookAdminService { ... }
+</code></pre>
+
+
+</article>
+
+<article>
+<h3><code>@AliasFor</code>による@属性のエイリアス対応(Before)</h3>
+
+<ul>
+<li>メタアノテーションへの属性上書き制約</li>
+<li><code>value</code> 属性は上書けない</li>
+<li>同名の属性で定義しないと上書けない。</li>
+</ul>
+
+<pre><code class="java">@Service
+@Scope(&quot;session&quot;)
+@Primary
+@Transactional(rollbackFor=Exception.class)
+@Retention(RetentionPolicy.RUNTIME)
+public @interface MyService {
+  boolean readOnly();
+}
+</code></pre>
+
+
+</article>
+
+<article>
+<h3><code>@AliasFor</code>による@属性のエイリアス対応(After)</h3>
+
+<p>単一アノテーション内での利用
+* 2つの属性を、一つの属性とみなさせることができる。
+    * 同じ型である必要がある。
+    * defaultが必須で、defaultの内容も同一</p>
+
+<pre><code class="java">public @interface ContextConfiguration {
+
+    @AliasFor(attribute = &quot;locations&quot;)
+    String[] value() default {};
+
+    @AliasFor(attribute = &quot;value&quot;)
+    String[] locations() default {};
+
+    // ...
+}
+</code></pre>
+
+
+</article>
+
+<article>
+<h3><code>@AliasFor</code>による@属性のエイリアス対応(After)</h3>
+
+<p>メタアノテーション内のエイリアスの利用
+* 別名属性でメタアノテーションの属性を上書き
+* メタアノテーションの<code>value</code>属性の上書</p>
+
+<pre><code class="java">@Service
+@Scope(&quot;session&quot;)
+@Primary
+@Transactional(rollbackFor=Exception.class)
+@Retention(RetentionPolicy.RUNTIME)
+public @interface MyService {
+  @AliasFor(annotation = Service.class, attribute = &quot;value&quot;)
+  String[] myServiceName();
+}
+</code></pre>
+
+
+</article>
+
+<article>
+<h2>その他の改善</h2>
+
+
+</article>
+
+<article>
 <h3><code>@Order</code>のConfigurationクラス対応</h3>
 
 <p>Bean名が一致した場合、Orderの若い方でoverrideされる。</p>
@@ -3183,69 +3296,6 @@ public class MyBookAdminConfig {
 
 <p>Spring Bootのauto-configurationの内部実装が<code>@Order</code>を使っていたので<a href="https://github.com/spring-projects/spring-boot/commit/7a73c5883f857f7dfb56d73410af96eae04a0e63">影響を受けた</a>。
 <code>@Order</code> → <code>@AutoConfigureOrder</code></p>
-
-
-</article>
-
-<article>
-<h3><code>@AliasFor</code>によるアノテーション属性のエイリアス対応</h3>
-
-<h4>単一アノテーション内での利用</h4>
-
-<p>2つの属性を、一つの属性とみなさせることができる。</p>
-
-<ul>
-<li>同じ型である必要がある。</li>
-<li>defaultが必須で、defaultの内容も同一</li>
-</ul>
-
-<pre><code class="java">public @interface ContextConfiguration {
-
-    @AliasFor(attribute = &quot;locations&quot;)
-    String[] value() default {};
-
-    @AliasFor(attribute = &quot;value&quot;)
-    String[] locations() default {};
-
-    // ...
-}
-</code></pre>
-
-
-</article>
-
-<article>
-<h3><code>@AliasFor</code>によるアノテーション属性のエイリアス対応</h3>
-
-<h4>メタアノテーション内のエイリアスの利用</h4>
-
-<p><code>annotation</code> で指定したメタアノテーションが持つ<code>attribute</code>で指定した属性を上書く。
-今まで不可能だった、メタアノテーションの<code>value</code>属性の上書きが可能になった。</p>
-
-<pre><code class="java"> @ContextConfiguration
- public @interface MyTestConfig {
-
-    @AliasFor(annotation = ContextConfiguration.class,
-            attribute = &quot;locations&quot;)
-    String[] xmlFiles();
- }
-</code></pre>
-
-
-</article>
-
-<article>
-<h3>（参考）<code>@AliasFor</code>によるアノテーション属性のエイリアス対応</h3>
-
-<p>メタアノテーションの<code>value</code> 属性意外の上書きであれば、<code>@AliasFor</code>を使用せず実現可能。
-同名の属性を定義することで、メタアノテーションの属性が上書かれる。</p>
-
-<pre><code class="java"> @ContextConfiguration
- public @interface MyTestConfig {
-
-    String[] locations();
- }
-</code></pre>
 
 
 </article>
