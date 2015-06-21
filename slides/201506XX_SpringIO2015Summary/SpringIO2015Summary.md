@@ -9,8 +9,8 @@ Spring I/O 2015報告会
 |:-----------|:---|:-----------|
 |概要        |5min|池谷        |
 |Key Note 「Springの歴史」|10min|本橋  |
-|Spring 4.2  |45min|岩塚、池谷  |
-|セッションサマリ|20min|岩塚、池谷|
+|セッションサマリ(Spring 4.2)  |45min|岩塚、池谷  |
+|セッションサマリ(その他)|20min|岩塚、池谷|
 
 ### 自己紹介
 
@@ -72,8 +72,8 @@ Spring I/O 2015 Key Note 「Springの歴史」
 |:-----------|:---|:-----------|
 |概要        |5min|池谷        |
 |Key Note 「Springの歴史」|10min|本橋  |
-|Spring 4.2  |45min|岩塚、池谷  |
-|セッションサマリ|20min|岩塚、池谷|
+|セッションサマリ(Spring 4.2)  |45min|岩塚、池谷  |
+|セッションサマリ(その他)|20min|岩塚、池谷|
 
 
 Spring 4.2
@@ -142,7 +142,7 @@ http://www.slideshare.net/makingx/springone-2gx-2014-spring-41-jsug
 |:-----------|:-----------|:-------|
 |Container   |```@Bean```のJava8 defaultメソッド対応|○|
 |            |```@Import```の改善|○|
-|            |```@Order```のConfigurationクラス対応|○|
+|            |```@Order```のConfigurationクラス対応|-|
 |            |```@Resource```の```@Lazy```対応|-|
 |            |```@EventListener```によるイベント検知|○|
 |            |```ApplicationEvent```を継承しないイベント|○|
@@ -370,30 +370,6 @@ public @interface MyService {
 
 その他の改善
 ---
-
-### ```@Order```のConfigurationクラス対応
-
-Bean名が一致した場合、Orderの若い方でoverrideされる。
-
-```java
-@Configuration
-@Order(2)
-public class MyApplicationConfig {
- @Bean
- public SpecialBookAdminService myBookAdminService() { ... }
-}
-
-@Configuration
-@Order(1)
-public class MyBookAdminConfig {
- @Bean
- public BookAdminService myBookAdminService() { ... }
-}
-```
-
-Spring Bootのauto-configurationの内部実装が```@Order```を使っていたので[影響を受けた](https://github.com/spring-projects/spring-boot/commit/7a73c5883f857f7dfb56d73410af96eae04a0e63)。
-```@Order``` → ```@AutoConfigureOrder```
-
 
 ### ```@Import```の改善
 
