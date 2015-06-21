@@ -311,8 +311,8 @@ public class MyBookAdminService { ... }
 ### ```@AliasFor```による@属性のエイリアス対応(Before)
 
 * メタアノテーションへの属性上書き制約
-* ```value``` 属性は上書けない
-* 同名の属性で定義しないと上書けない。
+    * ```value``` 属性は上書けない
+    * 同名の属性で定義しないと上書けない。
 
 ```java
 @Service
@@ -361,7 +361,10 @@ public @interface ContextConfiguration {
 @Retention(RetentionPolicy.RUNTIME)
 public @interface MyService {
   @AliasFor(annotation = Service.class, attribute = "value")
-  String[] myServiceName();
+  String value() default "";
+  
+  @AliasFor(annotation = Transactional.class, attribute = "readOnly")
+  boolean myReadOnly();
 }
 ```
 

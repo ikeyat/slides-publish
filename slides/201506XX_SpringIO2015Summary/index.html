@@ -3206,9 +3206,12 @@ public class MyBookAdminService { ... }
 <h3><code>@AliasFor</code>による@属性のエイリアス対応(Before)</h3>
 
 <ul>
-<li>メタアノテーションへの属性上書き制約</li>
+<li>メタアノテーションへの属性上書き制約
+
+<ul>
 <li><code>value</code> 属性は上書けない</li>
 <li>同名の属性で定義しないと上書けない。</li>
+</ul></li>
 </ul>
 
 <pre><code class="java">@Service
@@ -3270,7 +3273,10 @@ public @interface MyService {
 @Retention(RetentionPolicy.RUNTIME)
 public @interface MyService {
   @AliasFor(annotation = Service.class, attribute = &quot;value&quot;)
-  String[] myServiceName();
+  String value() default &quot;&quot;;
+
+  @AliasFor(annotation = Transactional.class, attribute = &quot;readOnly&quot;)
+  boolean myReadOnly();
 }
 </code></pre>
 
