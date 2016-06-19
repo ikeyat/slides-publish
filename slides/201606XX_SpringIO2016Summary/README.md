@@ -26,11 +26,11 @@ Spring I/O 2016報告会
 
 * おなじみとなったJurgen氏による「Modern Java...」
 
-![Spring4.3](./img/spring4.3.jpg)
+![Spring4.3](./img/Spring4.3.jpg)
 
 ### Spring 4.3の新機能
 
-![making](./img/making.jpg)
+![making](./img/Making.jpg)
 
 * [すでにJJUG CCC 2016 Springにて紹介されています！](http://www.slideshare.net/makingx/jjugccc-cccgh5-whats-new-in-spring-framework-43-boot-14-pivotals-cloud-native-approach)
 * より詳細は
@@ -47,14 +47,62 @@ Spring I/O 2016報告会
 |            |``@SessionAttribute``や``@RequestAttribute``の追加|
 |Boot/Test   |別セッションで|
 
-###
+### コンストラクタの``@Autowired``省略
+
+```java
+public class MyBookService {
+  private MyBookRepository repository;
+
+  // @Autowired <- 省略可能となった
+  public MyBookService(MyBookRepository repository) {
+    this.repository = repository;
+  }
+}
+```
+
+### コンストラクタの``@Autowired``省略
+
+* Lombokを使用してBeanのコンストラクタを生成する場合
+
+```java
+// @RequiredArgsConstructor(onConstructor = @__(@Autowired)) 
+// @Autowiredをコンストラクタに付けるために必要だった呪文
+public class MyBookService {
+  private MyBookRepository repository;
+
+  // コンストラクタがLombokによりコンパイル時に生成される
+}
+```
+
+### 各種合成アノテーションの提供
+
+### 暗黙的なHEADとOPTIONのレスポンス作成
+
+### ``@SessionAttribute``や``@RequestAttribute``の追加
+
 
 ### Spring 4.3 個人的な感想
 
-* Spring 4.2に比べると大きな機能追加はない
-* よく使う合成アノテーションを提供することで
+* Spring 4.2に比べると大きな機能追加はない（行き着くところまで行き着いた？）
+* よく使う合成アノテーションを提供することでコード量をスマートに
+    * Spring 4.3へUpdateした既存アプリのアノテーションは合成アノテーションに変えるべき？
 
+
+### agenda
+
+* Spring 4.3の新機能
+* **Spring Dataの新機能**
+* Spring Integrationを使ってみよう
+ 
 ### Spring Dataの新機能
+
+
+### agenda
+
+* Spring 4.3の新機能
+* Spring Dataの新機能
+* **Spring Integrationを使ってみよう**
+
 
 ### Spring Integrationを使ってみよう
 

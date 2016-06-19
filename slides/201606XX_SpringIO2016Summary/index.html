@@ -2602,7 +2602,7 @@ article.smaller q::after {
 <li>おなじみとなったJurgen氏による「Modern Java...」</li>
 </ul>
 
-<p><img src="./img/spring4.3.jpg" alt="Spring4.3"></p>
+<p><img src="./img/Spring4.3.jpg" alt="Spring4.3"></p>
 
 
 </article>
@@ -2610,7 +2610,7 @@ article.smaller q::after {
 <article>
 <h3>Spring 4.3の新機能</h3>
 
-<p><img src="./img/making.jpg" alt="making"></p>
+<p><img src="./img/Making.jpg" alt="making"></p>
 
 <ul>
 <li><a href="http://www.slideshare.net/makingx/jjugccc-cccgh5-whats-new-in-spring-framework-43-boot-14-pivotals-cloud-native-approach">すでにJJUG CCC 2016 Springにて紹介されています！</a></li>
@@ -2656,7 +2656,58 @@ article.smaller q::after {
 </tr>
 </tbody></table>
 
-<p>###</p>
+
+</article>
+
+<article>
+<h3>コンストラクタの<code>@Autowired</code>省略</h3>
+
+<pre><code class="java">public class MyBookService {
+  private MyBookRepository repository;
+
+  // @Autowired &lt;- 省略可能となった
+  public MyBookService(MyBookRepository repository) {
+    this.repository = repository;
+  }
+}
+</code></pre>
+
+
+</article>
+
+<article>
+<h3>コンストラクタの<code>@Autowired</code>省略</h3>
+
+<ul>
+<li>Lombokを使用してBeanのコンストラクタを生成する場合</li>
+</ul>
+
+<pre><code class="java">// @RequiredArgsConstructor(onConstructor = @__(@Autowired)) 
+// @Autowiredをコンストラクタに付けるために必要だった呪文
+public class MyBookService {
+  private MyBookRepository repository;
+
+  // コンストラクタがLombokによりコンパイル時に生成される
+}
+</code></pre>
+
+
+</article>
+
+<article>
+<h3>各種合成アノテーションの提供</h3>
+
+
+</article>
+
+<article>
+<h3>暗黙的なHEADとOPTIONのレスポンス作成</h3>
+
+
+</article>
+
+<article>
+<h3><code>@SessionAttribute</code>や<code>@RequestAttribute</code>の追加</h3>
 
 
 </article>
@@ -2665,8 +2716,24 @@ article.smaller q::after {
 <h3>Spring 4.3 個人的な感想</h3>
 
 <ul>
-<li>Spring 4.2に比べると大きな機能追加はない</li>
-<li>よく使う合成アノテーションを提供することで</li>
+<li>Spring 4.2に比べると大きな機能追加はない（行き着くところまで行き着いた？）</li>
+<li>よく使う合成アノテーションを提供することでコード量をスマートに
+
+<ul>
+<li>Spring 4.3へUpdateした既存アプリのアノテーションは合成アノテーションに変えるべき？</li>
+</ul></li>
+</ul>
+
+
+</article>
+
+<article>
+<h3>agenda</h3>
+
+<ul>
+<li>Spring 4.3の新機能</li>
+<li><strong>Spring Dataの新機能</strong></li>
+<li>Spring Integrationを使ってみよう</li>
 </ul>
 
 
@@ -2674,6 +2741,18 @@ article.smaller q::after {
 
 <article>
 <h3>Spring Dataの新機能</h3>
+
+
+</article>
+
+<article>
+<h3>agenda</h3>
+
+<ul>
+<li>Spring 4.3の新機能</li>
+<li>Spring Dataの新機能</li>
+<li><strong>Spring Integrationを使ってみよう</strong></li>
+</ul>
 
 
 </article>
