@@ -2753,15 +2753,13 @@ public class SessionScopedService { ... }
 <li>なぜ<code>@HeadMapping</code>と<code>@OptionsMapping</code>が無い？
 
 <ul>
-<li>Springが暗黙的に応答するようになり開発者が使う必要が無くなったから</li>
+<li>-&gt; この機能により開発者が使う必要が無くなったから</li>
 </ul></li>
 </ul>
 
 <pre><code class="java">@GetMapping(&quot;/books&quot;)
 public String getBooks() {...}
 </code></pre>
-
-<p>OPTOPNSメソッドのリクエストに対するレスポンス</p>
 
 <pre><code class="consolne">HTTP/1.1 200 OK
 Server: Apache-Coyote/1.1
@@ -2776,7 +2774,7 @@ Allow: GET,HEAD
 <h3><code>@SessionAttribute</code>や<code>@RequestAttribute</code>の追加</h3>
 
 <ul>
-<li><code>HttpSession</code>や<code>HttpServletRequest</code> へのアクセスを宣言的に実現</li>
+<li><code>HttpSession</code>などへのアクセスを宣言的に実現</li>
 <li><code>@SessionAttributes</code>と間違えないように</li>
 </ul>
 
