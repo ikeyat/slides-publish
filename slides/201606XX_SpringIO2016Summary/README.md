@@ -115,25 +115,23 @@ public class SessionScopedService { ... }
 * なぜ``@HeadMapping``と``@OptionsMapping``が無い？
    * Springが暗黙的に応答するようになり開発者が使う必要が無くなったから
 
-実装
 ```java
 @GetMapping("/books")
 public String getBooks() {...}
 ```
 
 OPTOPNSメソッドのリクエストに対するレスポンス
+
 ```consolne
 HTTP/1.1 200 OK
 Server: Apache-Coyote/1.1
 Allow: GET,HEAD
-Content-Length: 0
-Date: Sun, 29 May 2016 14:46:12 GMT
+...
 ```
 
 ### ``@SessionAttribute``や``@RequestAttribute``の追加
 
 * ``HttpSession``や``HttpServletRequest`` へのアクセスを宣言的に実現
-* 型キャストにも対応
 * ``@SessionAttributes``と間違えないように
 
 ```java

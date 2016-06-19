@@ -2757,20 +2757,17 @@ public class SessionScopedService { ... }
 </ul></li>
 </ul>
 
-<p>実装
-<code>java
-@GetMapping(&quot;/books&quot;)
+<pre><code class="java">@GetMapping(&quot;/books&quot;)
 public String getBooks() {...}
-</code></p>
+</code></pre>
 
-<p>OPTOPNSメソッドのリクエストに対するレスポンス
-<code>consolne
-HTTP/1.1 200 OK
+<p>OPTOPNSメソッドのリクエストに対するレスポンス</p>
+
+<pre><code class="consolne">HTTP/1.1 200 OK
 Server: Apache-Coyote/1.1
 Allow: GET,HEAD
-Content-Length: 0
-Date: Sun, 29 May 2016 14:46:12 GMT
-</code></p>
+...
+</code></pre>
 
 
 </article>
@@ -2780,7 +2777,6 @@ Date: Sun, 29 May 2016 14:46:12 GMT
 
 <ul>
 <li><code>HttpSession</code>や<code>HttpServletRequest</code> へのアクセスを宣言的に実現</li>
-<li>型キャストにも対応</li>
 <li><code>@SessionAttributes</code>と間違えないように</li>
 </ul>
 
