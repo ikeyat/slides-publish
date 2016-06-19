@@ -99,7 +99,8 @@ public String getBooks() {...}
 
 ```java
 // Before
-@Scope(value = WebApplicationContext.SCOPE_SESSION, target = ScopedProxyMode.TARGET_CLASS)
+@Scope(value = WebApplicationContext.SCOPE_SESSION,
+        target = ScopedProxyMode.TARGET_CLASS)
 public class SessionScopedService { ... }
 
 // After
