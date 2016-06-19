@@ -2702,6 +2702,7 @@ public class MyBookService {
 
 <ul>
 <li><code>@GetMapping</code>, <code>@PostMapping</code>, <code>@PutMapping</code>, <code>@DeleteMapping</code>, <code>@PatchMapping</code></li>
+<li>HEADとOPTIONSが無い理由は後ほど</li>
 </ul></li>
 <li><strong>アノテーションがシンプルに！</strong></li>
 </ul>
@@ -2727,7 +2728,7 @@ public String getBooks() {...}
 <ul>
 <li><code>@RequestScope</code>, <code>@SessionScope</code>, <code>@ApplicationScope</code></li>
 </ul></li>
-<li>**アノテーションがシンプルに！(大事なのでもう一度)</li>
+<li><strong>アノテーションがシンプルに！(大事なのでもう一度)</strong></li>
 </ul>
 
 <pre><code class="java">// Before
@@ -2743,13 +2744,59 @@ public class SessionScopedService { ... }
 </article>
 
 <article>
-<h3>暗黙的なHEADとOPTIONのレスポンス作成</h3>
+<h3>暗黙的なHEADとOPTIONSのレスポンス作成</h3>
+
+<ul>
+<li>HEAD: GETメソッドに対するレスポンスのボディ無しで返却</li>
+<li>OPTIONS: Allowヘッダに、対応するHTTPメソッドの一覧を返却</li>
+<li>なぜ<code>@HeadMapping</code>と<code>@OptionsMapping</code>が無い？
+
+<ul>
+<li>Springが暗黙的に応答するようになり開発者が使う必要が無くなったから</li>
+</ul></li>
+</ul>
+
+<p>実装
+<code>java
+@GetMapping(&quot;/books&quot;)
+public String getBooks() {...}
+</code></p>
+
+<p>OPTOPNSメソッドのリクエストに対するレスポンス
+<code>consolne
+HTTP/1.1 200 OK
+Server: Apache-Coyote/1.1
+Allow: GET,HEAD
+Content-Length: 0
+Date: Sun, 29 May 2016 14:46:12 GMT
+</code></p>
 
 
 </article>
 
 <article>
 <h3><code>@SessionAttribute</code>や<code>@RequestAttribute</code>の追加</h3>
+
+<ul>
+<li><code>HttpSession</code>や<code>HttpServletRequest</code> へのアクセスを宣言的に実現</li>
+<li>型キャストにも対応</li>
+<li><code>@SessionAttributes</code>と間違えないように</li>
+</ul>
+
+<pre><code class="java">// Before
+@RequestMapping(value = &quot;/books&quot;, method = RequestMethod.GET)
+public String getBooks(HttpSession session) {
+   String id = (String) session.getAttribute(&quot;bookId&quot;);
+   // ...
+}
+
+// After
+@RequestMapping(&quot;/books&quot;)
+public String getBooks(@SessionAttribute(&quot;bookId&quot;) String bookId) {
+   String id = bookId;
+   // ...
+}
+</code></pre>
 
 
 </article>

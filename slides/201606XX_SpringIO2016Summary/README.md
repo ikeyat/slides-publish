@@ -78,6 +78,7 @@ public class MyBookService {
 
 * ``@RequestMapping`` の合成アノテーション
     * ``@GetMapping``, ``@PostMapping``, ``@PutMapping``, ``@DeleteMapping``, ``@PatchMapping``
+    * HEADとOPTIONSが無い理由は後ほど
 * **アノテーションがシンプルに！**
 
 ```java
@@ -94,7 +95,7 @@ public String getBooks() {...}
 
 * ``@Scope`` の合成アノテーション
     * ``@RequestScope``, ``@SessionScope``, ``@ApplicationScope``
-* **アノテーションがシンプルに！(大事なのでもう一度)
+* **アノテーションがシンプルに！(大事なのでもう一度)**
 
 ```java
 // Before
@@ -106,10 +107,49 @@ public class SessionScopedService { ... }
 public class SessionScopedService { ... }
 ```
 
-### 暗黙的なHEADとOPTIONのレスポンス作成
+### 暗黙的なHEADとOPTIONSのレスポンス作成
+
+* HEAD: GETメソッドに対するレスポンスのボディ無しで返却
+* OPTIONS: Allowヘッダに、対応するHTTPメソッドの一覧を返却
+* なぜ``@HeadMapping``と``@OptionsMapping``が無い？
+   * Springが暗黙的に応答するようになり開発者が使う必要が無くなったから
+
+実装
+```java
+@GetMapping("/books")
+public String getBooks() {...}
+```
+
+OPTOPNSメソッドのリクエストに対するレスポンス
+```consolne
+HTTP/1.1 200 OK
+Server: Apache-Coyote/1.1
+Allow: GET,HEAD
+Content-Length: 0
+Date: Sun, 29 May 2016 14:46:12 GMT
+```
 
 ### ``@SessionAttribute``や``@RequestAttribute``の追加
 
+* ``HttpSession``や``HttpServletRequest`` へのアクセスを宣言的に実現
+* 型キャストにも対応
+* ``@SessionAttributes``と間違えないように
+
+```java
+// Before
+@RequestMapping(value = "/books", method = RequestMethod.GET)
+public String getBooks(HttpSession session) {
+   String id = (String) session.getAttribute("bookId");
+   // ...
+}
+
+// After
+@RequestMapping("/books")
+public String getBooks(@SessionAttribute("bookId") String bookId) {
+   String id = bookId;
+   // ...
+}
+```
 
 ### Spring 4.3 個人的な感想
 
