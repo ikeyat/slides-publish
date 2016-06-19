@@ -2599,7 +2599,7 @@ article.smaller q::after {
 <h3>Spring 4.3の新機能</h3>
 
 <ul>
-<li>おなじみとなったJurgen氏による「Modern Java...」</li>
+<li>おなじみとなったJuergen氏による「Modern Java...」</li>
 </ul>
 
 <p><img src="./img/Spring4.3.jpg" alt="Spring4.3"></p>
@@ -2610,7 +2610,7 @@ article.smaller q::after {
 <article>
 <h3>Spring 4.3の新機能</h3>
 
-<p><img src="./img/Making.jpg" alt="making"></p>
+<p><img src="./img/making.png" alt="making"></p>
 
 <ul>
 <li><a href="http://www.slideshare.net/makingx/jjugccc-cccgh5-whats-new-in-spring-framework-43-boot-14-pivotals-cloud-native-approach">すでにJJUG CCC 2016 Springにて紹介されています！</a></li>
@@ -2683,7 +2683,7 @@ article.smaller q::after {
 </ul>
 
 <pre><code class="java">// @RequiredArgsConstructor(onConstructor = @__(@Autowired)) 
-// @Autowiredをコンストラクタに付けるために必要だった呪文
+// @Autowiredをコンストラクタに付けるために必要だった呪文が不要に
 public class MyBookService {
   private MyBookRepository repository;
 
@@ -2695,7 +2695,49 @@ public class MyBookService {
 </article>
 
 <article>
-<h3>各種合成アノテーションの提供</h3>
+<h3>各種合成アノテーションの提供1</h3>
+
+<ul>
+<li><code>@RequestMapping</code> の合成アノテーション
+
+<ul>
+<li><code>@GetMapping</code>, <code>@PostMapping</code>, <code>@PutMapping</code>, <code>@DeleteMapping</code>, <code>@PatchMapping</code></li>
+</ul></li>
+<li><strong>アノテーションがシンプルに！</strong></li>
+</ul>
+
+<pre><code class="java">// Before
+@RequestMapping(value = &quot;/books&quot;, method = RequestMethod.GET)
+public String getBooks() {...}
+
+// After
+@GetMapping(&quot;/books&quot;)
+public String getBooks() {...}
+</code></pre>
+
+
+</article>
+
+<article>
+<h3>各種合成アノテーションの提供2</h3>
+
+<ul>
+<li><code>@Scope</code> の合成アノテーション
+
+<ul>
+<li><code>@RequestScope</code>, <code>@SessionScope</code>, <code>@ApplicationScope</code></li>
+</ul></li>
+<li>**アノテーションがシンプルに！(大事なのでもう一度)</li>
+</ul>
+
+<pre><code class="java">// Before
+@Scope(value = WebApplicationContext.SCOPE_SESSION, target = ScopedProxyMode.TARGET_CLASS)
+public class SessionScopedService { ... }
+
+// After
+@SessionScope
+public class SessionScopedService { ... }
+</code></pre>
 
 
 </article>

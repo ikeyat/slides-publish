@@ -24,13 +24,13 @@ Spring I/O 2016報告会
 
 ### Spring 4.3の新機能
 
-* おなじみとなったJurgen氏による「Modern Java...」
+* おなじみとなったJuergen氏による「Modern Java...」
 
 ![Spring4.3](./img/Spring4.3.jpg)
 
 ### Spring 4.3の新機能
 
-![making](./img/Making.jpg)
+![making](./img/making.png)
 
 * [すでにJJUG CCC 2016 Springにて紹介されています！](http://www.slideshare.net/makingx/jjugccc-cccgh5-whats-new-in-spring-framework-43-boot-14-pivotals-cloud-native-approach)
 * より詳細は
@@ -66,7 +66,7 @@ public class MyBookService {
 
 ```java
 // @RequiredArgsConstructor(onConstructor = @__(@Autowired)) 
-// @Autowiredをコンストラクタに付けるために必要だった呪文
+// @Autowiredをコンストラクタに付けるために必要だった呪文が不要に
 public class MyBookService {
   private MyBookRepository repository;
 
@@ -74,7 +74,37 @@ public class MyBookService {
 }
 ```
 
-### 各種合成アノテーションの提供
+### 各種合成アノテーションの提供1
+
+* ``@RequestMapping`` の合成アノテーション
+    * ``@GetMapping``, ``@PostMapping``, ``@PutMapping``, ``@DeleteMapping``, ``@PatchMapping``
+* **アノテーションがシンプルに！**
+
+```java
+// Before
+@RequestMapping(value = "/books", method = RequestMethod.GET)
+public String getBooks() {...}
+
+// After
+@GetMapping("/books")
+public String getBooks() {...}
+```
+
+### 各種合成アノテーションの提供2
+
+* ``@Scope`` の合成アノテーション
+    * ``@RequestScope``, ``@SessionScope``, ``@ApplicationScope``
+* **アノテーションがシンプルに！(大事なのでもう一度)
+
+```java
+// Before
+@Scope(value = WebApplicationContext.SCOPE_SESSION, target = ScopedProxyMode.TARGET_CLASS)
+public class SessionScopedService { ... }
+
+// After
+@SessionScope
+public class SessionScopedService { ... }
+```
 
 ### 暗黙的なHEADとOPTIONのレスポンス作成
 
