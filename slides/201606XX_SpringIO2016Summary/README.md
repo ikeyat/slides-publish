@@ -193,7 +193,7 @@ public String getBooks(@SessionAttribute("bookId") String bookId) {
 
 * 近年の新機能ということで以下のCommons機能の紹介
     * Java SE8 Stream APIへの対応(Fowler~)
-    * QueryDSLの``Predicates``のWebサポート(Gosling~)
+    * <Skip> QueryDSLの``Predicates``のWebサポート(Gosling~)
     * Query by Exampleのサポート(Hopper~)
     * Projectionsのサポート (Hopper~)
 * 他にCommons以外の新機能紹介もあったが割愛
@@ -203,7 +203,8 @@ public String getBooks(@SessionAttribute("bookId") String bookId) {
 * ``List`` -> ``Stream`` によりStream APIの恩恵を受けられる
 
 ```java
-public interface PersonRepository extends CrudRepository<Person, String> {
+public interface PersonRepository
+         extends CrudRepository<Person, String> {
   // Before
   @Query("SELECT p FROM person p")
   List<Person> findAllWithList();
@@ -219,13 +220,29 @@ public interface PersonRepository extends CrudRepository<Person, String> {
 // Before (All records are fetched before streaming)
 List<Person> list = repository.findAllWithList();
 list.stream().forEach(System.out::println);
+
 // After (Fetched one by one)
 repository.findAllWithStream().forEach(System.out::println);
 ```
 
-### QueryDSLの``Predicates``のWebサポート
-
 ### Query by Exampleのサポート
+
+* Example = DSLを使用しないシンプルなクエリ
+
+```java
+// last nameが"White"のユーザを検索するクエリ
+Example<User> example = Example.of(new User(null, "White", null));
+int countMatches = userRepository.count(example);
+List<User> usersMatches = userRepository.findAll(example);
+```
+
+```java
+public interface PersonRepository
+         extends CrudRepository<User, String>,
+                 QueryByExampleExecutor<User> {
+}
+```
+
 
 ### Projectionsのサポート
 

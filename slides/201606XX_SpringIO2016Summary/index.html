@@ -2917,7 +2917,7 @@ public String getBooks(@SessionAttribute(&quot;bookId&quot;) String bookId) {
 
 <ul>
 <li>Java SE8 Stream APIへの対応(Fowler~)</li>
-<li>QueryDSLの<code>Predicates</code>のWebサポート(Gosling~)</li>
+<li><Skip> QueryDSLの<code>Predicates</code>のWebサポート(Gosling~)</li>
 <li>Query by Exampleのサポート(Hopper~)</li>
 <li>Projectionsのサポート (Hopper~)</li>
 </ul></li>
@@ -2934,7 +2934,8 @@ public String getBooks(@SessionAttribute(&quot;bookId&quot;) String bookId) {
 <li><code>List</code> -&gt; <code>Stream</code> によりStream APIの恩恵を受けられる</li>
 </ul>
 
-<pre><code class="java">public interface PersonRepository extends CrudRepository&lt;Person, String&gt; {
+<pre><code class="java">public interface PersonRepository
+         extends CrudRepository&lt;Person, String&gt; {
   // Before
   @Query(&quot;SELECT p FROM person p&quot;)
   List&lt;Person&gt; findAllWithList();
@@ -2953,6 +2954,7 @@ public String getBooks(@SessionAttribute(&quot;bookId&quot;) String bookId) {
 <pre><code class="java">// Before (All records are fetched before streaming)
 List&lt;Person&gt; list = repository.findAllWithList();
 list.stream().forEach(System.out::println);
+
 // After (Fetched one by one)
 repository.findAllWithStream().forEach(System.out::println);
 </code></pre>
@@ -2961,13 +2963,23 @@ repository.findAllWithStream().forEach(System.out::println);
 </article>
 
 <article>
-<h3>QueryDSLの<code>Predicates</code>のWebサポート</h3>
-
-
-</article>
-
-<article>
 <h3>Query by Exampleのサポート</h3>
+
+<ul>
+<li>Example = DSLを使用しないシンプルなクエリ</li>
+</ul>
+
+<pre><code class="java">// last nameが&quot;White&quot;のユーザを検索するクエリ
+Example&lt;User&gt; example = Example.of(new User(null, &quot;White&quot;, null));
+int countMatches = userRepository.count(example);
+List&lt;User&gt; usersMatches = userRepository.findAll(example);
+</code></pre>
+
+<pre><code class="java">public interface PersonRepository
+         extends CrudRepository&lt;User, String&gt;,
+                 QueryByExampleExecutor&lt;User&gt; {
+}
+</code></pre>
 
 
 </article>
