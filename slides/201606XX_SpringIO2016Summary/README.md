@@ -170,7 +170,7 @@ public String getBooks(@SessionAttribute("bookId") String bookId) {
 
 ### そもそもSpring Dataとは
 
-* データアクセス層の隠蔽、抽象化を行うSpringサブプロジェクト**群**
+* データアクセス層の隠蔽、抽象化を行うSpringプロジェクト**群**
 
 ![SpringData](./img/SpringDataOverview.png)
 
@@ -183,13 +183,15 @@ public String getBooks(@SessionAttribute("bookId") String bookId) {
 |Release   |Spring     |Commons |JPA   |GemFire |MongoDB |
 |:---------|:----------|:-------|:-----|:-------|:-------|
 |Ingalls   |4.3?       |1.13.x? |1.11.x?|1.9.x? |1.10.x? |
-|Hopper    |4.2        |1.12.x  |1.10.x|1.8.x   |1.9.x   |
+|**Hopper**|**4.2**    |1.12.x  |1.10.x|1.8.x   |1.9.x   |
 |Gosling   |4.1        |1.11.x  |1.9.x |1.7.x   |1.8.x   |
 |Fowler    |4.0        |1.10.x  |1.8.x |1.6.x   |1.7.x   |
 
+* [「Apache Geode で始めるSpring Data Gemfire」by Pivotal Japan北山さん](http://www.slideshare.net/akihirokitada5/apache-geode-spring-data-gemfire)
+
 ### Spring Dataの新機能
 
-
+* Java SE8 Stream APIへの対応
 
 
 ### agenda
