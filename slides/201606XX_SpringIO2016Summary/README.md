@@ -191,7 +191,7 @@ public String getBooks(@SessionAttribute("bookId") String bookId) {
 
 * 近年の新機能ということで以下のCommons機能の紹介
     * Java SE8 Stream APIへの対応(Fowler~)
-    * <Skip> QueryDSLの``Predicates``のWebサポート(Gosling~)
+    * (Skip) QueryDSLの``Predicates``のWebサポート(Gosling~)
     * Query by Exampleのサポート(Hopper~)
     * Projectionsのサポート (Hopper~)
 * 他にCommons以外の新機能紹介もあったが割愛
@@ -222,6 +222,10 @@ list.stream().forEach(System.out::println);
 // After (Fetched one by one)
 repository.findAllWithStream().forEach(System.out::println);
 ```
+
+* デモでは、SQLログと``println``の出力タイミングを見比べていた
+    * Before: SQL->SQL->SQL->println->println->println
+    * After:  SQL->println->SQL->println->SQL->println
 
 ### Query by Exampleのサポート
 
@@ -263,7 +267,8 @@ String fullName = person.getFirstName() + " " + person.getLastName();
 
 ### Projectionsのサポート
 
-* 最終的に知りたいデータをインターフェイスとアノテーションで定義
+* 知りたいデータをインターフェイスとアノテーションで定義
+* JPAの場合は、JPQLが実行時に最適化される(らしい)
 
 ```java
 public interface FullName {
@@ -271,13 +276,15 @@ public interface FullName {
   String getFullName();
 }
 
-public interface FullNameRepository
-        extends CrudRepository<FullName, Long> {}
+public interface PersonRepository
+        extends CrudRepository<Person, Long> {
+  FullName findProjectedById(Long id);
+}
 ```
 
 ```java
 // After
-String fullName = fullNameRepository.findOne(id).getFullName();
+String fullName = personRepository.findOne(id).getFullName();
 ```
 
 ### agenda
