@@ -11,10 +11,8 @@ Spring I/O 2016報告会
 * 池谷 智行（いけや ともゆき）
 * BASIC→VB→VC++→Java
 * フレームワークに興味を持ち、なぜかSIerに入社@2010
-* 初めてのSpringへの印象はXML地獄。
-    * Annotation-drivenを知らなかった。
-    * Java Based Configurationはまだ無かった。
-* Spring Core/MVC/Boot/Batch/Dataに関心あり
+* JSUGの幹事を手伝ってます。
+* [「Spring徹底入門(翔泳社)」](http://www.shoeisha.co.jp/book/detail/9784798142470)の執筆に参加しました。
 
 ### agenda
 
@@ -243,8 +241,44 @@ public interface PersonRepository
 }
 ```
 
+### Projectionsのサポート
+
+* 読み込んだmodelのプロパティを任意のインターフェイスへ射影する機能
+
+```java
+@Entity
+public class Person {
+  @Id @GeneratedValue private Long id;
+  private String firstName, lastName;
+  private String street, state, country;
+  // …
+}
+```
+
+```java
+// Before
+Person person = personRepository.findOne(id);
+String fullName = person.getFirstName() + " " + person.getLastName();
+```
 
 ### Projectionsのサポート
+
+* 最終的に知りたいデータをインターフェイスとアノテーションで定義
+
+```java
+public interface FullName {
+  @Value("#{target.firstName} #{target.lastName}")
+  String getFullName();
+}
+
+public interface FullNameRepository
+        extends CrudRepository<FullName, Long> {}
+```
+
+```java
+// After
+String fullName = fullNameRepository.findOne(id).getFullName();
+```
 
 ### agenda
 

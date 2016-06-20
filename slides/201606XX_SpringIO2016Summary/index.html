@@ -2571,13 +2571,8 @@ article.smaller q::after {
 <li>池谷 智行（いけや ともゆき）</li>
 <li>BASIC→VB→VC++→Java</li>
 <li>フレームワークに興味を持ち、なぜかSIerに入社@2010</li>
-<li>初めてのSpringへの印象はXML地獄。
-
-<ul>
-<li>Annotation-drivenを知らなかった。</li>
-<li>Java Based Configurationはまだ無かった。</li>
-</ul></li>
-<li>Spring Core/MVC/Boot/Batch/Dataに関心あり</li>
+<li>JSUGの幹事を手伝ってます。</li>
+<li><a href="http://www.shoeisha.co.jp/book/detail/9784798142470">「Spring徹底入門(翔泳社)」</a>の執筆に参加しました。</li>
 </ul>
 
 
@@ -2986,6 +2981,47 @@ List&lt;User&gt; usersMatches = userRepository.findAll(example);
 
 <article>
 <h3>Projectionsのサポート</h3>
+
+<ul>
+<li>読み込んだmodelのプロパティを任意のインターフェイスへ射影する機能</li>
+</ul>
+
+<pre><code class="java">@Entity
+public class Person {
+  @Id @GeneratedValue private Long id;
+  private String firstName, lastName;
+  private String street, state, country;
+  // …
+}
+</code></pre>
+
+<pre><code class="java">// Before
+Person person = personRepository.findOne(id);
+String fullName = person.getFirstName() + &quot; &quot; + person.getLastName();
+</code></pre>
+
+
+</article>
+
+<article>
+<h3>Projectionsのサポート</h3>
+
+<ul>
+<li>最終的に知りたいデータをインターフェイスとアノテーションで定義</li>
+</ul>
+
+<pre><code class="java">public interface FullName {
+  @Value(&quot;#{target.firstName} #{target.lastName}&quot;)
+  String getFullName();
+}
+
+public interface FullNameRepository
+        extends CrudRepository&lt;FullName, Long&gt; {}
+</code></pre>
+
+<pre><code class="java">// After
+String fullName = fullNameRepository.findOne(id).getFullName();
+</code></pre>
 
 
 </article>
