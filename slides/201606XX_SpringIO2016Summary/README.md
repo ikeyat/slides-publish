@@ -187,12 +187,47 @@ public String getBooks(@SessionAttribute("bookId") String bookId) {
 |Gosling   |4.1        |1.11.x  |1.9.x |1.7.x   |1.8.x   |
 |Fowler    |4.0        |1.10.x  |1.8.x |1.6.x   |1.7.x   |
 
-* [「Apache Geode で始めるSpring Data Gemfire」by Pivotal Japan北山さん](http://www.slideshare.net/akihirokitada5/apache-geode-spring-data-gemfire)
+* [「Apache Geode で始めるSpring Data Gemfire」by Pivotal Japan北山さん](http://www.slideshare.net/akihirokitada5/apache-geode-spring-data-gemfire)
 
 ### Spring Dataの新機能
 
-* Java SE8 Stream APIへの対応
+* 近年の新機能ということで以下のCommons機能の紹介
+    * Java SE8 Stream APIへの対応(Fowler~)
+    * QueryDSLの``Predicates``のWebサポート(Gosling~)
+    * Query by Exampleのサポート(Hopper~)
+    * Projectionsのサポート (Hopper~)
+* 他にCommons以外の新機能紹介もあったが割愛
 
+### Java SE8 Stream APIへの対応
+
+* ``List`` -> ``Stream`` によりStream APIの恩恵を受けられる
+
+```java
+public interface PersonRepository extends CrudRepository<Person, String> {
+  // Before
+  @Query("SELECT p FROM person p")
+  List<Person> findAllWithList();
+  // After
+  @Query("SELECT p FROM person p")
+  Stream<Person> findAllWithStream();
+}
+```
+
+### Java SE8 Stream APIへの対応
+
+```java
+// Before (All records are fetched before streaming)
+List<Person> list = repository.findAllWithList();
+list.stream().forEach(System.out::println);
+// After (Fetched one by one)
+repository.findAllWithStream().forEach(System.out::println);
+```
+
+### QueryDSLの``Predicates``のWebサポート
+
+### Query by Exampleのサポート
+
+### Projectionsのサポート
 
 ### agenda
 
