@@ -43,7 +43,7 @@ Spring I/O 2016報告会
 |:-----------|:-----------|
 |Container   |コンストラクタの``@Autowired``省略に対応|
 |Web         |各種合成アノテーションの提供|
-|            |暗黙的なHEADとOPTIONのレスポンス作成|
+|            |暗黙的なHEADとOPTIONSのレスポンス作成|
 |            |``@SessionAttribute``や``@RequestAttribute``の追加|
 |Boot/Test   |別セッションで|
 
@@ -162,6 +162,34 @@ public String getBooks(@SessionAttribute("bookId") String bookId) {
 * Spring Integrationを使ってみよう
  
 ### Spring Dataの新機能
+
+* Oliver氏による「WHAT’S NEW IN SPRING DATA?」
+
+![SpringData](./img/SpringData.jpg)
+
+
+### そもそもSpring Dataとは
+
+* データアクセス層の隠蔽、抽象化を行うSpringサブプロジェクト**群**
+
+![SpringData](./img/SpringDataOverview.png)
+
+
+### そもそもSpring Dataとは
+
+* Release Trainの導入
+    * Spring IO PlatformのSpring Dataクローズド版
+
+|Release   |Spring     |Commons |JPA   |GemFire |MongoDB |
+|:---------|:----------|:-------|:-----|:-------|:-------|
+|Ingalls   |4.3?       |1.13.x? |1.11.x?|1.9.x? |1.10.x? |
+|Hopper    |4.2        |1.12.x  |1.10.x|1.8.x   |1.9.x   |
+|Gosling   |4.1        |1.11.x  |1.9.x |1.7.x   |1.8.x   |
+|Fowler    |4.0        |1.10.x  |1.8.x |1.6.x   |1.7.x   |
+
+### Spring Dataの新機能
+
+
 
 
 ### agenda
