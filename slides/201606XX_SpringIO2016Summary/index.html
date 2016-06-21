@@ -2595,13 +2595,10 @@ article.smaller q::after {
 
 <ul>
 <li>おなじみとなったJuergen氏による「Modern Java...」</li>
+<li>Rossen氏の「SPRING 4 WEB APPS AND BEYOND」</li>
 </ul>
 
 <p><img src="./img/Spring4.3.jpg" alt="Spring4.3"></p>
-
-<ul>
-<li>Rossen氏の「SPRING 4 WEB APPS AND BEYOND」の一部でも</li>
-</ul>
 
 
 </article>
@@ -3098,21 +3095,78 @@ String fullName = personRepository.findOne(id).getFullName();
 <article>
 <h3>Spring Integrationとは</h3>
 
+<p><img src="./img/SpringIntegrationOverview.png" alt="SpringIntegration"></p>
+
 
 </article>
 
 <article>
 <h3>Spring Integrationとは</h3>
 
+<ul>
+<li>Enterprise Integration Patterns(Gregor Woolf, Bobby Hohpe著)の実装</li>
+<li>メッセージベースのフレームワーク</li>
+<li>外部システムと接続する抽象化されたアダプタ</li>
+</ul>
+
 
 </article>
 
 <article>
-<h3>デモのポイント</h3>
+<h3>Spring Integrationの実装例</h3>
 
 <ul>
-<li>DSL</li>
-<li>RabbitMQとの連携</li>
+<li>ファイルをPollingして入力し、処理後にファイルを出力する常駐バッチ</li>
+</ul>
+
+<p><img src="./img/SpringIntegrationExample1.png" alt="SpringIntegration"></p>
+
+
+</article>
+
+<article>
+<h3>Spring Integrationの実装例(xml)</h3>
+
+<pre><code class="xml">&lt;file:inbound-channel-adapter id=&quot;filesIn&quot;
+    directory=&quot;file:xxx/input&quot;&gt;
+  &lt;integration:poller id=&quot;poller&quot; fixed-delay=&quot;5000&quot;/&gt;
+&lt;/file:inbound-channel-adapter&gt;
+
+&lt;integration:service-activator input-channel=&quot;filesIn&quot;
+    output-channel=&quot;filesOut&quot;
+    ref=&quot;handler&quot; method=&quot;handle&quot; /&gt;
+
+&lt;file:outbound-channel-adapter id=&quot;filesOut&quot;
+    directory=&quot;file:xxx/output&quot;
+    delete-source-files=&quot;true&quot;/&gt;
+
+&lt;bean id=&quot;handler&quot; class=&quot;com.example.Handler&quot;/&gt;
+</code></pre>
+
+
+</article>
+
+<article>
+<h3>Spring Integrationの実装例(Handler)</h3>
+
+<pre><code class="java">public class Handler {
+    public String handle(String payload) {
+        System.out.println(&quot;Copying text: &quot; + payload);
+        return payload.toUpperCase();
+    }
+}
+</code></pre>
+
+
+</article>
+
+<article>
+<h3>Spring I/Oでのデモのポイント</h3>
+
+<ul>
+<li>Java DSL</li>
+<li>Splitter/Aggregator/Router</li>
+<li>RabbitMQとのAMQP連携</li>
 </ul>
 
 </article>

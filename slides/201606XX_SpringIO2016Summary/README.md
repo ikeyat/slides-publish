@@ -23,10 +23,10 @@ Spring I/O 2016報告会
 ### Spring 4.3の新機能
 
 * おなじみとなったJuergen氏による「Modern Java...」
+* Rossen氏の「SPRING 4 WEB APPS AND BEYOND」
 
 ![Spring4.3](./img/Spring4.3.jpg)
 
-* Rossen氏の「SPRING 4 WEB APPS AND BEYOND」の一部でも
 
 ### Spring 4.3の新機能
 
@@ -325,9 +325,56 @@ String fullName = personRepository.findOne(id).getFullName();
 
 ### Spring Integrationとは
 
+![SpringIntegration](./img/SpringIntegrationOverview.png)
+
 ### Spring Integrationとは
 
-### デモのポイント
+* Enterprise Integration Patterns(Gregor Woolf, Bobby Hohpe著)の実装
+* メッセージベースのフレームワーク
+* 外部システムと接続する抽象化されたアダプタ
 
-* DSL
-* RabbitMQとの連携
+### Spring Integrationの実装例
+
+* ファイルをPollingして入力し、処理後にファイルを出力する常駐バッチ
+
+![SpringIntegration](./img/SpringIntegrationExample1.png)
+
+### Spring Integrationの実装例(xml)
+
+```xml
+<file:inbound-channel-adapter id="filesIn"
+    directory="file:xxx/input">
+  <integration:poller id="poller" fixed-delay="5000"/>
+</file:inbound-channel-adapter>
+
+<integration:service-activator input-channel="filesIn"
+    output-channel="filesOut"
+    ref="handler" method="handle" />
+
+<file:outbound-channel-adapter id="filesOut"
+    directory="file:xxx/output"
+    delete-source-files="true"/>
+
+<bean id="handler" class="com.example.Handler"/>
+```
+
+### Spring Integrationの実装例(Handler)
+
+```java
+public class Handler {
+	public String handle(String payload) {
+		System.out.println("Copying text: " + payload);
+		return payload.toUpperCase();
+	}
+}
+```
+
+
+### Spring I/Oでのデモのポイント
+
+* Java DSL
+* Splitter/Aggregator/Router
+* RabbitMQとのAMQP連携
+
+
+
