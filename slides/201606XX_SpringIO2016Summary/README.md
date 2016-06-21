@@ -48,6 +48,7 @@ Spring I/O 2016報告会
 ### コンストラクタの``@Autowired``省略
 
 ```java
+@Service
 public class MyBookService {
   private MyBookRepository repository;
 
@@ -65,6 +66,7 @@ public class MyBookService {
 ```java
 // @RequiredArgsConstructor(onConstructor = @__(@Autowired)) 
 // @Autowiredをコンストラクタに付けるために必要だった呪文が不要に
+@Service
 public class MyBookService {
   private MyBookRepository repository;
 

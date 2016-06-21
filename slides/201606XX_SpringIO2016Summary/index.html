@@ -2657,7 +2657,8 @@ article.smaller q::after {
 <article>
 <h3>コンストラクタの<code>@Autowired</code>省略</h3>
 
-<pre><code class="java">public class MyBookService {
+<pre><code class="java">@Service
+public class MyBookService {
   private MyBookRepository repository;
 
   // @Autowired &lt;- 省略可能となった
@@ -2679,6 +2680,7 @@ article.smaller q::after {
 
 <pre><code class="java">// @RequiredArgsConstructor(onConstructor = @__(@Autowired)) 
 // @Autowiredをコンストラクタに付けるために必要だった呪文が不要に
+@Service
 public class MyBookService {
   private MyBookRepository repository;
 
