@@ -26,6 +26,8 @@ Spring I/O 2016報告会
 
 ![Spring4.3](./img/Spring4.3.jpg)
 
+* Rossen氏の「SPRING 4 WEB APPS AND BEYOND」の一部でも
+
 ### Spring 4.3の新機能
 
 ![making](./img/making.png)
@@ -317,3 +319,15 @@ String fullName = personRepository.findOne(id).getFullName();
 
 ### Spring Integrationを使ってみよう
 
+* Gary氏による「SPRING INTEGRATION WITH SPRING BOOT AND RABBITMQ」
+
+![SpringIntegration](./img/SpringIntegration.jpg)
+
+### Spring Integrationとは
+
+### Spring Integrationとは
+
+### デモのポイント
+
+* DSL
+* RabbitMQとの連携
