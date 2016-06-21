@@ -372,7 +372,8 @@ public class Handler {
 
 ### Spring I/Oでのデモのポイント
 
-* Java DSL
+* /w Spring Boot and Java DSL
+* GatewayによるMessage Channelの隠蔽
 * Splitter/Aggregator/Router
 * RabbitMQとのAMQP連携
 
