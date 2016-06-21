@@ -189,6 +189,23 @@ public String getBooks(@SessionAttribute("bookId") String bookId) {
 
 * [「Apache Geode で始めるSpring Data Gemfire」by Pivotal Japan北山さん](http://www.slideshare.net/akihirokitada5/apache-geode-spring-data-gemfire)
 
+
+### そもそもSpring Dataとは
+
+```java
+public interface BookRepository extends CrudRepository<Book, Long> {}
+
+public class BookService {
+    @Autowired
+    BookRepository repository;
+    
+    @Transactional(readOnly = true)
+    public Book getBook(Long id) {
+        return repository.findOne(id);
+    }
+}
+```
+
 ### Spring Dataの新機能
 
 * 近年の新機能ということで以下のCommons機能の紹介

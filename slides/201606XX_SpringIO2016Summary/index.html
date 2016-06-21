@@ -2907,6 +2907,25 @@ public String getBooks(@SessionAttribute(&quot;bookId&quot;) String bookId) {
 </article>
 
 <article>
+<h3>そもそもSpring Dataとは</h3>
+
+<pre><code class="java">public interface BookRepository extends CrudRepository&lt;Book, Long&gt; {}
+
+public class BookService {
+    @Autowired
+    BookRepository repository;
+
+    @Transactional(readOnly = true)
+    public Book getBook(Long id) {
+        return repository.findOne(id);
+    }
+}
+</code></pre>
+
+
+</article>
+
+<article>
 <h3>Spring Dataの新機能</h3>
 
 <ul>
