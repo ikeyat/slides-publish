@@ -242,9 +242,11 @@ list.stream().forEach(System.out::println);
 repository.findAllWithStream().forEach(System.out::println);
 ```
 
-* デモでは、SQLログと``println``の出力タイミングを見比べていた
-    * Before: SQL->SQL->SQL->println->println->println
-    * After:  SQL->println->SQL->println->SQL->println
+* デモでは、fetchログと``println``の出力タイミングを見比べていた
+    * Before:
+        * fetch -> fetch -> fetch -> println -> println -> println
+    * After
+        * fetch -> println -> fetch -> println -> fetch -> println
 
 ### Query by Exampleのサポート
 

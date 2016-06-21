@@ -2976,11 +2976,19 @@ repository.findAllWithStream().forEach(System.out::println);
 </code></pre>
 
 <ul>
-<li>デモでは、SQLログと<code>println</code>の出力タイミングを見比べていた
+<li>デモでは、fetchログと<code>println</code>の出力タイミングを見比べていた
 
 <ul>
-<li>Before: SQL-&gt;SQL-&gt;SQL-&gt;println-&gt;println-&gt;println</li>
-<li>After:  SQL-&gt;println-&gt;SQL-&gt;println-&gt;SQL-&gt;println</li>
+<li>Before:
+
+<ul>
+<li>fetch -&gt; fetch -&gt; fetch -&gt; println -&gt; println -&gt; println</li>
+</ul></li>
+<li>After
+
+<ul>
+<li>fetch -&gt; println -&gt; fetch -&gt; println -&gt; fetch -&gt; println</li>
+</ul></li>
 </ul></li>
 </ul>
 
