@@ -262,7 +262,7 @@ List<User> usersMatches = userRepository.findAll(example);
 ```
 
 ```java
-public interface PersonRepository
+public interface UserRepository
          extends CrudRepository<User, String>,
                  QueryByExampleExecutor<User> {
 }
@@ -307,7 +307,7 @@ public interface PersonRepository
 
 ```java
 // After
-String fullName = personRepository.findOne(id).getFullName();
+String fullName = personRepository.findProjectedById(id).getFullName();
 ```
 
 ### agenda

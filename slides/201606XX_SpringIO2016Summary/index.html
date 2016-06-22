@@ -3009,7 +3009,7 @@ int countMatches = userRepository.count(example);
 List&lt;User&gt; usersMatches = userRepository.findAll(example);
 </code></pre>
 
-<pre><code class="java">public interface PersonRepository
+<pre><code class="java">public interface UserRepository
          extends CrudRepository&lt;User, String&gt;,
                  QueryByExampleExecutor&lt;User&gt; {
 }
@@ -3062,7 +3062,7 @@ public interface PersonRepository
 </code></pre>
 
 <pre><code class="java">// After
-String fullName = personRepository.findOne(id).getFullName();
+String fullName = personRepository.findProjectedById(id).getFullName();
 </code></pre>
 
 
