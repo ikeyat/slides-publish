@@ -2591,7 +2591,7 @@ Spring5のコアな新機能について紹介した講演が全然無く幻滅�
 
 <ul>
 <li>短時間で見たので間違ってるかもです。</li>
-<li>リアクティブ関連(webflux)を除いたSpring Coreに限定
+<li>リアクティブ関連(webflux)とKotlin対応を除いたSpring Coreに限定
 
 <ul>
 <li>Spring4ユーザ目線</li>
@@ -2645,34 +2645,33 @@ Spring5のコアな新機能について紹介した講演が全然無く幻滅�
 </article>
 
 <article>
-<h3>candidate component index (クラスパススキャンの代替)</h3>
+<h3>candidate component index</h3>
 
 <ul>
 <li>本機能追加の背景
 
 <ul>
-<li>特にSpring Bootでは大量無差別のComponent-Scanのため、起動時間が遅くなっていた。</li>
-<li>Component-Scanを高速化するためのindexの仕組みがSpring5に導入された。</li>
+<li>Spring Bootや大規模Springアプリの起動時間が遅い理由
+
+<ul>
+<li>大量無差別のComponent-Scanが原因の一つ</li>
+</ul></li>
 </ul></li>
 <li>概要
 
 <ul>
-<li>コンパイル時にBeanをスキャンし、<code>META-INF/spring.components</code>というファイルにインデクスを保存しておく。</li>
-<li>実行時にSpringがBeanをスキャンする際に、インデクスファイルが存在すればそれを使用。
+<li>「コンパイル時」にASMにより<code>@Component</code>なBeanをスキャン
 
 <ul>
-<li>従来のクラスパス上クラスのスキャンはしない。</li>
+<li>実際は<code>@Component</code>に含まれるMETA-Annotationの<code>@Indexed</code></li>
 </ul></li>
-</ul></li>
-<li>注意事項
+<li>インデクスを<code>META-INF/spring.components</code>を保存。</li>
+<li>実行時にインデクスファイルが存在すればクラスパススキャンの代替として使用。</li>
+<li>大規模かつ<code>@Component</code>なBeanの比率が少ないときに効果的
 
 <ul>
-<li>コンパイル時にアプリ全体をインデクス化に対応できない場合は、フォールバックのための設定が必要。
-
-<ul>
-<li><code>spring.index.ignore=true</code></li>
+<li>従来のクラスパススキャンと異なりjarのサイズに比例しないため。</li>
 </ul></li>
-<li>どういうときに対応できないのかは記載がなく謎。</li>
 </ul></li>
 </ul>
 
@@ -2700,26 +2699,93 @@ Spring5のコアな新機能について紹介した講演が全然無く幻滅�
 &lt;/dependencies&gt;
 </code></pre>
 
-<ul>
-<li><p><a href="https://docs.spring.io/spring/docs/5.0.0.RC1/spring-framework-reference/core.html#beans-scanning-index">本家リファレンス</a></p></li>
-<li><p>Support for any @Nullable annotations as indicators for optional injection points.</p></li>
-<li><p>Functional style on GenericApplicationContext/AnnotationConfigApplicationContext</p>
+
+</article>
+
+<article>
+<h3>candidate component index (クラスパススキャンの代替)</h3>
 
 <ul>
-<li>Supplier-based bean registration API with bean definition customizer callbacks.</li>
+<li>注意事項
+
+<ul>
+<li>コンパイル時にアプリ全体をインデクス化に対応できない場合がある。
+
+<ul>
+<li>その場合はフォールバックのための設定が必要。
+
+<ul>
+<li><code>spring.index.ignore=true</code></li>
 </ul></li>
-<li><p>Consistent detection of transaction, caching, async annotations on interface methods.</p>
-
-<ul>
-<li>In case of CGLIB proxies.</li>
+<li>どういうときに対応できないのかは記載がなく謎。</li>
 </ul></li>
-<li><p>XML configuration namespaces streamlined towards unversioned schemas.</p>
+</ul></li>
+<li>参考
 
 <ul>
-<li>Always resolved against latest xsd files; no support for deprecated features.</li>
-<li>Version-specific declarations still supported but validated against latest schema.</li>
+<li><a href="https://docs.spring.io/spring/docs/5.0.0.RC1/spring-framework-reference/core.html#beans-scanning-index">本家リファレンス</a></li>
+<li><a href="https://jira.spring.io/browse/SPR-11890">本家JIRA</a></li>
 </ul></li>
 </ul>
+
+
+</article>
+
+<article>
+<h3>インジェクション対象に<code>@Nullable</code>を指定可能</h3>
+
+<ul>
+<li>本機能追加の背景
+
+<ul>
+<li>インジェクション対象の存在が必須でない場合
+
+<ul>
+<li>Spring流なら<code>@Autowired(required = false) Hoge hoge</code>で可能</li>
+<li>JSR-330流だと<code>@Inject Optional&lt;Hoge&gt; hoge</code>なら可能</li>
+</ul></li>
+</ul></li>
+<li>概要
+
+<ul>
+<li>JDK8の<code>@Nullable</code>を使うことで、JSR-330流でも表現を簡単に！</li>
+<li><code>@Inject @Nullable Hoge hoge</code></li>
+</ul></li>
+<li>参考
+
+<ul>
+<li>本家リファレンスRC1版えは記述が見つからず・・・</li>
+<li><a href="https://jira.spring.io/browse/SPR-15028">本家JIRA</a></li>
+</ul></li>
+</ul>
+
+
+</article>
+
+<article>
+<h3>Functional style on GenericApplicationContext/AnnotationConfigApplicationContext</h3>
+
+<pre><code>- Supplier-based bean registration API with bean definition customizer callbacks.
+</code></pre>
+
+
+</article>
+
+<article>
+<h3>Consistent detection of transaction, caching, async annotations on interface methods.</h3>
+
+<pre><code>- In case of CGLIB proxies.
+</code></pre>
+
+
+</article>
+
+<article>
+<h3>XML configuration namespaces streamlined towards unversioned schemas.</h3>
+
+<pre><code>- Always resolved against latest xsd files; no support for deprecated features.
+- Version-specific declarations still supported but validated against latest schema.
+</code></pre>
 
 
 </article>
@@ -2744,6 +2810,16 @@ Spring5のコアな新機能について紹介した講演が全然無く幻滅�
 
 <article>
 <h3>6. General Core Revision</h3>
+
+
+</article>
+
+<article>
+<h3>7. 番外編</h3>
+
+<ul>
+<li>Referenceの構成が大幅に変わった</li>
+</ul>
 
 </article>
 
