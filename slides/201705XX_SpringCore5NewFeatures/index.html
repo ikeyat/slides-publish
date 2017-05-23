@@ -2563,7 +2563,7 @@ article.smaller q::after {
 <article>
 <h3>きっかけ1/2</h3>
 
-<p>SpringI/O 2017@Barcelonaに参加したが、<br>
+<p><a href="http://2017.springio.net/">SpringI/O 2017@Barcelona</a>に参加したが、<br>
 Spring5リリース間近にもかかわらず<br>
 Spring5のコアな新機能について紹介した講演が全然無く幻滅。  </p>
 
@@ -2603,13 +2603,123 @@ Spring5のコアな新機能について紹介した講演が全然無く幻滅�
 </article>
 
 <article>
-<h3>1. JDK 8+ and Java EE 7+ Baseline</h3>
+<h2>1. JDK 8+ and Java EE 7+ Baseline</h2>
 
 
 </article>
 
 <article>
-<h3>2. Core Container</h3>
+<h3>1. JDK 8+ and Java EE 7+ Baseline</h3>
+
+<ul>
+<li>JDK8ベースに内部コードをリファクタ
+
+<ul>
+<li>当然、実行にはJDK8以上が必須となった</li>
+</ul></li>
+<li>JDK9のモジュールシステムにランタイムレベルで対応</li>
+<li>Java EE 7 APIが必須
+
+<ul>
+<li>Servlet 3.1, JMS 2.0, JPA 2.1, Bean Validation 1.1</li>
+<li>最新のアプリケーションサーバがベースライン
+
+<ul>
+<li>e.g. Tomcat 8.5+, Jetty 9.4+, WildFly 10+</li>
+</ul></li>
+</ul></li>
+<li>Java EE 8 APIにランタイムレベルで互換
+
+<ul>
+<li>Servlet 4.0, Bean Validation 2.0, JSON Binding API</li>
+</ul></li>
+</ul>
+
+
+</article>
+
+<article>
+<h2>2. Core Container</h2>
+
+
+</article>
+
+<article>
+<h3>candidate component index (クラスパススキャンの代替)</h3>
+
+<ul>
+<li>本機能追加の背景
+
+<ul>
+<li>特にSpring Bootでは大量無差別のComponent-Scanのため、起動時間が遅くなっていた。</li>
+<li>Component-Scanを高速化するためのindexの仕組みがSpring5に導入された。</li>
+</ul></li>
+<li>概要
+
+<ul>
+<li>コンパイル時にBeanをスキャンし、<code>META-INF/spring.components</code>というファイルにインデクスを保存しておく。</li>
+<li>実行時にSpringがBeanをスキャンする際に、インデクスファイルが存在すればそれを使用。
+
+<ul>
+<li>従来のクラスパス上クラスのスキャンはしない。</li>
+</ul></li>
+</ul></li>
+<li>注意事項
+
+<ul>
+<li>コンパイル時にアプリ全体をインデクス化に対応できない場合は、フォールバックのための設定が必要。
+
+<ul>
+<li><code>spring.index.ignore=true</code></li>
+</ul></li>
+<li>どういうときに対応できないのかは記載がなく謎。</li>
+</ul></li>
+</ul>
+
+
+</article>
+
+<article>
+<h3>candidate component index (クラスパススキャンの代替)</h3>
+
+<ul>
+<li>利用方法
+
+<ul>
+<li>pom.xmlに以下を追加</li>
+</ul></li>
+</ul>
+
+<pre><code class="xml">&lt;dependencies&gt;
+        &lt;dependency&gt;
+                &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+                &lt;artifactId&gt;spring-context-indexer&lt;/artifactId&gt;
+                &lt;version&gt;5.0.0.RC1&lt;/version&gt;
+                &lt;optional&gt;true&lt;/optional&gt;
+        &lt;/dependency&gt;
+&lt;/dependencies&gt;
+</code></pre>
+
+<ul>
+<li><p><a href="https://docs.spring.io/spring/docs/5.0.0.RC1/spring-framework-reference/core.html#beans-scanning-index">本家リファレンス</a></p></li>
+<li><p>Support for any @Nullable annotations as indicators for optional injection points.</p></li>
+<li><p>Functional style on GenericApplicationContext/AnnotationConfigApplicationContext</p>
+
+<ul>
+<li>Supplier-based bean registration API with bean definition customizer callbacks.</li>
+</ul></li>
+<li><p>Consistent detection of transaction, caching, async annotations on interface methods.</p>
+
+<ul>
+<li>In case of CGLIB proxies.</li>
+</ul></li>
+<li><p>XML configuration namespaces streamlined towards unversioned schemas.</p>
+
+<ul>
+<li>Always resolved against latest xsd files; no support for deprecated features.</li>
+<li>Version-specific declarations still supported but validated against latest schema.</li>
+</ul></li>
+</ul>
 
 
 </article>
