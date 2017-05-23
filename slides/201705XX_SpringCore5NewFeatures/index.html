@@ -2663,14 +2663,14 @@ Spring5のコアな新機能について紹介した講演が全然無く幻滅�
 <li>「コンパイル時」にASMにより<code>@Component</code>なBeanをスキャン
 
 <ul>
-<li>実際は<code>@Component</code>に含まれるMETA-Annotationの<code>@Indexed</code></li>
+<li>実際は<code>@Component</code>のメタアノテーション<code>@Indexed</code></li>
 </ul></li>
 <li>インデクスを<code>META-INF/spring.components</code>を保存。</li>
 <li>実行時にインデクスファイルが存在すればクラスパススキャンの代替として使用。</li>
-<li>大規模かつ<code>@Component</code>なBeanの比率が少ないときに効果的
+<li>jarが大きく<code>@Component</code>なBeanの比率が少ない際に効果的
 
 <ul>
-<li>従来のクラスパススキャンと異なりjarのサイズに比例しないため。</li>
+<li>従来のスキャンと異なりjarのサイズに比例しないため。</li>
 </ul></li>
 </ul></li>
 </ul>
@@ -2741,15 +2741,19 @@ Spring5のコアな新機能について紹介した講演が全然無く幻滅�
 <li>インジェクション対象の存在が必須でない場合
 
 <ul>
-<li>Spring流なら<code>@Autowired(required = false) Hoge hoge</code>で可能</li>
-<li>JSR-330流だと<code>@Inject Optional&lt;Hoge&gt; hoge</code>なら可能</li>
+<li>Spring流なら<code>@Autowired(required = false) Hoge hoge</code></li>
+<li>JSR-330流だと<code>@Inject Optional&lt;Hoge&gt; hoge</code></li>
 </ul></li>
 </ul></li>
 <li>概要
 
 <ul>
-<li>JDK8の<code>@Nullable</code>を使うことで、JSR-330流でも表現を簡単に！</li>
+<li>JDK8の<code>@Nullable</code>を使い、JSR-330流でも表現を簡単に！
+
+<ul>
 <li><code>@Inject @Nullable Hoge hoge</code></li>
+</ul></li>
+<li>JSR-330流とSpring流の差が縮まることは良いこと。</li>
 </ul></li>
 <li>参考
 

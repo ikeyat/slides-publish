@@ -55,11 +55,11 @@ https://github.com/spring-projects/spring-framework/wiki/What%27s-New-in-the-Spr
         - 大量無差別のComponent-Scanが原因の一つ
 - 概要
     - 「コンパイル時」にASMにより``@Component``なBeanをスキャン
-        - 実際は``@Component``に含まれるMETA-Annotationの``@Indexed``
+        - 実際は``@Component``のメタアノテーション``@Indexed``
     - インデクスを``META-INF/spring.components``を保存。
     - 実行時にインデクスファイルが存在すればクラスパススキャンの代替として使用。
-    - 大規模かつ``@Component``なBeanの比率が少ないときに効果的
-        - 従来のクラスパススキャンと異なりjarのサイズに比例しないため。
+    - jarが大きく``@Component``なBeanの比率が少ない際に効果的
+        - 従来のスキャンと異なりjarのサイズに比例しないため。
 
 ### candidate component index
 - 利用方法
@@ -90,11 +90,12 @@ https://github.com/spring-projects/spring-framework/wiki/What%27s-New-in-the-Spr
 ### インジェクション対象に``@Nullable``を指定可能
 - 本機能追加の背景
     - インジェクション対象の存在が必須でない場合
-        - Spring流なら``@Autowired(required = false) Hoge hoge``で可能
-        - JSR-330流だと``@Inject Optional<Hoge> hoge``なら可能
+        - Spring流なら``@Autowired(required = false) Hoge hoge``
+        - JSR-330流だと``@Inject Optional<Hoge> hoge``
 - 概要
-    - JDK8の``@Nullable``を使うことで、JSR-330流でも表現を簡単に！
-    - ``@Inject @Nullable Hoge hoge``
+    - JDK8の``@Nullable``を使い、JSR-330流でも表現を簡単に！
+        - ``@Inject @Nullable Hoge hoge``
+    - JSR-330流とSpring流の差が縮まることは良いこと。
 - 参考
     - 本家リファレンスRC1版えは記述が見つからず・・・
     - [本家JIRA](https://jira.spring.io/browse/SPR-15028)
