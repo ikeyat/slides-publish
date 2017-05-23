@@ -56,8 +56,8 @@ https://github.com/spring-projects/spring-framework/wiki/What%27s-New-in-the-Spr
 - 概要
     - 「コンパイル時」にASMにより``@Component``なBeanをスキャン
         - 実際は``@Component``のメタアノテーション``@Indexed``
-    - インデクスを``META-INF/spring.components``を保存。
-    - 実行時にインデクスファイルが存在すればクラスパススキャンの代替として使用。
+    - スキャン結果を``META-INF/spring.components``に保存。
+    - 実行時にインデクスファイル(前述)が存在すればクラスパススキャンの代替として使用。
     - jarが大きく``@Component``なBeanの比率が少ない際に効果的
         - 従来のスキャンと異なりjarのサイズに比例しないため。
 
