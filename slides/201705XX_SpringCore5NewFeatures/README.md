@@ -61,7 +61,7 @@ https://github.com/spring-projects/spring-framework/wiki/What%27s-New-in-the-Spr
     - 大規模かつ``@Component``なBeanの比率が少ないときに効果的
         - 従来のクラスパススキャンと異なりjarのサイズに比例しないため。
 
-### candidate component index (クラスパススキャンの代替)
+### candidate component index
 - 利用方法
     - pom.xmlに以下を追加
 
@@ -76,7 +76,7 @@ https://github.com/spring-projects/spring-framework/wiki/What%27s-New-in-the-Spr
 </dependencies>
 ```
 
-### candidate component index (クラスパススキャンの代替)
+### candidate component index
 - 注意事項
     - コンパイル時にアプリ全体をインデクス化に対応できない場合がある。
         - その場合はフォールバックのための設定が必要。
@@ -116,5 +116,10 @@ https://github.com/spring-projects/spring-framework/wiki/What%27s-New-in-the-Spr
 ### 6. General Core Revision
 
 ### 7. 番外編
-- Referenceの構成が大幅に変わった
-
+- Referenceの見た目が変わった
+    - Single Page HTMLやPDF版が無くなった!?
+    - What's newがwikiに移動されている
+        - Spring4では一番上にいたのでバージョン重ねてくと邪魔だった
+    - 構成自体はさほど変わっていない模様
+    - WebFluxの分量が全体比で見ると少なくて意外・・・
+    - [before](https://docs.spring.io/spring/docs/4.3.x/spring-framework-reference/htmlsingle/)-[after](https://docs.spring.io/spring/docs/5.0.0.RC1/spring-framework-reference/)
