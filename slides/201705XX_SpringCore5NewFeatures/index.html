@@ -2767,59 +2767,68 @@ Spring5のコアな新機能について紹介した講演が全然無く幻滅�
 </article>
 
 <article>
-<h3>Functional style on GenericApplicationContext/AnnotationConfigApplicationContext</h3>
+<h3>Lamda式によるBean登録とカスタム</h3>
 
-<pre><code>- Supplier-based bean registration API with bean definition customizer callbacks.
-</code></pre>
-
-
-</article>
-
-<article>
-<h3>Consistent detection of transaction, caching, async annotations on interface methods.</h3>
-
-<pre><code>- In case of CGLIB proxies.
-</code></pre>
-
-
-</article>
-
-<article>
-<h3>XML configuration namespaces streamlined towards unversioned schemas.</h3>
-
-<pre><code>- Always resolved against latest xsd files; no support for deprecated features.
-- Version-specific declarations still supported but validated against latest schema.
-</code></pre>
+<ul>
+<li>本機能追加の背景
+   - Bean登録をJavaコードで制御したい場合がある。
+        - 繰り返してBeanを生成、登録したい
+        - Beanのプロパティを動的に指定したい、等
+    - 従来のSpring4でも可能だったが使い辛い。
+     - <code>GenericApplicationContext#registerBeanDefinition(String, BeanDefinition)</code></li>
+<li>概要
+   - Bean生成をJavaコード1行で登録可能に。
+    - Lambda式でBeanをカスタムでき、他Beanとの関係が設定可能。
+        - 適切なタイミングでLambda式が実行されるため、
+   
+<code>java
+context.registerBean(Hoge.class,
+() -&gt; new Hoge(context.getBean(&quot;fuga&quot;)),
+hoge -&gt; hoge.setPiyo(context.getBean(&quot;piyo&quot;)));
+</code></li>
+</ul>
 
 
 </article>
 
 <article>
-<h3>3. Spring WebMVC</h3>
+<h3>その他</h3>
+
+<p>-Consistent detection of transaction, caching, async annotations on interface methods.
+    - In case of CGLIB proxies.
+- XML configuration namespaces streamlined towards unversioned schemas.
+    - Always resolved against latest xsd files; no support for deprecated features.
+    - Version-specific declarations still supported but validated against latest schema.</p>
 
 
 </article>
 
 <article>
-<h3>4. Testing Improvements</h3>
+<h2>Spring WebMVC</h2>
 
 
 </article>
 
 <article>
-<h3>5. Removed Packages, Classes and Methods</h3>
+<h2>Testing Improvements</h2>
 
 
 </article>
 
 <article>
-<h3>6. General Core Revision</h3>
+<h2>Removed Packages, Classes and Methods</h2>
 
 
 </article>
 
 <article>
-<h3>7. 番外編</h3>
+<h2>General Core Revision</h2>
+
+
+</article>
+
+<article>
+<h2>番外編</h2>
 
 <ul>
 <li>Referenceの見た目が変わった

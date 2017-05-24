@@ -100,23 +100,46 @@ Core Container
     - 本家リファレンスRC1版えは記述が見つからず・・・
     - [本家JIRA](https://jira.spring.io/browse/SPR-15028)
 
-### Functional style on GenericApplicationContext/AnnotationConfigApplicationContext
-    - Supplier-based bean registration API with bean definition customizer callbacks.
-### Consistent detection of transaction, caching, async annotations on interface methods.
+### Lamda式によるBean登録とカスタム
+ - 本機能追加の背景
+     - Bean登録をJavaコードで制御したい場合がある。
+         - 繰り返してBeanを生成、登録したい
+         - Beanのプロパティを動的に指定したい、等
+     - 従来のSpring4でも可能だったが使い辛い。
+         - ``GenericApplicationContext#registerBeanDefinition(String, BeanDefinition)``
+ - 概要
+     - Bean生成をJavaコード1行で登録可能に。
+     - Lambda式でBeanをカスタムでき、他Beanとの関係が設定可能。
+         - 適切なタイミングでLambda式が実行されるため、
+    
+```java
+context.registerBean(Hoge.class,
+    () -> new Hoge(context.getBean("fuga")),
+    hoge -> hoge.setPiyo(context.getBean("piyo")));
+```
+
+### その他
+-Consistent detection of transaction, caching, async annotations on interface methods.
     - In case of CGLIB proxies.
-### XML configuration namespaces streamlined towards unversioned schemas.
+- XML configuration namespaces streamlined towards unversioned schemas.
     - Always resolved against latest xsd files; no support for deprecated features.
     - Version-specific declarations still supported but validated against latest schema.
 
-### 3. Spring WebMVC
+Spring WebMVC
+---
 
-### 4. Testing Improvements
+Testing Improvements
+---
 
-### 5. Removed Packages, Classes and Methods
+Removed Packages, Classes and Methods
+---
 
-### 6. General Core Revision
+General Core Revision
+---
 
-### 7. 番外編
+番外編
+---
+
 - Referenceの見た目が変わった
     - Single Page HTMLやPDF版が無くなった!?
     - What's newがwikiに移動されている
