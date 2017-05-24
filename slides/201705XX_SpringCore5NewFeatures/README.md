@@ -97,10 +97,11 @@ Core Container
         - ``@Inject @Nullable Hoge hoge``
     - JSR-330流とSpring流の差が縮まることは良いこと。
 - 参考
-    - 本家リファレンスRC1版えは記述が見つからず・・・
+    - 本家リファレンスRC1版では記述が見つからず・・・
     - [本家JIRA](https://jira.spring.io/browse/SPR-15028)
 
 ### Lamda式によるBean登録とカスタム
+
  - 本機能追加の背景
      - Bean登録をJavaコードで制御したい場合がある。
          - 繰り返してBeanを生成、登録したい
@@ -117,6 +118,9 @@ context.registerBean(Hoge.class,
     () -> new Hoge(context.getBean("fuga")),
     hoge -> hoge.setPiyo(context.getBean("piyo")));
 ```
+
+- 参考
+    - [本家javadoc](http://docs.spring.io/spring/docs/5.0.0.RC1/javadoc-api/org/springframework/context/support/GenericApplicationContext.html#registerBean-java.lang.Class-java.util.function.Supplier-org.springframework.beans.factory.config.BeanDefinitionCustomizer...-)
 
 ### その他
 -Consistent detection of transaction, caching, async annotations on interface methods.
