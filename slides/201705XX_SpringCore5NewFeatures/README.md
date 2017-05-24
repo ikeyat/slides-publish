@@ -101,17 +101,18 @@ Core Container
     - [本家JIRA](https://jira.spring.io/browse/SPR-15028)
 
 ### Lamda式によるBean登録とカスタム
-
  - 本機能追加の背景
-     - Bean登録をJavaコードで制御したい場合がある。
-         - 繰り返してBeanを生成、登録したい
-         - Beanのプロパティを動的に指定したい、等
-     - 従来のSpring4でも可能だったが使い辛い。
+     - Bean登録をJavaコードで制御したい場合がある。
+         - 繰り返してBeanを生成、登録したい
+         - Beanのプロパティを動的に指定したい、等
+     - 従来のSpring4でも可能だったが使い辛い。
          - ``GenericApplicationContext#registerBeanDefinition(String, BeanDefinition)``
+
+### Lamda式によるBean登録とカスタム
  - 概要
-     - Bean生成をJavaコード1行で登録可能に。
-     - Lambda式でBeanをカスタムでき、他Beanとの関係が設定可能。
-         - 適切なタイミングでLambda式が実行されるため、
+     - Bean生成をJavaコード1行で登録可能に。
+     - Lambda式でBeanをカスタムでき、他Beanとの関係が設定可能。
+         - 適切なタイミングでLambda式が実行されるため、
     
 ```java
 context.registerBean(Hoge.class,

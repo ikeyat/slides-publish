@@ -2771,25 +2771,49 @@ Spring5のコアな新機能について紹介した講演が全然無く幻滅�
 
 <ul>
 <li>本機能追加の背景
-   - Bean登録をJavaコードで制御したい場合がある。
-        - 繰り返してBeanを生成、登録したい
-        - Beanのプロパティを動的に指定したい、等
-    - 従来のSpring4でも可能だったが使い辛い。
-     - <code>GenericApplicationContext#registerBeanDefinition(String, BeanDefinition)</code></li>
-<li><p>概要
-   - Bean生成をJavaコード1行で登録可能に。
-    - Lambda式でBeanをカスタムでき、他Beanとの関係が設定可能。
-        - 適切なタイミングでLambda式が実行されるため、
+
+<ul>
+<li>Bean登録をJavaコードで制御したい場合がある。
+
+<ul>
+<li>繰り返してBeanを生成、登録したい</li>
+<li>Beanのプロパティを動的に指定したい、等</li>
+</ul></li>
+<li>従来のSpring4でも可能だったが使い辛い。
+
+<ul>
+<li><code>GenericApplicationContext#registerBeanDefinition(String, BeanDefinition)</code></li>
+</ul></li>
+</ul></li>
+</ul>
+
+
+</article>
+
+<article>
+<h3>Lamda式によるBean登録とカスタム</h3>
+
+<ul>
+<li><p>概要</p>
+
+<ul>
+<li>Bean生成をJavaコード1行で登録可能に。</li>
+<li>Lambda式でBeanをカスタムでき、他Beanとの関係が設定可能。
+
+<ul>
+<li>適切なタイミングでLambda式が実行されるため、
    
 <code>java
 context.registerBean(Hoge.class,
 () -&gt; new Hoge(context.getBean(&quot;fuga&quot;)),
 hoge -&gt; hoge.setPiyo(context.getBean(&quot;piyo&quot;)));
-</code></p>
+</code>
 
 <ul>
 <li>参考
    - <a href="http://docs.spring.io/spring/docs/5.0.0.RC1/javadoc-api/org/springframework/context/support/GenericApplicationContext.html#registerBean-java.lang.Class-java.util.function.Supplier-org.springframework.beans.factory.config.BeanDefinitionCustomizer...-">本家javadoc</a></li>
+</ul></li>
+</ul></li>
 </ul></li>
 </ul>
 
