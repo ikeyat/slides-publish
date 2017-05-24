@@ -106,14 +106,18 @@ Core Container
          - 繰り返してBeanを生成、登録したい
          - Beanのプロパティを動的に指定したい、等
      - 従来のSpring4でも可能だったが使い辛い。
-         - ``GenericApplicationContext#registerBeanDefinition(String, BeanDefinition)``
+
+```java
+BeanDefinition hogeBeanDefinition = ...
+context.registerBeanDefinition("hoge", hogeBeanDefinition);
+```
 
 ### Lamda式によるBean登録とカスタム
  - 概要
      - Bean生成をJavaコード1行で登録可能に。
      - Lambda式でBeanをカスタムでき、他Beanとの関係が設定可能。
          - 適切なタイミングでLambda式が実行されるため、
-    
+
 ```java
 context.registerBean(Hoge.class,
     () -> new Hoge(context.getBean("fuga")),
@@ -124,7 +128,7 @@ context.registerBean(Hoge.class,
     - [本家javadoc](http://docs.spring.io/spring/docs/5.0.0.RC1/javadoc-api/org/springframework/context/support/GenericApplicationContext.html#registerBean-java.lang.Class-java.util.function.Supplier-org.springframework.beans.factory.config.BeanDefinitionCustomizer...-)
 
 ### その他
--Consistent detection of transaction, caching, async annotations on interface methods.
+- Consistent detection of transaction, caching, async annotations on interface methods.
     - In case of CGLIB proxies.
 - XML configuration namespaces streamlined towards unversioned schemas.
     - Always resolved against latest xsd files; no support for deprecated features.
@@ -145,10 +149,10 @@ General Core Revision
 番外編
 ---
 
-- Referenceの見た目が変わった
-    - Single Page HTMLやPDF版が無くなった!?
-    - What's newがwikiに移動されている
-        - Spring4では一番上にいたのでバージョン重ねてくと邪魔だった
-    - 構成自体はさほど変わっていない模様
-    - WebFluxの分量が全体比で見ると少なくて意外・・・
-    - [before](https://docs.spring.io/spring/docs/4.3.x/spring-framework-reference/htmlsingle/)-[after](https://docs.spring.io/spring/docs/5.0.0.RC1/spring-framework-reference/)
+### Referenceの見た目が変わった
+ - Single Page HTMLやPDF版が無くなった!?
+ - What's newがwikiに移動されている
+ - Spring4では一番上にいたのでバージョン重ねてくと邪魔だった
+ - 構成自体はさほど変わっていない模様
+ - WebFluxの分量が全体比で見ると少なくて意外・・・
+ - [before](https://docs.spring.io/spring/docs/4.3.x/spring-framework-reference/htmlsingle/)-[after](https://docs.spring.io/spring/docs/5.0.0.RC1/spring-framework-reference/)

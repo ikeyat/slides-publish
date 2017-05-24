@@ -2779,13 +2779,13 @@ Spring5のコアな新機能について紹介した講演が全然無く幻滅�
 <li>繰り返してBeanを生成、登録したい</li>
 <li>Beanのプロパティを動的に指定したい、等</li>
 </ul></li>
-<li>従来のSpring4でも可能だったが使い辛い。
-
-<ul>
-<li><code>GenericApplicationContext#registerBeanDefinition(String, BeanDefinition)</code></li>
-</ul></li>
+<li>従来のSpring4でも可能だったが使い辛い。</li>
 </ul></li>
 </ul>
+
+<pre><code class="java">BeanDefinition hogeBeanDefinition = ...
+context.registerBeanDefinition(&quot;hoge&quot;, hogeBeanDefinition);
+</code></pre>
 
 
 </article>
@@ -2794,27 +2794,26 @@ Spring5のコアな新機能について紹介した講演が全然無く幻滅�
 <h3>Lamda式によるBean登録とカスタム</h3>
 
 <ul>
-<li><p>概要</p>
+<li>概要
 
 <ul>
 <li>Bean生成をJavaコード1行で登録可能に。</li>
 <li>Lambda式でBeanをカスタムでき、他Beanとの関係が設定可能。
 
 <ul>
-<li>適切なタイミングでLambda式が実行されるため、
-   
-<code>java
-context.registerBean(Hoge.class,
-() -&gt; new Hoge(context.getBean(&quot;fuga&quot;)),
-hoge -&gt; hoge.setPiyo(context.getBean(&quot;piyo&quot;)));
-</code>
+<li>適切なタイミングでLambda式が実行されるため、</li>
+</ul></li>
+</ul></li>
+</ul>
+
+<pre><code class="java">context.registerBean(Hoge.class,
+    () -&gt; new Hoge(context.getBean(&quot;fuga&quot;)),
+    hoge -&gt; hoge.setPiyo(context.getBean(&quot;piyo&quot;)));
+</code></pre>
 
 <ul>
 <li>参考
    - <a href="http://docs.spring.io/spring/docs/5.0.0.RC1/javadoc-api/org/springframework/context/support/GenericApplicationContext.html#registerBean-java.lang.Class-java.util.function.Supplier-org.springframework.beans.factory.config.BeanDefinitionCustomizer...-">本家javadoc</a></li>
-</ul></li>
-</ul></li>
-</ul></li>
 </ul>
 
 
@@ -2823,11 +2822,19 @@ hoge -&gt; hoge.setPiyo(context.getBean(&quot;piyo&quot;)));
 <article>
 <h3>その他</h3>
 
-<p>-Consistent detection of transaction, caching, async annotations on interface methods.
-    - In case of CGLIB proxies.
-- XML configuration namespaces streamlined towards unversioned schemas.
-    - Always resolved against latest xsd files; no support for deprecated features.
-    - Version-specific declarations still supported but validated against latest schema.</p>
+<ul>
+<li>Consistent detection of transaction, caching, async annotations on interface methods.
+
+<ul>
+<li>In case of CGLIB proxies.</li>
+</ul></li>
+<li>XML configuration namespaces streamlined towards unversioned schemas.
+
+<ul>
+<li>Always resolved against latest xsd files; no support for deprecated features.</li>
+<li>Version-specific declarations still supported but validated against latest schema.</li>
+</ul></li>
+</ul>
 
 
 </article>
@@ -2859,20 +2866,19 @@ hoge -&gt; hoge.setPiyo(context.getBean(&quot;piyo&quot;)));
 <article>
 <h2>番外編</h2>
 
-<ul>
-<li>Referenceの見た目が変わった
+
+</article>
+
+<article>
+<h3>Referenceの見た目が変わった</h3>
 
 <ul>
 <li>Single Page HTMLやPDF版が無くなった!?</li>
-<li>What&#39;s newがwikiに移動されている
-
-<ul>
+<li>What&#39;s newがwikiに移動されている</li>
 <li>Spring4では一番上にいたのでバージョン重ねてくと邪魔だった</li>
-</ul></li>
 <li>構成自体はさほど変わっていない模様</li>
 <li>WebFluxの分量が全体比で見ると少なくて意外・・・</li>
 <li><a href="https://docs.spring.io/spring/docs/4.3.x/spring-framework-reference/htmlsingle/">before</a>-<a href="https://docs.spring.io/spring/docs/5.0.0.RC1/spring-framework-reference/">after</a></li>
-</ul></li>
 </ul>
 
 </article>
