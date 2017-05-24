@@ -31,13 +31,13 @@ https://github.com/spring-projects/spring-framework/wiki/What%27s-New-in-the-Spr
 * インパクトの大きい変更に絞って紹介
 
 
-1. JDK 8+ and Java EE 7+ Baseline
+JDK 8+ and Java EE 7+ Baseline
 ---
 
 ### 1. JDK 8+ and Java EE 7+ Baseline
 - JDK8ベースに内部コードをリファクタ
     - 当然、実行にはJDK8以上が必須となった
-- JDK9のモジュールシステムにランタイムレベルで対応
+- JDK9の[モジュールシステム](https://www.infoq.com/jp/news/2017/05/jigsaw-public-review)にランタイムレベルで対応
 - Java EE 7 APIが必須
     - Servlet 3.1, JMS 2.0, JPA 2.1, Bean Validation 1.1
     - 最新のアプリケーションサーバがベースライン
@@ -46,7 +46,7 @@ https://github.com/spring-projects/spring-framework/wiki/What%27s-New-in-the-Spr
     - Servlet 4.0, Bean Validation 2.0, JSON Binding API
 
 
-2. Core Container
+Core Container
 ---
 
 ### candidate component index
