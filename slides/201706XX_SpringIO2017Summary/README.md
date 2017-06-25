@@ -28,7 +28,7 @@ Spring I/O 2017報告会
 * Functional Web Framework
 * Spring DataのReactive対応
 
-## Reactive(Streams)とは
+### Reactive(Streams)とは
 
 * non-blockingな処理をイベントドリブンに記述する方法
 * back pressureによりpush型/pull型の両立を図る
