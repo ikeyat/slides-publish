@@ -2559,7 +2559,7 @@ article.smaller q::after {
 <li>Spring DataのReactive対応</li>
 </ul>
 
-<p>2017/6/XX JSUG</p>
+<p>2017/6/29 JSUG勉強会</p>
 
 
 </article>
@@ -2572,14 +2572,14 @@ article.smaller q::after {
 <li>某大手SIerに入社@2010</li>
 <li>JSUGの幹事を手伝ってます。</li>
 <li><a href="http://www.shoeisha.co.jp/book/detail/9784798142470">「Spring徹底入門(翔泳社)」</a>の執筆に参加しました。</li>
-<li>Spring I/Oは3回目</li>
+<li>Spring I/Oは3回目の参加 </li>
 </ul>
 
 
 </article>
 
 <article>
-<h2>お詫び</h2>
+<h3>お詫び</h3>
 
 <p>槙さん講演＠Java Day Tokyo 2017<br>
 <a href="http://www.oracle.com/technetwork/jp/ondemand/online2017-javaday-3719599-ja.html">「Spring Framework 5.0によるReactive Web Application」</a></p>
@@ -2603,7 +2603,19 @@ article.smaller q::after {
 </article>
 
 <article>
-<h2>Reactiveとは</h2>
+<h2>Reactive(Streams)とは</h2>
+
+<ul>
+<li>non-blockingな処理をイベントドリブンに記述する方法</li>
+<li>back pressureによりpush型/pull型の両立を図る</li>
+</ul>
+
+<pre><code>Publisher ---[push events]---&gt; Subscriber
+          &lt;----[feedback]-----
+</code></pre>
+
+<p>リアクティブプログラミングの詳細は、
+<a href="https://www.slideshare.net/TakuyaIwatsuka/spring-5">NTTの岩塚さん、堅田さんのスライド</a></p>
 
 
 </article>
