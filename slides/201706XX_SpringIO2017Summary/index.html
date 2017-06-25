@@ -2610,8 +2610,8 @@ article.smaller q::after {
 <li>back pressureによりpush型/pull型の両立を図る</li>
 </ul>
 
-<pre><code>Publisher ---[push events]---&gt; Subscriber
-          &lt;----[feedback]-----
+<pre><code>Publisher ---[onNext()]--&gt; Subscriber
+          &lt;--[request()]--
 </code></pre>
 
 <p>リアクティブプログラミングの詳細は、
@@ -2621,7 +2621,34 @@ article.smaller q::after {
 </article>
 
 <article>
-<h2>Spring5でのReactive</h2>
+<h3>MonoとFlux (Reactor)</h3>
+
+<ul>
+<li>Reactorにおける<code>Publisher</code>の実装</li>
+<li><code>Mono</code>は0/1個、<code>Flux</code>は0個以上の値を発行可能</li>
+</ul>
+
+<p><code>TODO: sample code</code></p>
+
+
+</article>
+
+<article>
+<h3>Spring5でのReactive</h3>
+
+<ul>
+<li>spring-flux</li>
+</ul>
+
+<pre><code class="java">@RestController
+public class EchoController {
+  @PostMapping(&quot;/echo&quot;)
+  Flux&lt;String&gt; upperCase
+      (@RequestBody Flux&lt;String&gt; body) {
+    return body.map(String::toUpperCase);
+  }
+}
+</code></pre>
 
 
 </article>
@@ -2639,6 +2666,30 @@ article.smaller q::after {
 </article>
 
 <article>
+<h3>Overview</h3>
+
+
+</article>
+
+<article>
+<h3>RouterFunction</h3>
+
+
+</article>
+
+<article>
+<h3>HandlerFunction</h3>
+
+
+</article>
+
+<article>
+<h3>HandlerFilterFunction</h3>
+
+
+</article>
+
+<article>
 <h3>agenda</h3>
 
 <ul>
@@ -2646,6 +2697,67 @@ article.smaller q::after {
 <li>Functional Web Framework</li>
 <li><strong>Spring DataのReactive対応</strong></li>
 </ul>
+
+
+</article>
+
+<article>
+<h3>Overview</h3>
+
+<p><code>TODO: versionなど</code></p>
+
+
+</article>
+
+<article>
+<h3>APIの破壊的変更</h3>
+
+<p><code>TODO: メソッド名とRepository拡張のアレ</code></p>
+
+
+</article>
+
+<article>
+<h3>Spring Dataが扱うデータソース</h3>
+
+<ul>
+<li><strong>JPA(JDBC)</strong></li>
+<li>Redis</li>
+<li>MongoDB</li>
+<li>etc...</li>
+</ul>
+
+
+</article>
+
+<article>
+<h3>JDBC</h3>
+
+
+</article>
+
+<article>
+<h3>Redis</h3>
+
+
+</article>
+
+<article>
+<h3>MongoDB</h3>
+
+
+</article>
+
+<article>
+<h3>ReactiveCrudRepository</h3>
+
+<pre><code class="java">&lt;S extends T&gt; Mono&lt;S&gt; save(S entity);
+&lt;S extends T&gt; Flux&lt;S&gt; saveAll(Publisher&lt;S&gt; entityStream);
+Mono&lt;T&gt; findById(ID id);
+Flux&lt;T&gt; findAll();
+Mono&lt;Long&gt; count();
+...
+</code></pre>
 
 </article>
 

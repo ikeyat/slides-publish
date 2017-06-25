@@ -34,15 +34,34 @@ Spring I/O 2017報告会
 * back pressureによりpush型/pull型の両立を図る
 
 ```
-Publisher ---[push events]---> Subscriber
-          <----[feedback]-----
+Publisher ---[onNext()]--> Subscriber
+          <--[request()]--
 ```
 
 リアクティブプログラミングの詳細は、
 [NTTの岩塚さん、堅田さんのスライド](https://www.slideshare.net/TakuyaIwatsuka/spring-5)
 
-## Spring5でのReactive
+### MonoとFlux (Reactor)
 
+* Reactorにおける``Publisher``の実装
+* ``Mono``は0/1個、``Flux``は0個以上の値を発行可能
+
+``TODO: sample code``
+
+### Spring5でのReactive
+
+* spring-flux
+
+```java
+@RestController
+public class EchoController {
+  @PostMapping("/echo")
+  Flux<String> upperCase
+      (@RequestBody Flux<String> body) {
+    return body.map(String::toUpperCase);
+  }
+}
+```
 
 ### agenda
 
@@ -50,11 +69,49 @@ Publisher ---[push events]---> Subscriber
 * **Functional Web Framework**
 * Spring DataのReactive対応
 
-### 
+### Overview
 
+### RouterFunction
+
+### HandlerFunction
+
+### HandlerFilterFunction
 
 ### agenda
 
 * Reactiveのおさらい
 * Functional Web Framework
 * **Spring DataのReactive対応**
+
+### Overview
+
+``TODO: versionなど``
+
+### APIの破壊的変更
+
+``TODO: メソッド名とRepository拡張のアレ``
+
+### Spring Dataが扱うデータソース
+
+* **JPA(JDBC)**
+* Redis
+* MongoDB
+* etc...
+
+### JDBC
+
+### Redis
+
+### MongoDB
+
+### ReactiveCrudRepository
+
+```java
+<S extends T> Mono<S> save(S entity);
+<S extends T> Flux<S> saveAll(Publisher<S> entityStream);
+Mono<T> findById(ID id);
+Flux<T> findAll();
+Mono<Long> count();
+...
+```
+
