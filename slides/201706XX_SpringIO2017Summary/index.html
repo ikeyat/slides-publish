@@ -2614,7 +2614,7 @@ article.smaller q::after {
           &lt;--[request()]--
 </code></pre>
 
-<p>リアクティブプログラミングの詳細は、
+<p>リアクティブプログラミングの詳細は、<br>
 <a href="https://www.slideshare.net/TakuyaIwatsuka/spring-5">NTTの岩塚さん、堅田さんのスライド</a></p>
 
 
@@ -2628,7 +2628,11 @@ article.smaller q::after {
 <li><code>Mono</code>は0/1個、<code>Flux</code>は0個以上の値を発行可能</li>
 </ul>
 
-<p><code>TODO: sample code</code></p>
+<pre><code class="java">Flux&lt;String&gt; publisher = Flux.just(&quot;aaa&quot;, &quot;bbb&quot;, &quot;ccc&quot;)
+        .map(String::toUpperCase).repeat(2);
+
+publisher.subscribe(System.out::println);
+</code></pre>
 
 
 </article>

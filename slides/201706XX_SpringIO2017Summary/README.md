@@ -38,7 +38,7 @@ Publisher ---[onNext()]--> Subscriber
           <--[request()]--
 ```
 
-リアクティブプログラミングの詳細は、
+リアクティブプログラミングの詳細は、  
 [NTTの岩塚さん、堅田さんのスライド](https://www.slideshare.net/TakuyaIwatsuka/spring-5)
 
 ### MonoとFlux (Reactor)
@@ -46,7 +46,12 @@ Publisher ---[onNext()]--> Subscriber
 * Reactorにおける``Publisher``の実装
 * ``Mono``は0/1個、``Flux``は0個以上の値を発行可能
 
-``TODO: sample code``
+```java
+Flux<String> publisher = Flux.just("aaa", "bbb", "ccc")
+        .map(String::toUpperCase).repeat(2);
+
+publisher.subscribe(System.out::println);
+```
 
 ### Spring5でのReactive
 
