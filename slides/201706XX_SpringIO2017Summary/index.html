@@ -2686,9 +2686,9 @@ public class EchoController {
 <li>以下のコンセプトの新たなWebフレームワーク
 
 <ul>
-<li><code>java.util.function</code>や<code>java.util.stream</code>などの関数スタイル記述
-   * framework &lt;&lt; library (明示的かつカスタムが容易)
-   * No reflection</li>
+<li><code>java.util.function</code>や<code>java.util.stream</code>などの関数スタイル記述</li>
+<li>framework &lt;&lt; library (明示的かつカスタムが容易)</li>
+<li>No reflection</li>
 </ul></li>
 <li>spring-flux向け限定</li>
 </ul>
@@ -2701,8 +2701,11 @@ public class EchoController {
 
 <ul>
 <li>Q: <code>@RequestMapping</code>があるのになぜ？
-   * A: 様々な選択肢があることは重要なのだ by キーノート講演
-   * A: Reactiveだと関数スタイルとの相性が良い？</li>
+
+<ul>
+<li>A: 様々な選択肢があることは重要なのだ by キーノート講演</li>
+<li>A: Reactiveだと関数スタイルとの相性が良い？</li>
+</ul></li>
 </ul>
 
 
@@ -2714,7 +2717,10 @@ public class EchoController {
 <ul>
 <li>いわゆるルーター</li>
 <li>URLやリクエスト内容に応じて、呼び出す処理の振り分けルールを定義
-   * リクエストの条件マッチングには<code>RequestPredicates</code>を使用</li>
+
+<ul>
+<li>リクエストの条件マッチングには<code>RequestPredicates</code>を使用</li>
+</ul></li>
 <li><code>@RequestMapping</code>相当</li>
 <li>Bean定義しておけば有効化される</li>
 </ul>
@@ -2748,8 +2754,11 @@ RouterFunction router() {
 
 <ul>
 <li>request/responseへのアクセスには以下を用いる
-   * <code>ServerRequest</code>: <code>RouterFunction</code>から取得可能
-   * <code>ServerResponse</code>: <code>HandlerFunction</code>の戻り値として設定 </li>
+
+<ul>
+<li><code>ServerRequest</code>: <code>RouterFunction</code>から取得可能</li>
+<li><code>ServerResponse</code>: <code>HandlerFunction</code>の戻り値として設定 </li>
+</ul></li>
 </ul>
 
 
