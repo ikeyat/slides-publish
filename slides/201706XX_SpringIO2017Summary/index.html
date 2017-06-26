@@ -2642,7 +2642,7 @@ publisher.subscribe(System.out::println);
 
 <p>spring-fluxによりSpring MVCで<code>Mono</code>や<code>Flux</code>が利用可能に。</p>
 
-<p><a href="https://docs.spring.io"><img src="http://docs.spring.io/spring/docs/5.0.0.RC1/spring-framework-reference/images/webflux-overview.png.pagespeed.ce.5Qcn153H0J.png" alt="spring-flux"></a></p>
+<p><a href="https://docs.spring.io"><img src="http://docs.spring.io/spring/docs/5.0.0.RC1/spring-framework-reference/images/webflux-overview.png" alt="spring-flux"></a></p>
 
 
 </article>
@@ -2682,17 +2682,75 @@ public class EchoController {
 <article>
 <h3>Overview</h3>
 
+<ul>
+<li>以下のコンセプトの新たなWebフレームワーク
+
+<ul>
+<li><code>java.util.function</code>や<code>java.util.stream</code>などの関数スタイル記述
+   * framework &lt;&lt; library (明示的かつカスタムが容易)
+   * No reflection</li>
+</ul></li>
+<li>spring-flux向け限定</li>
+</ul>
+
+
+</article>
+
+<article>
+<h3>Question</h3>
+
+<ul>
+<li>Q: <code>@RequestMapping</code>があるのになぜ？
+   * A: 様々な選択肢があることは重要なのだ by キーノート講演
+   * A: Reactiveだと関数スタイルとの相性が良い？</li>
+</ul>
+
 
 </article>
 
 <article>
 <h3>RouterFunction</h3>
 
+<ul>
+<li>いわゆるルーター</li>
+<li>URLやリクエスト内容に応じて、呼び出す処理の振り分けルールを定義
+   * リクエストの条件マッチングには<code>RequestPredicates</code>を使用</li>
+<li><code>@RequestMapping</code>相当</li>
+<li>Bean定義しておけば有効化される</li>
+</ul>
+
 
 </article>
 
 <article>
 <h3>HandlerFunction</h3>
+
+<ul>
+<li>ルーターで条件にマッチした場合に呼び出される処理を定義</li>
+<li>リクエストハンドラ(<code>@RequestMapping</code>が付与されたメソッド)に相当</li>
+<li><code>RouterFunction</code>にて、<code>RequestPredicates</code>とセットで指定</li>
+</ul>
+
+
+</article>
+
+<article>
+<h3>Example</h3>
+
+<pre><code class="java">@Bean
+RouterFunction router() {
+    return RouterFunctions.route(POST(&quot;/func&quot;),
+          req -&gt; ServerResponse.ok().body(
+              req.bodyToFlux(String.class)
+                  .map(String::toUpperCase), String.class));
+}
+</code></pre>
+
+<ul>
+<li>request/responseへのアクセスには以下を用いる
+   * <code>ServerRequest</code>: <code>RouterFunction</code>から取得可能
+   * <code>ServerResponse</code>: <code>HandlerFunction</code>の戻り値として設定 </li>
+</ul>
 
 
 </article>
