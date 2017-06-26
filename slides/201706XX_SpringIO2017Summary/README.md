@@ -50,6 +50,12 @@ Publisher ---[onNext()]--> Subscriber
 
 ### Spring5でのReactive
 
+spring-fluxによりSpring MVCで``Mono``や``Flux``が利用可能に。
+
+[![spring-flux](https://docs.spring.io/spring/docs/5.0.0.M2/spring-framework-reference/htmlsingle/images/web-reactive-overview.png)](https://docs.spring.io)
+
+### Spring5でのReactive
+
 * spring-flux
 
 ```java
