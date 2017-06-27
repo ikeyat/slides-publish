@@ -164,6 +164,8 @@ RouterFunction<ServerResponse> router() {
 
 ### HandlerFilterFunction
 
+* ``HandlerInterceptor``に相当
+
 ```java
 @Bean
 RouterFunction<ServerResponse> routerWithFilter() {
@@ -187,20 +189,29 @@ RouterFunction<ServerResponse> routerWithFilter() {
 * Functional Web Framework
 * **Spring DataのReactive対応**
 
-### Overview
+### Spring Data 2.0 
 
-``TODO: versionなど``
+* リリーストレインはKay
+* APIの破壊的変更
+* Reactive対応
+    * Reactive Template API
+    * Reactive Repository
+    * 一部のデータソースのみ対象
+
 
 ### APIの破壊的変更
 
 ``TODO: メソッド名とRepository拡張のアレ``
 
-### Spring Dataが扱うデータソース
+### データソース毎のReactive対応状況
 
-* **JPA(JDBC)**
-* Redis
-* MongoDB
-* etc...
+| Data Source  | Reactive Support |
+|:-------------|:-----------------|
+| JPA(JDBC)    |**NG**            |
+| Redis        |**OK**            |
+| MongoDB      |**OK**            |
+| Apache Cassandra |**OK**         |
+| Couchbase    |**OK**         |
 
 ### JDBC
 

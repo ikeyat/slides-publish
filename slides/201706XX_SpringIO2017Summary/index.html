@@ -2807,6 +2807,10 @@ RouterFunction&lt;ServerResponse&gt; router() {
 <article>
 <h3>HandlerFilterFunction</h3>
 
+<ul>
+<li><code>HandlerInterceptor</code>に相当</li>
+</ul>
+
 <pre><code class="java">@Bean
 RouterFunction&lt;ServerResponse&gt; routerWithFilter() {
     return RouterFunctions.route(POST(&quot;/filter1&quot;),
@@ -2839,9 +2843,19 @@ RouterFunction&lt;ServerResponse&gt; routerWithFilter() {
 </article>
 
 <article>
-<h3>Overview</h3>
+<h3>Spring Data 2.0</h3>
 
-<p><code>TODO: versionなど</code></p>
+<ul>
+<li>リリーストレインはKay</li>
+<li>APIの破壊的変更</li>
+<li>Reactive対応
+
+<ul>
+<li>Reactive Template API</li>
+<li>Reactive Repository
+   * 一部のデータソースのみ対象</li>
+</ul></li>
+</ul>
 
 
 </article>
@@ -2855,14 +2869,35 @@ RouterFunction&lt;ServerResponse&gt; routerWithFilter() {
 </article>
 
 <article>
-<h3>Spring Dataが扱うデータソース</h3>
+<h3>データソース毎のReactive対応状況</h3>
 
-<ul>
-<li><strong>JPA(JDBC)</strong></li>
-<li>Redis</li>
-<li>MongoDB</li>
-<li>etc...</li>
-</ul>
+<table><thead>
+<tr>
+<th style="text-align: left">Data Source</th>
+<th style="text-align: left">Reactive Support</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">JPA(JDBC)</td>
+<td style="text-align: left"><strong>NG</strong></td>
+</tr>
+<tr>
+<td style="text-align: left">Redis</td>
+<td style="text-align: left"><strong>OK</strong></td>
+</tr>
+<tr>
+<td style="text-align: left">MongoDB</td>
+<td style="text-align: left"><strong>OK</strong></td>
+</tr>
+<tr>
+<td style="text-align: left">Apache Cassandra</td>
+<td style="text-align: left"><strong>OK</strong></td>
+</tr>
+<tr>
+<td style="text-align: left">Couchbase</td>
+<td style="text-align: left"><strong>OK</strong></td>
+</tr>
+</tbody></table>
 
 
 </article>
