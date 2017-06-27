@@ -196,7 +196,6 @@ RouterFunction<ServerResponse> routerWithFilter() {
 * Reactive対応
     * Reactive Template API
     * Reactive Repository
-    * 一部のデータソースのみ対象
 
 
 ### APIの破壊的変更
