@@ -2625,13 +2625,16 @@ article.smaller q::after {
 
 <ul>
 <li>Reactorにおける<code>Publisher</code>の実装</li>
+<li>Reactive StreamsをStream API風に記述できる</li>
 <li><code>Mono</code>は0/1個、<code>Flux</code>は0個以上の値を発行可能</li>
 </ul>
 
 <pre><code class="java">Flux&lt;String&gt; publisher = Flux.just(&quot;aaa&quot;, &quot;bbb&quot;, &quot;ccc&quot;)
         .map(String::toUpperCase).repeat(2);
 
-publisher.subscribe(System.out::println);
+publisher.subscribe(System.out::print);
+
+// AAABBBCCCAAABBBCCC
 </code></pre>
 
 
@@ -2657,8 +2660,7 @@ publisher.subscribe(System.out::println);
 <pre><code class="java">@RestController
 public class EchoController {
   @PostMapping(&quot;/echo&quot;)
-  Flux&lt;String&gt; upperCase
-      (@RequestBody Flux&lt;String&gt; body) {
+  Flux&lt;String&gt; upperCase(@RequestBody Flux&lt;String&gt; body) {
     return body.map(String::toUpperCase);
   }
 }
@@ -2725,6 +2727,12 @@ public class EchoController {
 <li>Bean定義しておけば有効化される</li>
 </ul>
 
+<pre><code class="java">RouterFunction&lt;ServerResponse&gt; router
+    = RouterFunctions.route(
+        RequestPredicates.GET(&quot;/func&quot;),
+        handler);
+</code></pre>
+
 
 </article>
 
@@ -2737,6 +2745,13 @@ public class EchoController {
 <li><code>RouterFunction</code>にて、<code>RequestPredicates</code>とセットで指定</li>
 </ul>
 
+<pre><code class="java">HandlerFunction&lt;ServerResponse&gt; handler = req -&gt; {
+    return ServerResponse.ok().body(
+            Mono.just(req.queryParam(&quot;query&quot;).get()),
+            String.class);
+};
+</code></pre>
+
 
 </article>
 
@@ -2744,11 +2759,11 @@ public class EchoController {
 <h3>Example</h3>
 
 <pre><code class="java">@Bean
-RouterFunction router() {
+RouterFunction&lt;ServerResponse&gt; router() {
     return RouterFunctions.route(POST(&quot;/func&quot;),
-          req -&gt; ServerResponse.ok().body(
-              req.bodyToFlux(String.class)
-                  .map(String::toUpperCase), String.class));
+            req -&gt; ServerResponse.ok().body(
+                    req.bodyToFlux(String.class)
+                           .map(String::toUpperCase), String.class));
 }
 </code></pre>
 
@@ -2756,8 +2771,8 @@ RouterFunction router() {
 <li>request/responseへのアクセスには以下を用いる
 
 <ul>
-<li><code>ServerRequest</code>: <code>RouterFunction</code>から取得可能</li>
-<li><code>ServerResponse</code>: <code>HandlerFunction</code>の戻り値として設定 </li>
+<li><code>ServerRequest</code>: <code>RouterFunction</code>から取得可能
+   * <code>ServerResponse</code>: <code>HandlerFunction</code>の戻り値へ返却 </li>
 </ul></li>
 </ul>
 

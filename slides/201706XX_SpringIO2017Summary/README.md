@@ -44,13 +44,16 @@ Publisher ---[onNext()]--> Subscriber
 ### MonoとFlux (Reactor)
 
 * Reactorにおける``Publisher``の実装
+* Reactive StreamsをStream API風に記述できる
 * ``Mono``は0/1個、``Flux``は0個以上の値を発行可能
 
 ```java
 Flux<String> publisher = Flux.just("aaa", "bbb", "ccc")
         .map(String::toUpperCase).repeat(2);
 
-publisher.subscribe(System.out::println);
+publisher.subscribe(System.out::print);
+
+// AAABBBCCCAAABBBCCC
 ```
 
 ### Spring5でのReactive
@@ -67,8 +70,7 @@ spring-fluxによりSpring MVCで``Mono``や``Flux``が利用可能に。
 @RestController
 public class EchoController {
   @PostMapping("/echo")
-  Flux<String> upperCase
-      (@RequestBody Flux<String> body) {
+  Flux<String> upperCase(@RequestBody Flux<String> body) {
     return body.map(String::toUpperCase);
   }
 }
@@ -102,27 +104,42 @@ public class EchoController {
 * ``@RequestMapping``相当
 * Bean定義しておけば有効化される
 
+```java
+RouterFunction<ServerResponse> router
+    = RouterFunctions.route(
+        RequestPredicates.GET("/func"),
+        handler);
+```
+
 ### HandlerFunction
 
 * ルーターで条件にマッチした場合に呼び出される処理を定義
 * リクエストハンドラ(``@RequestMapping``が付与されたメソッド)に相当
 * ``RouterFunction``にて、``RequestPredicates``とセットで指定
 
+```java
+HandlerFunction<ServerResponse> handler = req -> {
+    return ServerResponse.ok().body(
+            Mono.just(req.queryParam("query").get()),
+            String.class);
+};
+```
+
 ### Example
 
 ```java
 @Bean
-RouterFunction router() {
+RouterFunction<ServerResponse> router() {
     return RouterFunctions.route(POST("/func"),
-          req -> ServerResponse.ok().body(
-              req.bodyToFlux(String.class)
-                  .map(String::toUpperCase), String.class));
+            req -> ServerResponse.ok().body(
+                    req.bodyToFlux(String.class)
+                           .map(String::toUpperCase), String.class));
 }
-````
+```
 
 * request/responseへのアクセスには以下を用いる
     * ``ServerRequest``: ``RouterFunction``から取得可能
-    * ``ServerResponse``: ``HandlerFunction``の戻り値として設定 
+    * ``ServerResponse``: ``HandlerFunction``の戻り値へ返却 
 
 
 ### HandlerFilterFunction
