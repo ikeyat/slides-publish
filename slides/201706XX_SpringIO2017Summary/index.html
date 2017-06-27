@@ -2670,6 +2670,29 @@ public class EchoController {
 </article>
 
 <article>
+<h3>無限ストリームの返却(Server Sent Event)</h3>
+
+<ul>
+<li>AcceptヘッダがSSEの場合は<code>Flux</code>をSSEのStreamとして解釈</li>
+</ul>
+
+<pre><code class="java">@GetMapping(&quot;/infinite&quot;)
+Flux&lt;Long&gt; infinite() {
+    return Flux.interval(Duration.ofSeconds(1));
+}
+</code></pre>
+
+<pre><code class="console">curl http://... -H &quot;Accept: text/event-stream&quot;
+data:0
+
+data:1
+...
+</code></pre>
+
+
+</article>
+
+<article>
 <h3>agenda</h3>
 
 <ul>

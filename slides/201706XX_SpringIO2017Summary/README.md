@@ -76,6 +76,25 @@ public class EchoController {
 }
 ```
 
+### 無限ストリームの返却(Server Sent Event)
+
+* AcceptヘッダがSSEの場合は```Flux```をSSEのStreamとして解釈
+
+```java
+@GetMapping("/infinite")
+Flux<Long> infinite() {
+    return Flux.interval(Duration.ofSeconds(1));
+}
+```
+
+```console
+curl http://... -H "Accept: text/event-stream"
+data:0
+
+data:1
+...
+```
+
 ### agenda
 
 * Reactiveのおさらい
