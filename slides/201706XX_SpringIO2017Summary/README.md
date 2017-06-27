@@ -93,7 +93,7 @@ public class EchoController {
 ### Question
 
 * Q: ``@RequestMapping``があるのになぜ？
-    * A: 様々な選択肢があることは重要なのだ by キーノート講演
+    * A: 様々な選択肢があることは重要なのだ by キーノート
     * A: Reactiveだと関数スタイルとの相性が良い？
 
 ### RouterFunction
@@ -105,17 +105,15 @@ public class EchoController {
 * Bean定義しておけば有効化される
 
 ```java
-RouterFunction<ServerResponse> router
-    = RouterFunctions.route(
-        RequestPredicates.GET("/func"),
-        handler);
+RouterFunction<ServerResponse> router = RouterFunctions.route(
+                RequestPredicates.GET("/func1"), handler1)
+                .andRoute(RequestPredicates.GET("/func2"), handler2);
 ```
 
 ### HandlerFunction
 
 * ルーターで条件にマッチした場合に呼び出される処理を定義
 * リクエストハンドラ(``@RequestMapping``が付与されたメソッド)に相当
-* ``RouterFunction``にて、``RequestPredicates``とセットで指定
 
 ```java
 HandlerFunction<ServerResponse> handler = req -> {
@@ -124,6 +122,9 @@ HandlerFunction<ServerResponse> handler = req -> {
             String.class);
 };
 ```
+
+* ``RouterFunction``にて、``RequestPredicates``とセットで指定
+
 
 ### Example
 
@@ -139,10 +140,27 @@ RouterFunction<ServerResponse> router() {
 
 * request/responseへのアクセスには以下を用いる
     * ``ServerRequest``: ``RouterFunction``から取得可能
-    * ``ServerResponse``: ``HandlerFunction``の戻り値へ返却 
+    * ``ServerResponse``: ``HandlerFunction``の戻り値へ返却 
 
 
 ### HandlerFilterFunction
+
+```java
+@Bean
+RouterFunction<ServerResponse> routerWithFilter() {
+    return RouterFunctions.route(POST("/filter1"),
+            req -> ServerResponse.ok().body(
+                    req.bodyToFlux(String.class)
+                            .map(String::toUpperCase), String.class))
+            .andRoute(POST("/filter2"),
+                    req -> ServerResponse.ok().body(
+                            req.bodyToFlux(String.class), String.class))
+            .filter((req, handler) -> {
+                System.out.println(req.headers().contentLength());
+                return handler.handle(req);
+            });
+}
+```
 
 ### agenda
 

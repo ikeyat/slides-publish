@@ -2705,7 +2705,7 @@ public class EchoController {
 <li>Q: <code>@RequestMapping</code>があるのになぜ？
 
 <ul>
-<li>A: 様々な選択肢があることは重要なのだ by キーノート講演</li>
+<li>A: 様々な選択肢があることは重要なのだ by キーノート</li>
 <li>A: Reactiveだと関数スタイルとの相性が良い？</li>
 </ul></li>
 </ul>
@@ -2727,10 +2727,9 @@ public class EchoController {
 <li>Bean定義しておけば有効化される</li>
 </ul>
 
-<pre><code class="java">RouterFunction&lt;ServerResponse&gt; router
-    = RouterFunctions.route(
-        RequestPredicates.GET(&quot;/func&quot;),
-        handler);
+<pre><code class="java">RouterFunction&lt;ServerResponse&gt; router = RouterFunctions.route(
+                RequestPredicates.GET(&quot;/func1&quot;), handler1)
+                .andRoute(RequestPredicates.GET(&quot;/func2&quot;), handler2);
 </code></pre>
 
 
@@ -2742,7 +2741,6 @@ public class EchoController {
 <ul>
 <li>ルーターで条件にマッチした場合に呼び出される処理を定義</li>
 <li>リクエストハンドラ(<code>@RequestMapping</code>が付与されたメソッド)に相当</li>
-<li><code>RouterFunction</code>にて、<code>RequestPredicates</code>とセットで指定</li>
 </ul>
 
 <pre><code class="java">HandlerFunction&lt;ServerResponse&gt; handler = req -&gt; {
@@ -2751,6 +2749,10 @@ public class EchoController {
             String.class);
 };
 </code></pre>
+
+<ul>
+<li><code>RouterFunction</code>にて、<code>RequestPredicates</code>とセットで指定</li>
+</ul>
 
 
 </article>
@@ -2771,8 +2773,8 @@ RouterFunction&lt;ServerResponse&gt; router() {
 <li>request/responseへのアクセスには以下を用いる
 
 <ul>
-<li><code>ServerRequest</code>: <code>RouterFunction</code>から取得可能
-   * <code>ServerResponse</code>: <code>HandlerFunction</code>の戻り値へ返却 </li>
+<li><code>ServerRequest</code>: <code>RouterFunction</code>から取得可能</li>
+<li><code>ServerResponse</code>: <code>HandlerFunction</code>の戻り値へ返却 </li>
 </ul></li>
 </ul>
 
@@ -2781,6 +2783,22 @@ RouterFunction&lt;ServerResponse&gt; router() {
 
 <article>
 <h3>HandlerFilterFunction</h3>
+
+<pre><code class="java">@Bean
+RouterFunction&lt;ServerResponse&gt; routerWithFilter() {
+    return RouterFunctions.route(POST(&quot;/filter1&quot;),
+            req -&gt; ServerResponse.ok().body(
+                    req.bodyToFlux(String.class)
+                            .map(String::toUpperCase), String.class))
+            .andRoute(POST(&quot;/filter2&quot;),
+                    req -&gt; ServerResponse.ok().body(
+                            req.bodyToFlux(String.class), String.class))
+            .filter((req, handler) -&gt; {
+                System.out.println(req.headers().contentLength());
+                return handler.handle(req);
+            });
+}
+</code></pre>
 
 
 </article>
