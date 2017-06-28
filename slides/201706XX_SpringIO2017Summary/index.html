@@ -2920,7 +2920,11 @@ RouterFunction&lt;ServerResponse&gt; routerWithFilter() {
 <h3>Spring Data 2.0</h3>
 
 <ul>
-<li>リリーストレインはKay</li>
+<li>リリーストレインはKay
+
+<ul>
+<li>GA on July 2017</li>
+</ul></li>
 <li>APIの破壊的変更</li>
 <li>Reactive対応
 
@@ -2936,7 +2940,38 @@ RouterFunction&lt;ServerResponse&gt; routerWithFilter() {
 <article>
 <h3>APIの破壊的変更</h3>
 
-<p><code>TODO: メソッド名とRepository拡張のアレ</code></p>
+<ul>
+<li>戻り値<code>null</code>の可能性のあるAPIは全て<code>Optional</code>型で返却</li>
+<li>IDの<code>Serializable</code>制約の廃止</li>
+<li>Repositoryのメソッド名の改善
+
+<ul>
+<li><code>save(..)</code> -&gt; <code>saveAll(..)</code></li>
+<li><code>findOne(..)</code> -&gt; <code>findById(..)</code></li>
+</ul></li>
+<li>Custom Repositoryの命名ルールの改善
+  * <code>MyRepositoryCustom</code> -&gt; <code>MyRepositoryImpl</code></li>
+</ul>
+
+
+</article>
+
+<article>
+<h3>Reactive Template API</h3>
+
+
+</article>
+
+<article>
+<h3>ReactiveCrudRepository</h3>
+
+<pre><code class="java">&lt;S extends T&gt; Mono&lt;S&gt; save(S entity);
+&lt;S extends T&gt; Flux&lt;S&gt; saveAll(Publisher&lt;S&gt; entityStream);
+Mono&lt;T&gt; findById(ID id);
+Flux&lt;T&gt; findAll();
+Mono&lt;Long&gt; count();
+...
+</code></pre>
 
 
 </article>
@@ -2976,33 +3011,20 @@ RouterFunction&lt;ServerResponse&gt; routerWithFilter() {
 </article>
 
 <article>
-<h3>JDBC</h3>
+<h3>JPA(JDBC)でのReactiveはなぜNG？</h3>
+
+<ul>
+<li>JDBCドライバやJPA実装がReactiveに対応していないため
+   * 他をReactiveにしても意味がない</li>
+</ul>
 
 
 </article>
 
 <article>
-<h3>Redis</h3>
+<h3>画面レンダリングのReactiveは？</h3>
 
-
-</article>
-
-<article>
-<h3>MongoDB</h3>
-
-
-</article>
-
-<article>
-<h3>ReactiveCrudRepository</h3>
-
-<pre><code class="java">&lt;S extends T&gt; Mono&lt;S&gt; save(S entity);
-&lt;S extends T&gt; Flux&lt;S&gt; saveAll(Publisher&lt;S&gt; entityStream);
-Mono&lt;T&gt; findById(ID id);
-Flux&lt;T&gt; findAll();
-Mono&lt;Long&gt; count();
-...
-</code></pre>
+<p>次のセッションにてご紹介！</p>
 
 </article>
 

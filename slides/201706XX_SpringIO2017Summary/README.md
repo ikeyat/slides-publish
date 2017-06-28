@@ -225,6 +225,7 @@ RouterFunction<ServerResponse> routerWithFilter() {
 ### Spring Data 2.0 
 
 * リリーストレインはKay
+    * GA on July 2017
 * APIの破壊的変更
 * Reactive対応
     * Reactive Template API
@@ -233,23 +234,17 @@ RouterFunction<ServerResponse> routerWithFilter() {
 
 ### APIの破壊的変更
 
-``TODO: メソッド名とRepository拡張のアレ``
+* 戻り値``null``の可能性のあるAPIは全て``Optional``型で返却
+* IDの``Serializable``制約の廃止
+* Repositoryのメソッド名の改善
+   * ``save(..)`` -> ``saveAll(..)``
+   * ``findOne(..)`` -> ``findById(..)``
+* Custom Repositoryの命名ルールの改善
+   * ``MyRepositoryCustom`` -> ``MyRepositoryImpl``
 
-### データソース毎のReactive対応状況
 
-| Data Source  | Reactive Support |
-|:-------------|:-----------------|
-| JPA(JDBC)    |**NG**            |
-| Redis        |**OK**            |
-| MongoDB      |**OK**            |
-| Apache Cassandra |**OK**         |
-| Couchbase    |**OK**         |
+### Reactive Template API
 
-### JDBC
-
-### Redis
-
-### MongoDB
 
 ### ReactiveCrudRepository
 
@@ -262,3 +257,21 @@ Mono<Long> count();
 ...
 ```
 
+### データソース毎のReactive対応状況
+
+| Data Source  | Reactive Support |
+|:-------------|:-----------------|
+| JPA(JDBC)    |**NG**            |
+| Redis        |**OK**            |
+| MongoDB      |**OK**            |
+| Apache Cassandra |**OK**         |
+| Couchbase    |**OK**         |
+
+### JPA(JDBC)でのReactiveはなぜNG？
+
+* JDBCドライバやJPA実装がReactiveに対応していないため
+    * 他をReactiveにしても意味がない
+
+### 画面レンダリングのReactiveは？
+
+次のセッションにてご紹介！
