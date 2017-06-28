@@ -84,7 +84,10 @@ publisher.subscribe(System.out::print);
 * Spring5で追加されたspring-fluxモジュール
     * Spring MVCでReactorの``Mono``や``Flux``が利用可能に。
 
-[![spring-flux](http://docs.spring.io/spring/docs/5.0.0.RC1/spring-framework-reference/images/webflux-overview.png)](https://docs.spring.io)
+
+![spring-flux](./webflux-overview.png)
+
+https://docs.spring.io
 
 ### Spring5でのReactive
 
