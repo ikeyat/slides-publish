@@ -22,6 +22,8 @@ Spring I/O 2017報告会
 |New in Spring 5: Functional Web Framework                    | Arjen Poutsma |
 |Reactive Meets Data Access                                   | Christoph Strobl |
 
+http://lanyrd.com/2017/spring-io/
+
 ### お詫び
 
 槙さん講演＠Java Day Tokyo 2017  
@@ -131,13 +133,9 @@ data:2
     * ``java.util.function``や``java.util.stream``などの関数スタイル記述
     * framework << library (明示的かつカスタムが容易)
     * No reflection
-* spring-flux向け限定
+    * spring-flux向け限定
 
-### Question
-
-* Q: ``@RequestMapping``があるのになぜ？
-    * A: 様々な選択肢があることは重要なのだ by キーノート
-    * A: Reactiveだと関数スタイルとの相性が良い？
+* ``RouterFunction``と``HandlerFunction``の組み合わせ
 
 ### RouterFunction
 
@@ -206,6 +204,13 @@ RouterFunction<ServerResponse> routerWithFilter() {
             });
 }
 ```
+
+### Question
+
+* Q: ``@RequestMapping``があるのになぜ？
+    * A: 様々な選択肢があることは重要なのだ by キーノート
+    * A: Reactiveだと関数スタイルとの相性が良い？
+
 
 ### agenda
 
