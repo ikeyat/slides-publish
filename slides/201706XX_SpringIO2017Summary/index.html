@@ -2579,6 +2579,32 @@ article.smaller q::after {
 </article>
 
 <article>
+<h3>元ネタセッション</h3>
+
+<table><thead>
+<tr>
+<th style="text-align: left">Session</th>
+<th style="text-align: left">Speaker</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">Reactor 3, the reactive foundation for Java 8 (and Spring 5)</td>
+<td style="text-align: left">Simon Baslé</td>
+</tr>
+<tr>
+<td style="text-align: left">New in Spring 5: Functional Web Framework</td>
+<td style="text-align: left">Arjen Poutsma</td>
+</tr>
+<tr>
+<td style="text-align: left">Reactive Meets Data Access</td>
+<td style="text-align: left">Christoph Strobl</td>
+</tr>
+</tbody></table>
+
+
+</article>
+
+<article>
 <h3>お詫び</h3>
 
 <p>槙さん講演＠Java Day Tokyo 2017<br>
@@ -2603,11 +2629,33 @@ article.smaller q::after {
 </article>
 
 <article>
+<h3>non-blocking</h3>
+
+<ul>
+<li>blockさせないプログラミング手法
+   * callback
+       * callback地獄
+   * <code>Future</code>
+       * 待ち合わせ関係が複雑化
+       * 待ち合わせでblock</li>
+</ul>
+
+
+</article>
+
+<article>
 <h3>Reactive(Streams)とは</h3>
 
 <ul>
 <li>non-blockingな処理をイベントドリブンに記述する方法</li>
-<li>back pressureによりpush型/pull型の両立を図る</li>
+<li>JDK9にてインターフェイスが標準化</li>
+<li>back pressureにより合理的に処理を実行
+   * 急いでいるSubscriberには素早く
+   * ゆっくりなSubscriberには手を抜く
+
+<ul>
+<li>push型/pull型の弱点を補う</li>
+</ul></li>
 </ul>
 
 <pre><code>Publisher ---[onNext()]--&gt; Subscriber
@@ -2643,7 +2691,8 @@ publisher.subscribe(System.out::print);
 <article>
 <h3>Spring5でのReactive</h3>
 
-<p>spring-fluxによりSpring MVCで<code>Mono</code>や<code>Flux</code>が利用可能に。</p>
+<p>Spring5で追加されたspring-fluxモジュール
+    * Spring MVCでReactorの<code>Mono</code>や<code>Flux</code>が利用可能に。</p>
 
 <p><a href="https://docs.spring.io"><img src="http://docs.spring.io/spring/docs/5.0.0.RC1/spring-framework-reference/images/webflux-overview.png" alt="spring-flux"></a></p>
 
@@ -2654,7 +2703,7 @@ publisher.subscribe(System.out::print);
 <h3>Spring5でのReactive</h3>
 
 <ul>
-<li>spring-flux</li>
+<li>リクエストとレスポンスへのアクセスをReactiveに</li>
 </ul>
 
 <pre><code class="java">@RestController
@@ -2686,6 +2735,8 @@ Flux&lt;Long&gt; infinite() {
 data:0
 
 data:1
+
+data:2
 ...
 </code></pre>
 

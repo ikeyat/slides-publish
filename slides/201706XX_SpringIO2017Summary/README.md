@@ -14,6 +14,14 @@ Spring I/O 2017報告会
 * [「Spring徹底入門(翔泳社)」](http://www.shoeisha.co.jp/book/detail/9784798142470)の執筆に参加しました。
 * Spring I/Oは3回目の参加 
 
+### 元ネタセッション
+
+| Session                 | Speaker    |
+|:------------------------|:-----------|
+|Reactor 3, the reactive foundation for Java 8 (and Spring 5) | Simon Baslé |
+|New in Spring 5: Functional Web Framework                    | Arjen Poutsma |
+|Reactive Meets Data Access                                   | Christoph Strobl |
+
 ### お詫び
 
 槙さん講演＠Java Day Tokyo 2017  
@@ -28,10 +36,23 @@ Spring I/O 2017報告会
 * Functional Web Framework
 * Spring DataのReactive対応
 
+### non-blocking
+
+* blockさせないプログラミング手法
+    * callback
+        * callback地獄
+    * ``Future``
+        * 待ち合わせ関係が複雑化
+        * 待ち合わせでblock
+
 ### Reactive(Streams)とは
 
 * non-blockingな処理をイベントドリブンに記述する方法
-* back pressureによりpush型/pull型の両立を図る
+* JDK9にてインターフェイスが標準化
+* back pressureにより合理的に処理を実行
+    * 急いでいるSubscriberには素早く
+    * ゆっくりなSubscriberには手を抜く
+    * push型/pull型の弱点を補う
 
 ```
 Publisher ---[onNext()]--> Subscriber
@@ -58,13 +79,14 @@ publisher.subscribe(System.out::print);
 
 ### Spring5でのReactive
 
-spring-fluxによりSpring MVCで``Mono``や``Flux``が利用可能に。
+Spring5で追加されたspring-fluxモジュール
+    * Spring MVCでReactorの``Mono``や``Flux``が利用可能に。
 
 [![spring-flux](http://docs.spring.io/spring/docs/5.0.0.RC1/spring-framework-reference/images/webflux-overview.png)](https://docs.spring.io)
 
 ### Spring5でのReactive
 
-* spring-flux
+* リクエストとレスポンスへのアクセスをReactiveに
 
 ```java
 @RestController
@@ -92,6 +114,8 @@ curl http://... -H "Accept: text/event-stream"
 data:0
 
 data:1
+
+data:2
 ...
 ```
 
