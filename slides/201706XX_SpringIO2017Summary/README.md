@@ -81,11 +81,11 @@ publisher.subscribe(System.out::print);
 
 ### Spring5でのReactive
 
-* Spring5で追加されたspring-fluxモジュール
+* Spring5で追加されたspring-webfluxモジュール
     * Spring MVCでReactorの``Mono``や``Flux``が利用可能に。
 
 
-![spring-flux](./webflux-overview.png)
+![spring-webflux](./webflux-overview.png)
 
 https://docs.spring.io
 
@@ -136,7 +136,7 @@ data:2
     * ``java.util.function``や``java.util.stream``などの関数スタイル記述
     * framework << library (明示的かつカスタムが容易)
     * No reflection
-    * spring-flux向け限定
+    * spring-webflux向け限定
 
 * ``RouterFunction``と``HandlerFunction``の組み合わせ
 
@@ -167,10 +167,14 @@ HandlerFunction<ServerResponse> handler = req -> {
 };
 ```
 
-* ``RouterFunction``にて、``RequestPredicates``とセットで指定
+* request/responseへのアクセスには以下を用いる
+    * ``ServerRequest``: ``RouterFunction``から取得可能
+    * ``ServerResponse``: ``HandlerFunction``の戻り値へ返却 
 
 
 ### Example
+
+* ``RouterFunction``をBean化することで有効になる
 
 ```java
 @Bean
@@ -182,14 +186,11 @@ RouterFunction<ServerResponse> router() {
 }
 ```
 
-* request/responseへのアクセスには以下を用いる
-    * ``ServerRequest``: ``RouterFunction``から取得可能
-    * ``ServerResponse``: ``HandlerFunction``の戻り値へ返却 
-
 
 ### HandlerFilterFunction
 
-* ``HandlerInterceptor``に相当
+* 横断的な処理の挟み込み
+    * ``HandlerInterceptor``に相当
 
 ```java
 @Bean

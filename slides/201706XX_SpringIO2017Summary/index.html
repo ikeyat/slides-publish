@@ -2703,14 +2703,14 @@ publisher.subscribe(System.out::print);
 <h3>Spring5でのReactive</h3>
 
 <ul>
-<li>Spring5で追加されたspring-fluxモジュール
+<li>Spring5で追加されたspring-webfluxモジュール
 
 <ul>
 <li>Spring MVCでReactorの<code>Mono</code>や<code>Flux</code>が利用可能に。</li>
 </ul></li>
 </ul>
 
-<p><img src="./webflux-overview.png" alt="spring-flux"></p>
+<p><img src="./webflux-overview.png" alt="spring-webflux"></p>
 
 <p><a href="https://docs.spring.io">https://docs.spring.io</a></p>
 
@@ -2783,7 +2783,7 @@ data:2
 <li><code>java.util.function</code>や<code>java.util.stream</code>などの関数スタイル記述</li>
 <li>framework &lt;&lt; library (明示的かつカスタムが容易)</li>
 <li>No reflection</li>
-<li>spring-flux向け限定</li>
+<li>spring-webflux向け限定</li>
 </ul></li>
 <li><p><code>RouterFunction</code>と<code>HandlerFunction</code>の組み合わせ</p></li>
 </ul>
@@ -2829,25 +2829,6 @@ data:2
 </code></pre>
 
 <ul>
-<li><code>RouterFunction</code>にて、<code>RequestPredicates</code>とセットで指定</li>
-</ul>
-
-
-</article>
-
-<article>
-<h3>Example</h3>
-
-<pre><code class="java">@Bean
-RouterFunction&lt;ServerResponse&gt; router() {
-    return RouterFunctions.route(POST(&quot;/func&quot;),
-            req -&gt; ServerResponse.ok().body(
-                    req.bodyToFlux(String.class)
-                           .map(String::toUpperCase), String.class));
-}
-</code></pre>
-
-<ul>
 <li>request/responseへのアクセスには以下を用いる
 
 <ul>
@@ -2860,10 +2841,33 @@ RouterFunction&lt;ServerResponse&gt; router() {
 </article>
 
 <article>
+<h3>Example</h3>
+
+<ul>
+<li><code>RouterFunction</code>をBean化することで有効になる</li>
+</ul>
+
+<pre><code class="java">@Bean
+RouterFunction&lt;ServerResponse&gt; router() {
+    return RouterFunctions.route(POST(&quot;/func&quot;),
+            req -&gt; ServerResponse.ok().body(
+                    req.bodyToFlux(String.class)
+                           .map(String::toUpperCase), String.class));
+}
+</code></pre>
+
+
+</article>
+
+<article>
 <h3>HandlerFilterFunction</h3>
 
 <ul>
+<li>横断的な処理の挟み込み
+
+<ul>
 <li><code>HandlerInterceptor</code>に相当</li>
+</ul></li>
 </ul>
 
 <pre><code class="java">@Bean
