@@ -2950,7 +2950,10 @@ RouterFunction&lt;ServerResponse&gt; routerWithFilter() {
 <li><code>findOne(..)</code> -&gt; <code>findById(..)</code></li>
 </ul></li>
 <li>Custom Repositoryの命名ルールの改善
-  * <code>MyRepositoryCustom</code> -&gt; <code>MyRepositoryImpl</code></li>
+
+<ul>
+<li><code>MyRepositoryCustom</code> -&gt; <code>MyRepositoryImpl</code></li>
+</ul></li>
 </ul>
 
 
@@ -2958,6 +2961,14 @@ RouterFunction&lt;ServerResponse&gt; routerWithFilter() {
 
 <article>
 <h3>Reactive Template API</h3>
+
+<pre><code class="java">ReactiveMongoTemplate template;
+
+Flux&lt;Person&gt; flux = template.find(
+    new Query(where(&quot;_id&quot;).is(person.getId())), Person.class);
+
+flux.subscribe(System.out::println);
+</code></pre>
 
 
 </article>

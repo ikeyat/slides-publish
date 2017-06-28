@@ -237,14 +237,22 @@ RouterFunction<ServerResponse> routerWithFilter() {
 * 戻り値``null``の可能性のあるAPIは全て``Optional``型で返却
 * IDの``Serializable``制約の廃止
 * Repositoryのメソッド名の改善
-   * ``save(..)`` -> ``saveAll(..)``
-   * ``findOne(..)`` -> ``findById(..)``
+    * ``save(..)`` -> ``saveAll(..)``
+    * ``findOne(..)`` -> ``findById(..)``
 * Custom Repositoryの命名ルールの改善
-   * ``MyRepositoryCustom`` -> ``MyRepositoryImpl``
+    * ``MyRepositoryCustom`` -> ``MyRepositoryImpl``
 
 
 ### Reactive Template API
 
+```java
+ReactiveMongoTemplate template;
+
+Flux<Person> flux = template.find(
+    new Query(where("_id").is(person.getId())), Person.class);
+
+flux.subscribe(System.out::println);
+```
 
 ### ReactiveCrudRepository
 
