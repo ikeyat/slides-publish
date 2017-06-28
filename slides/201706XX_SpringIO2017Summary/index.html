@@ -2633,11 +2633,20 @@ article.smaller q::after {
 
 <ul>
 <li>blockさせないプログラミング手法
-   * callback
-       * callback地獄
-   * <code>Future</code>
-       * 待ち合わせ関係が複雑化
-       * 待ち合わせでblock</li>
+
+<ul>
+<li>callback
+
+<ul>
+<li>callback地獄</li>
+</ul></li>
+<li><code>Future</code>
+
+<ul>
+<li>待ち合わせ関係が複雑化</li>
+<li>待ち合わせでblock</li>
+</ul></li>
+</ul></li>
 </ul>
 
 
@@ -2650,10 +2659,10 @@ article.smaller q::after {
 <li>non-blockingな処理をイベントドリブンに記述する方法</li>
 <li>JDK9にてインターフェイスが標準化</li>
 <li>back pressureにより合理的に処理を実行
-   * 急いでいるSubscriberには素早く
-   * ゆっくりなSubscriberには手を抜く
 
 <ul>
+<li>急いでいるSubscriberには素早く</li>
+<li>ゆっくりなSubscriberには手を抜く</li>
 <li>push型/pull型の弱点を補う</li>
 </ul></li>
 </ul>
@@ -2691,8 +2700,13 @@ publisher.subscribe(System.out::print);
 <article>
 <h3>Spring5でのReactive</h3>
 
-<p>Spring5で追加されたspring-fluxモジュール
-    * Spring MVCでReactorの<code>Mono</code>や<code>Flux</code>が利用可能に。</p>
+<ul>
+<li>Spring5で追加されたspring-fluxモジュール
+
+<ul>
+<li>Spring MVCでReactorの<code>Mono</code>や<code>Flux</code>が利用可能に。</li>
+</ul></li>
+</ul>
 
 <p><a href="https://docs.spring.io"><img src="http://docs.spring.io/spring/docs/5.0.0.RC1/spring-framework-reference/images/webflux-overview.png" alt="spring-flux"></a></p>
 

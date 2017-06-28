@@ -39,19 +39,19 @@ Spring I/O 2017報告会
 ### non-blocking
 
 * blockさせないプログラミング手法
-    * callback
-        * callback地獄
-    * ``Future``
-        * 待ち合わせ関係が複雑化
-        * 待ち合わせでblock
+    * callback
+        * callback地獄
+    * ``Future``
+        * 待ち合わせ関係が複雑化
+        * 待ち合わせでblock
 
 ### Reactive(Streams)とは
 
 * non-blockingな処理をイベントドリブンに記述する方法
 * JDK9にてインターフェイスが標準化
 * back pressureにより合理的に処理を実行
-    * 急いでいるSubscriberには素早く
-    * ゆっくりなSubscriberには手を抜く
+    * 急いでいるSubscriberには素早く
+    * ゆっくりなSubscriberには手を抜く
     * push型/pull型の弱点を補う
 
 ```
@@ -79,7 +79,7 @@ publisher.subscribe(System.out::print);
 
 ### Spring5でのReactive
 
-Spring5で追加されたspring-fluxモジュール
+* Spring5で追加されたspring-fluxモジュール
     * Spring MVCでReactorの``Mono``や``Flux``が利用可能に。
 
 [![spring-flux](http://docs.spring.io/spring/docs/5.0.0.RC1/spring-framework-reference/images/webflux-overview.png)](https://docs.spring.io)
