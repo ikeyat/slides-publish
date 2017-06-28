@@ -38,15 +38,6 @@ http://lanyrd.com/2017/spring-io/
 * Functional Web Framework
 * Spring DataのReactive対応
 
-### non-blocking
-
-* blockさせないプログラミング手法
-    * callback
-        * callback地獄
-    * ``Future``
-        * スレッドコスト
-        * 待ち合わせでblock
-
 ### Reactiveとは
 
 * 例：Excelの数式
