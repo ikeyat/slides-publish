@@ -58,7 +58,7 @@ http://lanyrd.com/2017/spring-io/
             * 入力側のイベント発生や、出力側の待ち状況に応じて
         * 細切れ処理を優先順に実行
 
-本当のリアクティブプログラミングの詳細は、  
+本当のリアクティブプログラミングの詳細は、  
 [NTTの岩塚さん、堅田さんのスライド](https://www.slideshare.net/TakuyaIwatsuka/spring-5)
 
 
