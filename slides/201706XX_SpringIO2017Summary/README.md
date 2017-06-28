@@ -44,13 +44,26 @@ http://lanyrd.com/2017/spring-io/
     * callback
         * callback地獄
     * ``Future``
-        * 待ち合わせ関係が複雑化
-        * 待ち合わせでblock
+        * スレッドコスト
+        * 待ち合わせでblock
+
+### Reactiveとは
+
+* 例：Excelの数式
+* 誤解を恐れずに我流に言うと、
+    * blockしない処理の塊を細切れにする
+    * エンジンは、細切れ処理をいつでも実行可能できるよう管理
+    * 入力側のイベント発生や、出力側の待ち状況に応じ、細切れ処理に優先順位をつける
+    * エンジンはイベントループの中で、細切れ処理を優先順に実行
+
+* 本当のリアクティブプログラミングの詳細は、  
+  [NTTの岩塚さん、堅田さんのスライド](https://www.slideshare.net/TakuyaIwatsuka/spring-5)
+
 
 ### Reactive(Streams)とは
 
-* non-blockingな処理をイベントドリブンに記述する方法
-* JDK9にてインターフェイスが標準化
+* Reactiveライブラリの共通部分を標準化
+* JDK9に取り込まれる予定
 * back pressureにより合理的に処理を実行
     * 急いでいるSubscriberには素早く
     * ゆっくりなSubscriberには手を抜く
@@ -61,8 +74,6 @@ Publisher ---[onNext()]--> Subscriber
           <--[request()]--
 ```
 
-リアクティブプログラミングの詳細は、  
-[NTTの岩塚さん、堅田さんのスライド](https://www.slideshare.net/TakuyaIwatsuka/spring-5)
 
 ### MonoとFlux (Reactor)
 
@@ -278,7 +289,7 @@ Mono<Long> count();
 ### JPA(JDBC)でのReactiveはなぜNG？
 
 * JDBCドライバやJPA実装がReactiveに対応していないため
-    * 他をReactiveにしても意味がない
+    * 他部分をReactiveにしてもblockが残ってしまっては意味がない
 
 ### 画面レンダリングのReactiveは？
 

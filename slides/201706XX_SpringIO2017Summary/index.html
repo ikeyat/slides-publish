@@ -2643,12 +2643,26 @@ article.smaller q::after {
 <li>callback地獄</li>
 </ul></li>
 <li><code>Future</code>
+       * スレッドコスト
+       * 待ち合わせでblock</li>
+</ul></li>
+</ul>
+
+
+</article>
+
+<article>
+<h3>Reactiveとは</h3>
 
 <ul>
-<li>待ち合わせ関係が複雑化</li>
-<li>待ち合わせでblock</li>
-</ul></li>
-</ul></li>
+<li>例：Excelの数式</li>
+<li><p>誤解を恐れずに我流に言うと、
+   * blockしない処理の塊を細切れにする
+   * エンジンは、細切れ処理をいつでも実行可能できるよう管理
+   * 入力側のイベント発生や、出力側の待ち状況に応じ、細切れ処理に優先順位をつける
+   * エンジンはイベントループの中で、細切れ処理を優先順に実行</p></li>
+<li><p>本当のリアクティブプログラミングの詳細は、  
+<a href="https://www.slideshare.net/TakuyaIwatsuka/spring-5">NTTの岩塚さん、堅田さんのスライド</a></p></li>
 </ul>
 
 
@@ -2658,8 +2672,8 @@ article.smaller q::after {
 <h3>Reactive(Streams)とは</h3>
 
 <ul>
-<li>non-blockingな処理をイベントドリブンに記述する方法</li>
-<li>JDK9にてインターフェイスが標準化</li>
+<li>Reactiveライブラリの共通部分を標準化</li>
+<li>JDK9に取り込まれる予定</li>
 <li>back pressureにより合理的に処理を実行
 
 <ul>
@@ -2672,9 +2686,6 @@ article.smaller q::after {
 <pre><code>Publisher ---[onNext()]--&gt; Subscriber
           &lt;--[request()]--
 </code></pre>
-
-<p>リアクティブプログラミングの詳細は、<br>
-<a href="https://www.slideshare.net/TakuyaIwatsuka/spring-5">NTTの岩塚さん、堅田さんのスライド</a></p>
 
 
 </article>
@@ -3026,7 +3037,7 @@ Mono&lt;Long&gt; count();
 
 <ul>
 <li>JDBCドライバやJPA実装がReactiveに対応していないため
-   * 他をReactiveにしても意味がない</li>
+   * 他部分をReactiveにしてもblockが残ってしまっては意味がない</li>
 </ul>
 
 
