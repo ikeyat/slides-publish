@@ -282,7 +282,7 @@ Mono<Long> count();
 ### JPA(JDBC)でのReactiveはなぜNG？
 
 * JDBCドライバやJPA実装がReactiveに対応していないため
-    * 他部分をReactiveにしてもblockが残ってしまっては意味がない
+    * 他部分をReactiveにしてもblockが残ってしまっては意味がない
 
 ### 画面レンダリングのReactiveは？
 
