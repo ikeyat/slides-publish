@@ -148,7 +148,7 @@ data:2
 
 * いわゆるルーター
 * URLやリクエスト内容に応じて、呼び出す処理の振り分けルールを定義
-    * リクエストの条件マッチングには``RequestPredicates``を使用
+    * リクエストの条件マッチングに``RequestPredicates``を使用
 * ``@RequestMapping``相当
 * Bean定義しておけば有効化される
 
